@@ -11,7 +11,6 @@ export default defineConfig({
                 deca: '"Lexend Deca", sans-serif',
                 lobster: '"Lobster", sans-serif',
                 montaga: 'Montaga, sans-serif',
-                roboto: 'Roboto, sans-serif',
             }
         }
     }

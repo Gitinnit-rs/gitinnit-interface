@@ -67,7 +67,7 @@ const routes = [
 
 <style scoped>
 .nav-list-item {
-  @apply px-4 py-3 cursor-pointer rounded-full text-sm transition hover: (bg-primary-200);
+  @apply px-4 py-3 font-semibold cursor-pointer rounded-full text-sm transition hover: (bg-primary-200);
 }
 
 .nav-list-item-active {
