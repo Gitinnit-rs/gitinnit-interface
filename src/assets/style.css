@@ -1,2 +1,9 @@
-/* Lobster and Lexend Deca fonts */
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;300;400;500;600;700;900&family=Lobster&display=swap');
+/* Custom fonts */
+@font-face {
+    font-family: Lobster;
+    src: url(./fonts/Lobster.ttf);
+}
+@font-face {
+    font-family: 'Lexend Deca';
+    src: url(./fonts/LexendDeca.ttf);
+}

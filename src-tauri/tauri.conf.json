@@ -59,7 +59,9 @@
         "height": 600,
         "resizable": true,
         "title": "Gitinnit",
-        "width": 800
+        "width": 1000,
+        "minWidth": 800,
+        "minHeight": 600
       }
     ]
   }

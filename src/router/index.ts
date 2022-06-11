@@ -9,7 +9,19 @@ const routes = [
         children: [
             {
                 path: '',
+                name: 'home',
                 component: () => import('../pages/Home.vue')
+            }
+        ]
+    },
+    {
+        path: '/about',
+        component: defaultLayout,
+        children: [
+            {
+                path: '',
+                name: 'about',
+                component: () => import('../pages/About.vue')
             }
         ]
     }
