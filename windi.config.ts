@@ -5,7 +5,7 @@ export default defineConfig({
     theme: {
         extend: {
             colors: {
-                'primary': colors.purple,
+                'primary': colors.emerald,
             },
             fontFamily: {
                 deca: '"Lexend Deca", sans-serif',
