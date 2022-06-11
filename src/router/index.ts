@@ -24,6 +24,17 @@ const routes = [
                 component: () => import('../pages/About.vue')
             }
         ]
+    },
+    {
+        path: '/project',
+        component: defaultLayout,
+        children: [
+            {
+                path: '/project/:id',
+                name: 'project',
+                component: () => import('../pages/project/_id.vue')
+            }
+        ]
     }
 ]
 

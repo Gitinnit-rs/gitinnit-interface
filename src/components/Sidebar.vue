@@ -3,6 +3,7 @@ import { useRoute } from "vue-router";
 
 import HomeIcon from "vue-material-design-icons/Home.vue";
 import InfoIcon from "vue-material-design-icons/Information.vue";
+import FolderMusic from "vue-material-design-icons/FolderMusic.vue";
 
 const props = defineProps<{
   compact: boolean;
@@ -23,12 +24,18 @@ const routes = [
     label: "About",
     icon: InfoIcon,
   },
+  {
+    to: "/project/1",
+    name: "project",
+    label: "Project",
+    icon: FolderMusic,
+  },
 ];
 </script>
 
 <template>
   <nav
-    class="p-5 max-w-[15rem] min-h-screen bg-primary-100 flex flex-col justify-between"
+    class="p-5 max-w-[15rem] h-screen fixed left-0 bg-primary-100 flex flex-col justify-between"
   >
     <div class="space-y-10">
       <div v-if="!props.compact">
@@ -41,13 +48,15 @@ const routes = [
             v-for="{ to, name, label, icon } in routes"
             :key="label"
             :to="to"
-            class="py-1"
+            class="py-1 flex flex-col items-center"
           >
             <div
               class="nav-list-item"
               :class="[
                 name === route.name ? 'nav-list-item-active' : null,
-                props.compact === true ? 'p-2 grid place-items-center' : 'px-4 py-3 flex items-center space-x-2',
+                props.compact === true
+                  ? 'py-2 px-5 grid place-items-center'
+                  : 'px-6 py-3 flex items-center space-x-2',
               ]"
             >
               <div class="">
@@ -66,7 +75,7 @@ const routes = [
       <span v-if="props.compact === false">
         &COPY; 2022 Gitinnit Pvt. Ltd.</span
       >
-      <span>&COPY; 2022</span>
+      <span v-else>&COPY; 2022</span>
     </div>
   </nav>
 </template>

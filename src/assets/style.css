@@ -18,3 +18,17 @@
     font-family: 'Roboto';
     src: url(./fonts/Roboto-Regular.ttf), url('./fonts/Roboto-Thin.ttf'), url('./fonts/Roboto-Bold.ttf');
 }
+
+/* Custom CSS classes */
+.tag {
+    @apply border border-dark-200 text-dark-200 font-medium rounded-lg px-2.5 py-1 text-xs;
+}
+
+.bg-pattern {
+    background-size: 20px 20px;
+    background-image: repeating-linear-gradient(to right,
+            #ffffff,
+            #ffffff 1px,
+            #d1fae5 1px,
+            #d1fae5);
+}
