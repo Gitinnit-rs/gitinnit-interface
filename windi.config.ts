@@ -5,12 +5,13 @@ export default defineConfig({
     theme: {
         extend: {
             colors: {
-                'primary': colors.sky,
+                'primary': colors.purple,
             },
             fontFamily: {
                 deca: '"Lexend Deca", sans-serif',
                 lobster: '"Lobster", sans-serif',
                 montaga: 'Montaga, sans-serif',
+                roboto: 'Roboto, sans-serif',
             }
         }
     }

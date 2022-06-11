@@ -13,3 +13,8 @@
     font-family: 'Montaga';
     src: url(./fonts/Montaga.ttf);
 }
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(./fonts/Roboto-Regular.ttf), url('./fonts/Roboto-Thin.ttf'), url('./fonts/Roboto-Bold.ttf');
+}

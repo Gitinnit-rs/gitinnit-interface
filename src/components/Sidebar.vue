@@ -24,7 +24,7 @@ const routes = [
 
 <template>
   <nav
-    class="p-5 max-w-[15rem] min-h-screen bg-gray-200 flex flex-col justify-between"
+    class="p-5 max-w-[15rem] min-h-screen bg-primary-100 flex flex-col justify-between"
   >
     <div class="space-y-10">
       <div>
@@ -37,11 +37,15 @@ const routes = [
             v-for="{ to, name, label, icon } in routes"
             :key="label"
             :to="to"
-            class="py-2"
+            class="py-1"
           >
             <div
               class="nav-list-item flex items-center space-x-2"
-              :class="[name === route.name ? 'nav-list-item-active' : null]"
+              :class="[
+                name === route.name
+                  ? 'nav-list-item-active'
+                  : null,
+              ]"
             >
               <div class="">
                 <component :is="icon" class="text-lg" />
@@ -63,10 +67,10 @@ const routes = [
 
 <style scoped>
 .nav-list-item {
-  @apply px-4 py-3 cursor-pointer rounded-full text-sm transition hover: (bg-gray-100);
+  @apply px-4 py-3 cursor-pointer rounded-full text-sm transition hover: (bg-primary-200);
 }
 
 .nav-list-item-active {
-  @apply bg-white hover: (bg-white);
+  @apply bg-primary-200;
 }
 </style>
