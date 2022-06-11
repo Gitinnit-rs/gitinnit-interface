@@ -10,6 +10,7 @@ export default defineConfig({
             fontFamily: {
                 deca: '"Lexend Deca", sans-serif',
                 lobster: '"Lobster", sans-serif',
+                montaga: 'Montaga, sans-serif',
             }
         }
     }

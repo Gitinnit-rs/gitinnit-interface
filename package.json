@@ -12,6 +12,7 @@
     "@tauri-apps/api": "^1.0.0-rc.6",
     "vite-plugin-windicss": "^1.8.4",
     "vue": "^3.2.25",
+    "vue-material-design-icons": "^5.0.0",
     "vue-router": "4",
     "windicss": "^3.5.4"
   },

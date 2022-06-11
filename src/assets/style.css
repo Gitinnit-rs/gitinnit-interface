@@ -3,7 +3,13 @@
     font-family: Lobster;
     src: url(./fonts/Lobster.ttf);
 }
+
 @font-face {
     font-family: 'Lexend Deca';
     src: url(./fonts/LexendDeca.ttf);
+}
+
+@font-face {
+    font-family: 'Montaga';
+    src: url(./fonts/Montaga.ttf);
 }

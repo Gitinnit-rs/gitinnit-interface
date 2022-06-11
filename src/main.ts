@@ -5,5 +5,6 @@ import router from './router'
 
 import 'virtual:windi.css'
 import './assets/style.css'
+import 'vue-material-design-icons/styles.css';
 
 createApp(App).use(router).mount('#app')
