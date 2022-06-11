@@ -35,7 +35,7 @@ const routes = [
 
 <template>
   <nav
-    class="p-5 max-w-[15rem] h-screen fixed left-0 bg-primary-100 flex flex-col justify-between"
+    class="p-5 max-w-[13rem] h-screen fixed left-0 bg-primary-100 flex flex-col justify-between"
   >
     <div class="space-y-10">
       <div v-if="!props.compact">

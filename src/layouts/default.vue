@@ -8,6 +8,10 @@ const compact = true;
   <div class="grid grid-cols-12">
     <!-- Empty space div to emulate if sidebar wasn't fixed -->
     <div :class="compact ? 'col-span-1' : 'col-span-2'"></div>
-    <router-view :class="compact ? 'col-span-11' : 'col-span-10'"></router-view>
+    <transition name="fade">
+      <router-view
+        :class="compact ? 'col-span-11' : 'col-span-10'"
+      ></router-view>
+    </transition>
   </div>
 </template>

@@ -32,3 +32,15 @@
             #d1fae5 1px,
             #d1fae5);
 }
+
+/* Vue Transition class */
+.fade-enter-active,
+.fade-leave-active {
+    transition: all .5s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+    transform: translateY(2px);
+}
