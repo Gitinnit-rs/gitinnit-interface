@@ -9,4 +9,5 @@ import 'virtual:windi.css'
 import './assets/style.css'
 import 'vue-material-design-icons/styles.css';
 
+
 createApp(App).use(router).use(createPinia()).mount('#app')
