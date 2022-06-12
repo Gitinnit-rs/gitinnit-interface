@@ -29,6 +29,5 @@ const { compact } = storeToRefs(useStore());
         />
       </div>
     </div>
-    <p v-for="n in 50" :key="n">henlu</p>
   </div>
 </template>

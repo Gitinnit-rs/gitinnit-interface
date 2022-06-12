@@ -6,6 +6,7 @@ export const useStore = defineStore("gitinnit-store", {
     }),
     actions: {
         toggleCompact() {
+            console.log("toggleCompact")
             this.compact = !this.compact
         }
     }

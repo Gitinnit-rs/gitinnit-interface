@@ -4,10 +4,13 @@ import { useRoute } from "vue-router";
 import HomeIcon from "vue-material-design-icons/Home.vue";
 import InfoIcon from "vue-material-design-icons/Information.vue";
 import FolderMusic from "vue-material-design-icons/FolderMusic.vue";
+import ChevronDoubleLeft from "vue-material-design-icons/ChevronDoubleLeft.vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "../store";
 
 const { compact } = storeToRefs(useStore());
+const { toggleCompact } = useStore();
+const toggle = () => toggleCompact();
 
 const route = useRoute();
 
@@ -36,7 +39,7 @@ const routes = [
 <template>
   <nav
     class="p-5 h-screen fixed left-0 top-0 bg-primary-100 flex flex-col justify-between"
-    :class="[compact ? 'max-w-[6rem]' : 'max-w-[13rem]']"
+    :class="[compact ? 'max-w-[6rem]' : 'max-w-[10rem]']"
   >
     <div class="space-y-10">
       <div v-if="!compact">
@@ -73,6 +76,13 @@ const routes = [
     </div>
 
     <div class="text-gray-500 text-xs text-center">
+      <div @click="toggle" class="cursor-pointer">
+        <ChevronDoubleLeft
+          class="text-lg"
+          :class="compact ? 'transform rotate-180' : ''"
+        />
+      </div>
+      <br /><br />
       <span v-if="compact === false"> &COPY; 2022 Gitinnit Pvt. Ltd.</span>
       <span v-else>&COPY; 2022</span>
     </div>
