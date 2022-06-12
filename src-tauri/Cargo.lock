@@ -3,16 +3,6 @@
 version = 3
 
 [[package]]
-name = "Gitinnit"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
-]
-
-[[package]]
 name = "adler"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -931,6 +921,16 @@ dependencies = [
  "libc",
  "system-deps 6.0.2",
  "winapi",
+]
+
+[[package]]
+name = "gitinnit"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
 ]
 
 [[package]]

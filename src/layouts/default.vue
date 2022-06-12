@@ -1,16 +1,16 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import Sidebar from "../components/Sidebar.vue";
-const compact = true;
+import { useStore } from "../store";
+const { compact } = storeToRefs(useStore());
 </script>
 
 <template>
-  <Sidebar :compact="compact" />
-  <div class="grid grid-cols-12">
-    <!-- Empty space div to emulate if sidebar wasn't fixed -->
-    <div :class="compact ? 'col-span-1' : 'col-span-2'"></div>
-    <transition name="fade">
+  <div>
+    <Sidebar />
+    <transition name="fade" mode="out-in">
       <router-view
-        :class="compact ? 'col-span-11' : 'col-span-10'"
+        :class="compact ? 'ml-[6rem]' : 'ml-[13rem]'"
       ></router-view>
     </transition>
   </div>

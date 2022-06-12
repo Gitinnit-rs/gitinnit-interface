@@ -4,10 +4,10 @@ import { useRoute } from "vue-router";
 import HomeIcon from "vue-material-design-icons/Home.vue";
 import InfoIcon from "vue-material-design-icons/Information.vue";
 import FolderMusic from "vue-material-design-icons/FolderMusic.vue";
+import { storeToRefs } from "pinia";
+import { useStore } from "../store";
 
-const props = defineProps<{
-  compact: boolean;
-}>();
+const { compact } = storeToRefs(useStore());
 
 const route = useRoute();
 
@@ -35,10 +35,11 @@ const routes = [
 
 <template>
   <nav
-    class="p-5 max-w-[13rem] h-screen fixed left-0 bg-primary-100 flex flex-col justify-between"
+    class="p-5 h-screen fixed left-0 top-0 bg-primary-100 flex flex-col justify-between"
+    :class="[compact ? 'max-w-[6rem]' : 'max-w-[13rem]']"
   >
     <div class="space-y-10">
-      <div v-if="!props.compact">
+      <div v-if="!compact">
         <h1 class="font-lobster text-3xl text-center mt-3">Gitinnit</h1>
       </div>
 
@@ -54,7 +55,7 @@ const routes = [
               class="nav-list-item"
               :class="[
                 name === route.name ? 'nav-list-item-active' : null,
-                props.compact === true
+                compact === true
                   ? 'py-2 px-5 grid place-items-center'
                   : 'px-6 py-3 flex items-center space-x-2',
               ]"
@@ -62,7 +63,7 @@ const routes = [
               <div class="">
                 <component :is="icon" class="text-lg" />
               </div>
-              <div v-if="props.compact === false">
+              <div v-if="compact === false">
                 {{ label }}
               </div>
             </div>
@@ -72,9 +73,7 @@ const routes = [
     </div>
 
     <div class="text-gray-500 text-xs text-center">
-      <span v-if="props.compact === false">
-        &COPY; 2022 Gitinnit Pvt. Ltd.</span
-      >
+      <span v-if="compact === false"> &COPY; 2022 Gitinnit Pvt. Ltd.</span>
       <span v-else>&COPY; 2022</span>
     </div>
   </nav>
