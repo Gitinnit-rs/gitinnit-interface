@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useStore } from "../../store";
-
 const tags = ["in progress", "needs mastering", "house mix"];
-
-const { compact } = storeToRefs(useStore());
 </script>
 
 <template>
