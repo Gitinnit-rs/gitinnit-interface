@@ -5,6 +5,8 @@ import HomeIcon from "vue-material-design-icons/Home.vue";
 import InfoIcon from "vue-material-design-icons/Information.vue";
 import FolderMusic from "vue-material-design-icons/FolderMusic.vue";
 import ChevronDoubleLeft from "vue-material-design-icons/ChevronDoubleLeft.vue";
+import Compass from "vue-material-design-icons/Compass.vue";
+import Cog from "vue-material-design-icons/Cog.vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "../store";
 
@@ -22,16 +24,28 @@ const routes = [
     icon: HomeIcon,
   },
   {
-    to: "/about",
-    name: "about",
-    label: "About",
-    icon: InfoIcon,
+    to: "/explore",
+    name: "explore",
+    label: "Explore",
+    icon: Compass,
   },
   {
     to: "/project/1",
     name: "project",
     label: "Project",
     icon: FolderMusic,
+  },
+  {
+    to: "/about",
+    name: "about",
+    label: "About",
+    icon: InfoIcon,
+  },
+  {
+    to: "/settings",
+    name: "settings",
+    label: "Settings",
+    icon: Cog,
   },
 ];
 </script>

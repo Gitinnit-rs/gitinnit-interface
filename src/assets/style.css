@@ -44,3 +44,10 @@
     opacity: 0;
     transform: translateY(2px);
 }
+
+label {
+    @apply text-sm;
+}
+input[type="text"] {
+    @apply border py-2 px-3 rounded-lg text-sm;
+}
