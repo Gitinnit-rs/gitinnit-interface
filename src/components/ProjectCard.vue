@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+
 const props = defineProps<{
   project: { title: string; authors: string; image: string; genre: string };
 }>();
+
+const router = useRouter();
 </script>
 
 <template>
-  <div class="p-3">
+  <div class="p-3" @click="router.push('/project/1')">
     <img
       :src="props.project.image"
       :alt="props.project.title"

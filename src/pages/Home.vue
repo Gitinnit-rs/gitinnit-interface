@@ -55,7 +55,7 @@ function randomImage() {
     </div>
 
     <div class="p-5 mx-5">
-      <h1 class="uppercase tracking-widest text-xs">Community Projects</h1>
+      <h1 class="uppercase tracking-widest text-xs text-gray-500">Community Projects</h1>
       <div class="-ml-3">
         <div class="grid grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           <ProjectCard
