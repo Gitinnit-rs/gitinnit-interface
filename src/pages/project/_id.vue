@@ -15,8 +15,8 @@ const tags = ["in progress", "needs mastering", "house mix"];
           <h1 class="font-montaga text-4xl">Summer Days</h1>
           <h3 class="text-gray-500">Martin Garrix</h3>
           <!-- Tags -->
-          <div class="space-x-1 mt-2">
-            <span v-for="tag in tags" :key="tag" class="tag">{{ tag }}</span>
+          <div class="space-x-1 mt-1 flex-wrap flex">
+            <span v-for="tag in tags" :key="tag" class="tag mt-1">{{ tag }}</span>
           </div>
         </div>
         <img
