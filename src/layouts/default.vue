@@ -9,9 +9,7 @@ const { compact } = storeToRefs(useStore());
   <div>
     <Sidebar />
     <transition name="fade" mode="out-in">
-      <router-view
-        :class="compact ? 'ml-[6rem]' : 'ml-[10rem]'"
-      ></router-view>
+      <router-view :class="compact ? 'ml-[6rem]' : 'ml-[10rem]'"></router-view>
     </transition>
   </div>
 </template>
