@@ -35,7 +35,8 @@ fn set_user_email(email: &str) {
     }
 }
 
-fn set_path(path: &str) {
+#[tauri::command]
+pub fn set_path(path: &str) {
     let root = Path::new(path);
     assert!(env::set_current_dir(&root).is_ok());
     println!(
@@ -44,7 +45,8 @@ fn set_path(path: &str) {
     );
 }
 
-fn init() {
+#[tauri::command]
+pub fn init() {
     let mut cmd = Command::new("git");
     cmd.arg("init");
     match cmd.output() {
@@ -73,37 +75,67 @@ fn log() {
     }
 }
 
-fn add() {
+fn add() -> String {
     let mut cmd = Command::new("git");
 
     cmd.arg("add .");
     match cmd.output() {
         Ok(o) => unsafe {
             println!("OUTPUT {:?}", String::from_utf8_unchecked(o.stdout));
+            return String::from("true");
         },
         Err(e) => {
             println!("THERE WAS AN ERR {}", e);
+            return "Error: ".to_string() + &e.to_string();
         }
     }
 }
 
-fn commit(message: &str) {
-    add();
+#[tauri::command]
+pub fn commit(message: &str, path: &str) {
+    set_path(path);
 
-    println!("MESSAGE: {}", message);
-    let mut cmd = Command::new("git");
+    // let mut cmd = Command::new("git");
 
-    let commit_command: String = "commit -m ".to_string() + &message.to_string();
+    // cmd.args(["add", "."]);
 
-    cmd.arg(commit_command);
-    match cmd.output() {
-        Ok(o) => unsafe {
-            println!("OUTPUT {:?}", String::from_utf8_unchecked(o.stdout));
-        },
+    match Command::new("git")
+        .args(["add", "."])
+        .spawn()
+        .unwrap()
+        .wait_with_output()
+    {
+        Ok(o) => {
+            // println!("OUTPUT {:?}", String::from_utf8(o.stdout));
+            // return String::from("true");
+
+            println!("Add at path {}", env::current_dir().unwrap().display());
+
+            // let commit_command: String = "commit -m ".to_string() + &message.to_string();
+
+            match Command::new("git")
+                .args(["commit", "-m", &message.to_string()])
+                .spawn()
+                .unwrap()
+                .wait_with_output()
+            {
+                Ok(o) => {
+                    println!("Done committing to {}", path)
+                }
+                Err(e) => {
+                    println!("THERE WAS AN ERR IN COMMIT {}", e);
+                }
+            }
+        }
         Err(e) => {
-            println!("THERE WAS AN ERR {}", e);
+            println!("THERE WAS AN ERR IN ADD {}", e);
+            // return "Error: ".to_string() + &e.to_string();
         }
     }
+
+    ////////
+    println!("MESSAGE: {}", message);
+    // let mut cmd = Command::new("git");
 }
 
 fn status() {
