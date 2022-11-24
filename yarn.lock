@@ -667,6 +667,11 @@ vue-tsc@^0.34.7:
   dependencies:
     "@volar/vue-typescript" "0.34.17"
 
+vue3-tags-input@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vue3-tags-input/-/vue3-tags-input-1.0.2.tgz#8b6998911e21225991603f4b3b679efec613afdb"
+  integrity sha512-dM985jyeac+/S7kzQorFG0pgurD9R7QXGVtjlYFT77jgn6WDeUWVbb7TYmDWWl5+9MVvJ7h3lGZqo7FdA5NcOA==
+
 vue@^3.2.25:
   version "3.2.37"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.37.tgz#da220ccb618d78579d25b06c7c21498ca4e5452e"

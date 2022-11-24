@@ -15,6 +15,7 @@
     "vue": "^3.2.25",
     "vue-material-design-icons": "^5.0.0",
     "vue-router": "4",
+    "vue3-tags-input": "^1.0.2",
     "windicss": "^3.5.4"
   },
   "devDependencies": {

@@ -7,6 +7,8 @@ import FolderMusic from "vue-material-design-icons/FolderMusic.vue";
 import ChevronDoubleLeft from "vue-material-design-icons/ChevronDoubleLeft.vue";
 import Compass from "vue-material-design-icons/Compass.vue";
 import Cog from "vue-material-design-icons/Cog.vue";
+import Plus from "vue-material-design-icons/PlusCircle.vue";
+
 import { storeToRefs } from "pinia";
 import { useStore } from "../store";
 
@@ -24,6 +26,12 @@ const routes = [
     icon: HomeIcon,
   },
   {
+    to: "/create",
+    name: "create",
+    label: "Create",
+    icon: Plus,
+  },
+  {
     to: "/explore",
     name: "explore",
     label: "Explore",
@@ -35,6 +43,7 @@ const routes = [
     label: "Project",
     icon: FolderMusic,
   },
+
   {
     to: "/about",
     name: "about",

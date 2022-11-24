@@ -58,6 +58,17 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/create",
+    component: defaultLayout,
+    children: [
+      {
+        path: "",
+        name: "create",
+        component: () => import("../pages/Create.vue"),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({

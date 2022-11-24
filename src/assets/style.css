@@ -49,5 +49,5 @@ label {
     @apply text-sm;
 }
 input[type="text"] {
-    @apply border py-2 px-3 rounded-lg text-sm;
+    @apply border py-2 px-3 rounded-lg text-sm w-full;
 }
