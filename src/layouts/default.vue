@@ -8,8 +8,13 @@ const { compact } = storeToRefs(useStore());
 <template>
   <div>
     <Sidebar />
-    <transition name="fade" mode="out-in">
-      <router-view :class="compact ? 'ml-[6rem]' : 'ml-[10rem]'"></router-view>
-    </transition>
+    <router-view
+      v-slot="{ Component }"
+      :class="compact ? 'ml-[6rem]' : 'ml-[10rem]'"
+    >
+      <transition name="fade">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
