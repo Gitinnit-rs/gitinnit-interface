@@ -2,152 +2,88 @@ use std::env;
 use std::path::Path;
 use std::process::Command;
 
-// fn main(){
-//   set_path("C:/Users/vedant/Desktop/TestFolder/testRs");
-//   log();
-// }
-
-fn set_user_name(name: &str) {
-    let mut cmd = Command::new("git");
-    let commit_command: String = "config --global user.name".to_string() + &name.to_string();
-    cmd.arg("config ");
-    match cmd.output() {
-        Ok(o) => unsafe {
-            println!("OUTPUT {:?}", String::from_utf8_unchecked(o.stdout));
-        },
-        Err(e) => {
-            println!("THER WAS AN ERR {}", e);
-        }
-    }
+fn main(){
+  let path = "C:/Users/vedant/Desktop/TestFolder/testRs";
+  set_path("C:/Users/vedant/Desktop/TestFolder/testRs");
+  status(path);
+  commit("TEST", "C:/Users/vedant/Desktop/TestFolder/testRs");
+  status(path);
+  log(path);
 }
 
-fn set_user_email(email: &str) {
-    let mut cmd = Command::new("git");
-    let commit_command: String = "config --global user.email".to_string() + &email.to_string();
-    cmd.arg("config ");
-    match cmd.output() {
-        Ok(o) => unsafe {
-            println!("OUTPUT {:?}", String::from_utf8_unchecked(o.stdout));
-        },
-        Err(e) => {
-            println!("THER WAS AN ERR {}", e);
-        }
-    }
-}
-
-#[tauri::command]
-pub fn set_path(path: &str) {
-    let root = Path::new(path);
-    assert!(env::set_current_dir(&root).is_ok());
-    println!(
-        "Successfully changed working directory to {}!",
-        root.display()
-    );
-}
-
-#[tauri::command]
-pub fn init() {
-    let mut cmd = Command::new("git");
-    cmd.arg("init");
-    match cmd.output() {
-        Ok(o) => unsafe {
-            println!("OUTPUT {:?}", String::from_utf8_unchecked(o.stdout));
-        },
-        Err(e) => {
-            println!("THER WAS AN ERR {}", e);
-        }
-    }
-}
-
-fn log() {
-    let mut cmd = Command::new("git");
-    let output = cmd.arg("log").output().expect("failed to execute process");
-    unsafe {
-        let commits = String::from_utf8(output.stdout);
-        match commits {
-            Ok(o) => unsafe {
-                println!("{:?}", o.split("\n\n").collect::<Vec<&str>>());
-            },
-            Err(e) => {
-                println!("THER WAS AN ERR {}", e);
-            }
-        }
-    }
-}
-
-fn add() -> String {
-    let mut cmd = Command::new("git");
-
-    cmd.arg("add .");
-    match cmd.output() {
-        Ok(o) => unsafe {
-            println!("OUTPUT {:?}", String::from_utf8_unchecked(o.stdout));
-            return String::from("true");
-        },
-        Err(e) => {
-            println!("THERE WAS AN ERR {}", e);
-            return "Error: ".to_string() + &e.to_string();
-        }
-    }
-}
-
-#[tauri::command]
-pub fn commit(message: &str, path: &str) {
-    set_path(path);
-
-    // let mut cmd = Command::new("git");
-
-    // cmd.args(["add", "."]);
-
-    match Command::new("git")
-        .args(["add", "."])
+fn exec_git_command(args:Vec<String>) -> String{
+  match Command::new("git")
+        .args(args)
         .spawn()
         .unwrap()
-        .wait_with_output()
-    {
-        Ok(o) => {
-            // println!("OUTPUT {:?}", String::from_utf8(o.stdout));
-            // return String::from("true");
-
-            println!("Add at path {}", env::current_dir().unwrap().display());
-
-            // let commit_command: String = "commit -m ".to_string() + &message.to_string();
-
-            match Command::new("git")
-                .args(["commit", "-m", &message.to_string()])
-                .spawn()
-                .unwrap()
-                .wait_with_output()
-            {
-                Ok(o) => {
-                    println!("Done committing to {}", path)
-                }
-                Err(e) => {
-                    println!("THERE WAS AN ERR IN COMMIT {}", e);
-                }
-            }
+        .wait_with_output(){
+          Ok(o) => {
+            return "success".to_string()
+          }Err(e) => {
+            println!("ERR: {}", e);
+            return e.to_string()
+          } 
         }
-        Err(e) => {
-            println!("THERE WAS AN ERR IN ADD {}", e);
-            // return "Error: ".to_string() + &e.to_string();
-        }
-    }
-
-    ////////
-    println!("MESSAGE: {}", message);
-    // let mut cmd = Command::new("git");
 }
 
-fn status() {
-    let mut cmd = Command::new("git");
+fn set_user_name(name: &str) {
+  let args:Vec<String> = ["config", "--global", "user.name", &name.to_string()].map(String::from).iter().cloned().collect::<Vec<String>>();
+  exec_git_command(args);
+}
 
-    cmd.arg("status");
-    match cmd.output() {
-        Ok(o) => unsafe {
-            println!("OUTPUT {:?}", String::from_utf8_unchecked(o.stdout));
-        },
-        Err(e) => {
-            println!("THERE WAS AN ERR {}", e);
-        }
-    }
+
+fn set_user_email(email: &str) {
+  let args = ["config", "--global", "user.email", &email.to_string()].map(String::from).iter().cloned().collect::<Vec<String>>();
+  exec_git_command(args);
+}
+
+
+
+// #[tauri::command]
+pub fn init(path:&str) {
+  set_path(path);
+  let args = ["init"].map(String::from).iter().cloned().collect::<Vec<String>>();
+  exec_git_command(args);
+}
+
+fn log(path:&str) {
+  set_path(path);
+  let args = ["log"].map(String::from).iter().cloned().collect::<Vec<String>>();
+  exec_git_command(args);
+}
+
+// #[tauri::command]
+pub fn add(path: &str) -> String {
+  set_path(path);
+  let args = ["add", "."].map(String::from).iter().cloned().collect::<Vec<String>>();
+  let returnVal:String = exec_git_command(args);
+  return returnVal
+}
+
+
+// #[tauri::command]
+pub  fn commit(message: &str, path: &str) {
+  set_path(path);
+  let add_result = add(path);
+  assert!(add_result == "success", "{}", add_result);
+  let args = ["commit", "-m", &message.to_string()].map(String::from).iter().cloned().collect::<Vec<String>>();
+  let returnVal:String = exec_git_command(args);
+}
+
+pub fn status(path: &str) {
+  set_path(path);
+  let add_result = add(path);
+  assert!(add_result == "success", "{}", add_result);
+  let args = ["status"].map(String::from).iter().cloned().collect::<Vec<String>>();
+  let returnVal:String = exec_git_command(args);
+}
+
+// #[tauri::command]
+pub fn set_path(path: &str) {
+  let root = Path::new(path);
+  assert!(env::set_current_dir(&root).is_ok());
+  println!(
+      "Successfully changed working directory to {}!",
+      root.display()
+  );
 }
