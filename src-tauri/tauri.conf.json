@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.gitinnit.dev",
+      "identifier": "com.gitinnit.interface",
       "longDescription": "",
       "macOS": {
         "entitlements": null,

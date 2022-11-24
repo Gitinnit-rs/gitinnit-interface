@@ -39,20 +39,21 @@ fn set_user_email(email: &str) {
 
 
 
-// #[tauri::command]
+#[tauri::command]
 pub fn init(path:&str) {
   set_path(path);
   let args = ["init"].map(String::from).iter().cloned().collect::<Vec<String>>();
   exec_git_command(args);
 }
 
+#[tauri::command]
 fn log(path:&str) {
   set_path(path);
   let args = ["log"].map(String::from).iter().cloned().collect::<Vec<String>>();
   exec_git_command(args);
 }
 
-// #[tauri::command]
+#[tauri::command]
 pub fn add(path: &str) -> String {
   set_path(path);
   let args = ["add", "."].map(String::from).iter().cloned().collect::<Vec<String>>();
@@ -61,8 +62,8 @@ pub fn add(path: &str) -> String {
 }
 
 
-// #[tauri::command]
-pub  fn commit(message: &str, path: &str) {
+#[tauri::command]
+pub fn commit(message: &str, path: &str) {
   set_path(path);
   let add_result = add(path);
   assert!(add_result == "success", "{}", add_result);
@@ -78,7 +79,6 @@ pub fn status(path: &str) {
   let returnVal:String = exec_git_command(args);
 }
 
-// #[tauri::command]
 pub fn set_path(path: &str) {
   let root = Path::new(path);
   assert!(env::set_current_dir(&root).is_ok());

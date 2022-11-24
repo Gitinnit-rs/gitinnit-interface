@@ -75,6 +75,7 @@ const routes = [
             v-for="{ to, name, label, icon } in routes"
             :key="label"
             :to="to"
+            :title="label"
             class="py-1 flex flex-col items-center"
           >
             <div

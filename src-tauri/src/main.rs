@@ -7,11 +7,7 @@ mod utils;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![
-            utils::set_path,
-            utils::init,
-            utils::commit
-        ])
+        .invoke_handler(tauri::generate_handler![utils::init, utils::commit])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

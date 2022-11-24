@@ -12,7 +12,7 @@ const { compact } = storeToRefs(useStore());
       v-slot="{ Component }"
       :class="compact ? 'ml-[6rem]' : 'ml-[10rem]'"
     >
-      <transition name="fade">
+      <transition name="fade" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>

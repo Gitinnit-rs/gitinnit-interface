@@ -1,26 +1,28 @@
 <script setup lang="ts">
 // @ts-ignore
 import Vue3TagsInput from "vue3-tags-input";
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import FilledButton from "../components/FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
-
-const tags = ref([]);
+import { globalAppPath } from "../utils";
 
 const data = reactive({
+  name: "",
+  genre: "",
+  author: "",
   path: "",
+  tags: "",
 });
 
-function submit() {
-  //   if (!data.path) return;
+async function submit() {
   console.log("Path passed: ", data.path);
   //   invoke("set_path", {
   //     path: data.path,
   //   }).then(() => invoke("init"));
 
-  const path = "/Users/neelansh/Documents/programming/test";
+  //   const path = "/Users/neelansh/Documents/programming/test";
 
-  invoke("commit", { message: "My new commit 2", path });
+  console.log("Global config path:", await globalAppPath());
 }
 </script>
 
@@ -32,7 +34,7 @@ function submit() {
       <div class="grid grid-cols-3 gap-10">
         <div>
           <label for="name">Name</label> <br />
-          <input type="text" name="name" /> <br />
+          <input type="text" name="name" v-model="data.name" /> <br />
         </div>
         <div>
           <label for="genre">Genre</label> <br />
@@ -52,7 +54,7 @@ function submit() {
 
       <label for="tags" class="mt-5">Tags</label> <br />
       <vue3-tags-input
-        :tags="tags"
+        :tags="data.tags"
         placeholder="Enter tags"
         @on-tags-changed=""
       />
