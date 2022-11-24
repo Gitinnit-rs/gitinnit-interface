@@ -4,8 +4,19 @@
 </script>
 
 <template>
+  <!-- Titlebar -->
+  <div class="titlebar" data-tauri-drag-region></div>
   <router-view />
 </template>
 
-<style>
+<style scoped>
+.titlebar {
+  user-select: none;
+  background-color: transparent;
+  width: 100%;
+  height: 25px;
+  position: fixed;
+  left: 0;
+  z-index: 100;
+}
 </style>

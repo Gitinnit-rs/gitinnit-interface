@@ -39,7 +39,7 @@ function randomImage() {
 </script>
 
 <template>
-  <div class="mt-3">
+  <div>
     <div class="p-5 mx-5">
       <div class="pt-5">
         <h3 class="tracking-widest text-gray-500 text-xs">v0.1.0</h3>
