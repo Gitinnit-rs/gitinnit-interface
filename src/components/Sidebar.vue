@@ -52,7 +52,7 @@ const routes = [
 
 <template>
   <nav
-    class="px-5 py-10 h-screen fixed left-0 top-0 bg-primary-100 flex flex-col justify-between"
+    class="px-5 py-10 h-screen fixed left-0 top-0 z-10 bg-primary-100 flex flex-col justify-between"
     :class="[compact ? 'max-w-[6rem]' : 'max-w-[10rem]']"
   >
     <div class="space-y-10">
