@@ -10,7 +10,6 @@ pub fn read_file(path: &str) -> String {
 
 #[tauri::command]
 pub fn write_file(path: &str, contents: &str) {
-    println!("Writing to {}", path);
     let mut file = OpenOptions::new()
         .write(true)
         .create(true)
@@ -22,9 +21,7 @@ pub fn write_file(path: &str, contents: &str) {
 #[tauri::command]
 pub fn create_dir_if_not_exists(folderpath: &str) {
     let path = Path::new(folderpath);
-    println!("About to check for folder at {}", folderpath);
     if !path.exists() {
         create_dir(path);
-        println!("Created folder {}", folderpath);
     }
 }

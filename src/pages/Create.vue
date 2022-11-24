@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // @ts-ignore
 import Vue3TagsInput from "vue3-tags-input";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import FilledButton from "../components/FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
 import { globalConfigPath } from "../utils";
@@ -11,8 +11,12 @@ const data = reactive({
   genre: "",
   author: "",
   path: "",
-  tags: "",
+  tags: [] as string[],
 });
+
+function onTagsChanged(value: any) {
+  data.tags = value;
+}
 
 async function submit() {
   console.log("Path passed: ", data.path);
@@ -45,13 +49,13 @@ async function submit() {
         </div>
         <div>
           <label for="genre">Genre</label> <br />
-          <input type="text" name="genre" /> <br />
+          <input type="text" name="genre" v-model="data.genre" /> <br />
         </div>
       </div>
       <div class="grid grid-cols-3 gap-10 my-3">
         <div>
           <label for="author">Author</label> <br />
-          <input type="text" name="author" /> <br />
+          <input type="text" name="author" v-model="data.author" /> <br />
         </div>
         <div>
           <label for="path">Path</label> <br />
@@ -63,9 +67,8 @@ async function submit() {
       <vue3-tags-input
         :tags="data.tags"
         placeholder="Enter tags"
-        @on-tags-changed=""
+        @on-tags-changed="onTagsChanged"
       />
-
       <FilledButton class="mt-6">Create project</FilledButton>
     </form>
   </div>
