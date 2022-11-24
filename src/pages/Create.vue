@@ -4,7 +4,7 @@ import Vue3TagsInput from "vue3-tags-input";
 import { reactive } from "vue";
 import FilledButton from "../components/FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
-import { globalAppPath } from "../utils";
+import { globalConfigPath } from "../utils";
 
 const data = reactive({
   name: "",
@@ -22,18 +22,25 @@ async function submit() {
 
   //   const path = "/Users/neelansh/Documents/programming/test";
 
-  console.log("Global config path:", await globalAppPath());
+  const globalData = {
+    projects: [data],
+  };
+
+  invoke("write_file", {
+    path: await globalConfigPath(),
+    contents: JSON.stringify(globalData),
+  });
 }
 </script>
 
 <template>
-  <div class="p-5 pt-12">
+  <div class="p-10 pt-12">
     <h1 class="text-5xl font-lobster">Create a new project</h1>
 
     <form @submit.prevent="submit" class="mt-5" ref="create_form">
       <div class="grid grid-cols-3 gap-10">
         <div>
-          <label for="name">Name</label> <br />
+          <label for="name">Music Name</label> <br />
           <input type="text" name="name" v-model="data.name" /> <br />
         </div>
         <div>
