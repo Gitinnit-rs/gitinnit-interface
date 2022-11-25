@@ -16,24 +16,32 @@ const communityProjects = [
     author: "Martin Garrix",
     image: randomImage(),
     genre: "Electro House",
+    path: "",
+    tags: [],
   },
   {
     name: "In the name of the king",
     author: "King Krusher",
     image: randomImage(),
     genre: "Hip-Hop",
+    path: "",
+    tags: [],
   },
   {
     name: "SkateLess",
     author: "Steve Aoki",
     image: randomImage(),
     genre: "Electronic",
+    path: "",
+    tags: [],
   },
   {
     name: "Fireball",
     author: "Pitbull",
     image: randomImage(),
     genre: "Electronic",
+    path: "",
+    tags: [],
   },
 ];
 
@@ -79,7 +87,7 @@ const { projects } = storeToRefs(store);
           <ProjectCard
             :project="project"
             v-for="project in communityProjects.concat(communityProjects)"
-            :key="project.title + project.authors"
+            :key="project.name + project.author"
           />
         </div>
       </div>

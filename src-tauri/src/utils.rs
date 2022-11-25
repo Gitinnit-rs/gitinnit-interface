@@ -47,7 +47,7 @@ pub fn init(path:&str) {
 }
 
 #[tauri::command]
-fn log(path:&str) {
+fn log(path: &str) {
   set_path(path);
   let args = ["log"].map(String::from).iter().cloned().collect::<Vec<String>>();
   exec_git_command(args);
