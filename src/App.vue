@@ -3,13 +3,15 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 
 import { invoke } from "@tauri-apps/api";
-import { onBeforeMount } from "vue";
-import { globalAppPath } from "./utils";
+import { onMounted } from "vue";
+import { fetchProjects, globalAppPath } from "./utils";
 
-onBeforeMount(async () => {
+onMounted(async () => {
   invoke("create_dir_if_not_exists", {
     folderpath: await globalAppPath(),
   });
+
+  fetchProjects();
 });
 </script>
 

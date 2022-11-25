@@ -4,14 +4,19 @@ import Vue3TagsInput from "vue3-tags-input";
 import { reactive, ref } from "vue";
 import FilledButton from "../components/FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
-import { globalConfigPath } from "../utils";
+import { fetchProjects, globalConfigPath, randomImage } from "../utils";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const data = reactive({
+  id: Math.round(Math.random() * 1e6),
   name: "",
   genre: "",
   author: "",
   path: "",
   tags: [] as string[],
+  image: randomImage(),
 });
 
 function onTagsChanged(value: any) {
@@ -33,6 +38,15 @@ async function submit() {
   invoke("write_file", {
     path: await globalConfigPath(),
     contents: JSON.stringify(globalData),
+  }).then(() => {
+    // Maybe have a sleep of 500ms, fetch and then redirect to the project page
+    fetchProjects();
+
+    invoke("init", {
+      path: data.path,
+    }).then(() => {
+      router.push("/");
+    });
   });
 }
 </script>
