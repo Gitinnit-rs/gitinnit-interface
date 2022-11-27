@@ -18,7 +18,6 @@ if (route.params.id && +route.params.id !== -1) {
   !project.value &&
   projects.value.length > 0
 ) {
-  console.log("Else condition here for id param -1 and no project");
   store.$patch({
     project: projects.value[0],
   });
