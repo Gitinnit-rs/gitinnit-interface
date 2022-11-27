@@ -10,7 +10,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="p-3" @click="router.push('/project/1')">
+  <div class="p-3" @click="router.push(`/project/${project.id}`)">
     <img
       :src="props.project.image"
       :alt="props.project.name"

@@ -38,7 +38,7 @@ const routes = [
     icon: Compass,
   },
   {
-    to: "/project/1",
+    to: "/project/-1",
     name: "project",
     label: "Project",
     icon: FolderMusic,

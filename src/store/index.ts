@@ -4,7 +4,8 @@ import { Project } from '../types'
 export const useStore = defineStore("gitinnit-store", {
     state: () => ({
         compact: true,
-        projects: [] as Project[]
+        projects: [] as Project[],
+        project: undefined as Project | undefined
     }),
     actions: {
         toggleCompact() {

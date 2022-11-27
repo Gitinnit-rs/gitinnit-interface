@@ -11,6 +11,7 @@ const store = useStore();
 
 const communityProjects = [
   {
+    id: 0,
     name: "Summer Days",
     author: "Martin Garrix",
     image: randomImage(),
@@ -19,6 +20,7 @@ const communityProjects = [
     tags: [],
   },
   {
+    id: 1,
     name: "In the name of the king",
     author: "King Krusher",
     image: randomImage(),
@@ -27,6 +29,7 @@ const communityProjects = [
     tags: [],
   },
   {
+    id: 2,
     name: "SkateLess",
     author: "Steve Aoki",
     image: randomImage(),
@@ -35,6 +38,7 @@ const communityProjects = [
     tags: [],
   },
   {
+    id: 3,
     name: "Fireball",
     author: "Pitbull",
     image: randomImage(),
