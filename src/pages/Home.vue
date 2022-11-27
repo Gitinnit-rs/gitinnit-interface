@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
 import FilledButton from "../components/FilledButton.vue";
 import OutlineButton from "../components/OutlineButton.vue";
 import ProjectCard from "../components/ProjectCard.vue";
