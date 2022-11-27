@@ -1,5 +1,4 @@
-use std::fs::OpenOptions;
-use std::fs::{self, create_dir};
+use std::fs;
 use std::io::Write;
 use std::path::Path;
 
@@ -10,7 +9,7 @@ pub fn read_file(path: &str) -> String {
 
 #[tauri::command]
 pub fn write_file(path: &str, contents: &str) {
-    let mut file = OpenOptions::new()
+    let mut file = fs::OpenOptions::new()
         .write(true)
         .create(true)
         .open(path)
@@ -22,6 +21,6 @@ pub fn write_file(path: &str, contents: &str) {
 pub fn create_dir_if_not_exists(folderpath: &str) {
     let path = Path::new(folderpath);
     if !path.exists() {
-        create_dir(path);
+        fs::create_dir(path);
     }
 }
