@@ -28,13 +28,13 @@ fn exec_git_command(args: Vec<&str>) -> String {
 
 #[tauri::command]
 fn set_user_name(name: &str) {
-    let args = vec!["config", "--global", "user.name", &name.to_string()];
+    let args = vec!["config", "--global", "user.name", &name];
     exec_git_command(args);
 }
 
 #[tauri::command]
 fn set_user_email(email: &str) {
-    let args = vec!["config", "--global", "user.email", &email.to_string()];
+    let args = vec!["config", "--global", "user.email", &email];
     exec_git_command(args);
 }
 
@@ -65,7 +65,7 @@ pub fn commit(message: &str, path: &str) {
     set_path(path);
     let add_result = add(path);
     assert!(add_result == "success", "{}", add_result);
-    let args = vec!["commit", "-m", &message.to_string()];
+    let args = vec!["commit", "-m", &message];
     let returnVal: String = exec_git_command(args);
 }
 
