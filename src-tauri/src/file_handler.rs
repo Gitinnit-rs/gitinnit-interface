@@ -12,6 +12,7 @@ pub fn write_file(path: &str, contents: &str) {
     let mut file = fs::OpenOptions::new()
         .write(true)
         .create(true)
+        .truncate(true)
         .open(path)
         .expect("Unable to write to file");
     write!(file, "{}", contents);

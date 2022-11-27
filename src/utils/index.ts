@@ -13,7 +13,7 @@ export async function fetchProjects() {
     })
     console.log("Read file", data)
     store.$patch({
-        projects: JSON.parse(data).projects
+        projects: JSON.parse(data).projects,
     })
 }
 
