@@ -19,9 +19,13 @@ pub fn write_file(path: &str, contents: &str) {
 }
 
 #[tauri::command]
-pub fn create_dir_if_not_exists(folderpath: &str) {
+pub fn create_dir_if_not_exists(folderpath: &str) -> bool {
     let path = Path::new(folderpath);
+
     if !path.exists() {
         fs::create_dir(path);
+        return true; // Created a new dir
     }
+
+    return false; // Didn't need to create dir as it already exists
 }

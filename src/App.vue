@@ -4,12 +4,27 @@
 
 import { invoke } from "@tauri-apps/api";
 import { onMounted } from "vue";
-import { fetchProjects, globalAppPath } from "./utils";
+import { fetchProjects, globalAppPath, globalConfigPath } from "./utils";
 
 onMounted(async () => {
-  invoke("create_dir_if_not_exists", {
+  const result = await invoke("create_dir_if_not_exists", {
     folderpath: await globalAppPath(),
   });
+
+  if (result === true) {
+    await new Promise((resolve, _) => setTimeout(resolve, 1000));
+
+    const baseConfig = {
+      projects: [],
+    };
+
+    // If dir is newly created
+    const _globalConfig = await globalConfigPath();
+    invoke("write_file", {
+      path: _globalConfig,
+      contents: JSON.stringify(baseConfig),
+    });
+  }
 
   fetchProjects();
 });

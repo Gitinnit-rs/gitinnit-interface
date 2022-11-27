@@ -24,23 +24,20 @@ function onTagsChanged(value: any) {
 }
 
 async function submit() {
-  console.log("Path passed: ", data.path);
-  //   invoke("set_path", {
-  //     path: data.path,
-  //   }).then(() => invoke("init"));
+  const _globalConfig = await globalConfigPath();
 
-  //   const path = "/Users/neelansh/Documents/programming/test";
+  const globalConfigJSON: string = await invoke("read_file", {
+    path: _globalConfig,
+  });
 
-  const globalData = {
-    projects: [data],
-  };
+  const globalData = JSON.parse(globalConfigJSON);
+  globalData.projects.push(data);
 
   invoke("write_file", {
-    path: await globalConfigPath(),
+    path: _globalConfig,
     contents: JSON.stringify(globalData),
   }).then(() => {
-    // Maybe have a sleep of 500ms, fetch and then redirect to the project page
-    fetchProjects();
+    setTimeout(fetchProjects, 1000);
 
     invoke("init", {
       path: data.path,
