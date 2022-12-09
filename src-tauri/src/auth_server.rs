@@ -1,4 +1,5 @@
 use std::{
+    fs,
     io::{BufRead, BufReader, Write},
     net::{TcpListener, TcpStream},
 };
@@ -28,8 +29,13 @@ fn handle_connection(mut stream: TcpStream) {
         .collect();
 
     // Return response as status 200 and status text OK
-    let response = "HTTP/1.1 200 OK\r\n\r\n";
-    stream.write_all(response.as_bytes()).unwrap();
+    let status_line = "HTTP/1.1 200 OK";
 
-    // Can later return HTML + JS that closes the tab in 200ms or something
+    let contents = fs::read_to_string("close.html").unwrap();
+    let length = contents.len();
+
+    // Return HTML + JS that closes the tab in 200ms or something
+    let response = format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
+
+    stream.write_all(response.as_bytes()).unwrap();
 }
