@@ -3,6 +3,7 @@
     windows_subsystem = "windows"
 )]
 
+mod auth_server;
 mod file_handler;
 mod utils;
 
@@ -14,6 +15,7 @@ fn main() {
             file_handler::read_file,
             file_handler::write_file,
             file_handler::create_dir_if_not_exists,
+            auth_server::create_auth_server
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
