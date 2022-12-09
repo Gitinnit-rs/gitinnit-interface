@@ -1,29 +1,27 @@
+use std::borrow::Borrow;
 use std::env;
 use std::path::Path;
-use std::process::Command;
+use std::process::{Command, Stdio};
 
-fn main() {
-    let path = "C:/Users/vedant/Desktop/TestFolder/testRs";
-    set_path("C:/Users/vedant/Desktop/TestFolder/testRs");
-    status(path);
-    commit("TEST", "C:/Users/vedant/Desktop/TestFolder/testRs");
-    status(path);
-    log(path);
+#[derive( Clone)]
+struct Commit{
+    message: String,
+    hash: String,
+    author: String,
+    date: String
 }
 
+
 fn exec_git_command(args: Vec<&str>) -> String {
-    match Command::new("git")
+    let output = Command::new("git")
         .args(args)
-        .spawn()
-        .unwrap()
-        .wait_with_output()
-    {
-        Ok(o) => return "success".to_string(),
-        Err(e) => {
-            println!("ERR: {}", e);
-            return e.to_string();
-        }
-    }
+        .stdout(Stdio::piped())
+        .output()
+        .unwrap();
+
+    let stdout = String::from_utf8(output.stdout).unwrap();
+    return stdout
+
 }
 
 #[tauri::command]
@@ -46,18 +44,47 @@ pub fn init(path: &str) {
 }
 
 #[tauri::command]
-fn log(path: &str) {
+fn log(path: &str)->Vec<Commit>{
     set_path(path);
     let args = vec!["log"];
-    exec_git_command(args);
+    let output = exec_git_command(args);
+
+    let mut logs = Vec::<Commit>::new();
+    let mut isMessage = false;
+    let mut commit = Commit{
+        message: String::from(""),
+        hash: String::from(""),
+        author: String::from(""),
+        date: String::from("")
+    };
+    
+    for x in output.split("\n\n"){
+        if isMessage{
+            commit.message = x.to_string();
+            logs.push(commit.clone());
+            isMessage = false;
+        }else{
+            let lines = x.split("\n").collect::<Vec<&str>>();
+            let start_bytes = lines[0].find(" ").unwrap_or(0); 
+            commit.hash = lines[0][start_bytes..].to_string();
+            
+            let start_bytes = lines[1].find(" ").unwrap_or(0); 
+            commit.author = lines[1][start_bytes..].to_string();
+            
+            let start_bytes = lines[2].find(" ").unwrap_or(0); 
+            commit.date = lines[2][start_bytes..].to_string();
+            isMessage = true;
+        }
+    }
+    return logs
 }
 
 #[tauri::command]
 pub fn add(path: &str) -> String {
     set_path(path);
     let args = vec!["add", "."];
-    let returnVal: String = exec_git_command(args);
-    return returnVal;
+    let return_val: String = exec_git_command(args);
+    return return_val;
 }
 
 #[tauri::command]
@@ -66,7 +93,7 @@ pub fn commit(message: &str, path: &str) {
     let add_result = add(path);
     assert!(add_result == "success", "{}", add_result);
     let args = vec!["commit", "-m", &message];
-    let returnVal: String = exec_git_command(args);
+    let return_val: String = exec_git_command(args);
 }
 
 pub fn status(path: &str) {
@@ -74,7 +101,7 @@ pub fn status(path: &str) {
     let add_result = add(path);
     assert!(add_result == "success", "{}", add_result);
     let args = vec!["status"];
-    let returnVal: String = exec_git_command(args);
+    let return_val: String = exec_git_command(args);
 }
 
 pub fn set_path(path: &str) {
