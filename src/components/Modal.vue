@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import { useStore } from "../store";
+import { storeToRefs } from "pinia";
+
+const store = useStore();
 
 const props = defineProps<{
   modelValue: boolean;
@@ -16,6 +20,12 @@ const isOpen = computed({
 const modal = ref(null);
 
 onClickOutside(modal, () => (isOpen.value = false));
+
+watch(isOpen, (value) =>
+  store.$patch({
+    scrollLock: value,
+  })
+);
 </script>
 <template>
   <div class="modal-container" v-if="isOpen">

@@ -5,11 +5,12 @@ import { storeToRefs } from "pinia";
 import { useStore } from "../../store";
 import { useRoute, RouterLink } from "vue-router";
 import AddModal from "../../components/AddModal.vue";
+import { vScrollLock } from "@vueuse/components";
 
 const store = useStore();
 const route = useRoute();
 
-const { project, projects } = storeToRefs(store);
+const { project, projects, scrollLock } = storeToRefs(store);
 if (route.params.id && +route.params.id !== -1) {
   store.$patch({
     project: projects.value.find((item) => item.id === +route.params.id),
@@ -36,7 +37,7 @@ if (route.params.id && +route.params.id !== -1) {
         >
       </p>
     </div>
-    <div v-else>
+    <div v-else v-scroll-lock="true">
       <section class="p-10 bg-primary-100">
         <div class="flex justify-between items-end">
           <div>
