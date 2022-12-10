@@ -4,6 +4,7 @@ import Pill from "../../components/Pill.vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "../../store";
 import { useRoute, RouterLink } from "vue-router";
+import AddModal from "../../components/AddModal.vue";
 
 const store = useStore();
 const route = useRoute();
@@ -60,11 +61,16 @@ if (route.params.id && +route.params.id !== -1) {
         </div>
       </section>
 
-      <section class="p-10">
+      <section class="p-10 pt-8">
         <!-- <div class="uppercase tracking-widest text-gray-500 text-xs flex justify-end items-center space-x-2">
         <div class="w-2.5 h-2.5 mb-0.5 bg-green-500 rounded-full"></div>
         <span>Last Updated 3 days ago</span>
       </div> -->
+
+        <div class="flex justify-between">
+          <div></div>
+          <AddModal />
+        </div>
 
         <div class="space-y-3">
           <p class="text-sm"><Pill>Local Path</Pill> {{ project?.path }}</p>

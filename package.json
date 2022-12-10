@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.2.0",
+    "@vueuse/core": "^9.6.0",
     "pinia": "^2.0.14",
     "vite-plugin-windicss": "^1.8.4",
     "vue": "^3.2.25",
