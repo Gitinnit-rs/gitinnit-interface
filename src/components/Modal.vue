@@ -28,11 +28,13 @@ watch(isOpen, (value) =>
 );
 </script>
 <template>
-  <div class="modal-container" v-if="isOpen">
-    <div class="modal" ref="modal">
-      <slot />
+  <Transition name="fade">
+    <div class="modal-container" v-if="isOpen">
+      <div class="modal" ref="modal">
+        <slot />
+      </div>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <style scoped>
