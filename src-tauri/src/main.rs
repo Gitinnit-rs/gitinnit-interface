@@ -10,6 +10,7 @@ mod utils;
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
+            utils::log,
             utils::init,
             utils::commit,
             file_handler::read_file,

@@ -5,25 +5,34 @@ import { storeToRefs } from "pinia";
 import { useStore } from "../../store";
 import { useRoute, RouterLink } from "vue-router";
 import AddModal from "../../components/AddModal.vue";
-import { vScrollLock } from "@vueuse/components";
+import { onBeforeMount, onMounted } from "vue";
+import { invoke } from "@tauri-apps/api";
 
 const store = useStore();
 const route = useRoute();
 
-const { project, projects, scrollLock } = storeToRefs(store);
-if (route.params.id && +route.params.id !== -1) {
-  store.$patch({
-    project: projects.value.find((item) => item.id === +route.params.id),
-  });
-} else if (
-  +route.params.id === -1 &&
-  !project.value &&
-  projects.value.length > 0
-) {
-  store.$patch({
-    project: projects.value[0],
-  });
-}
+const { project, projects, timeline } = storeToRefs(store);
+
+onBeforeMount(() => {
+  if (route.params.id && +route.params.id !== -1) {
+    store.$patch({
+      project: projects.value.find((item) => item.id === +route.params.id),
+    });
+  } else if (
+    +route.params.id === -1 &&
+    !project.value &&
+    projects.value.length > 0
+  ) {
+    store.$patch({
+      project: projects.value[0],
+    });
+  }
+});
+
+onMounted(() => {
+  // Fetch git logs
+  store.getTimeline();
+});
 </script>
 
 <template>
@@ -37,7 +46,7 @@ if (route.params.id && +route.params.id !== -1) {
         >
       </p>
     </div>
-    <div v-else v-scroll-lock="true">
+    <div v-else>
       <section class="p-10 bg-primary-100">
         <div class="flex justify-between items-end">
           <div>

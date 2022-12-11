@@ -1,9 +1,10 @@
-use std::borrow::Borrow;
+use serde::Serialize;
+use serde_json;
 use std::env;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-#[derive(Clone)]
+#[derive(Clone, Serialize)]
 struct Commit {
     message: String,
     hash: String,
@@ -42,7 +43,7 @@ pub fn init(path: &str) {
 }
 
 #[tauri::command]
-fn log(path: &str) -> Vec<Commit> {
+pub fn log(path: &str) -> Result<String, String> {
     set_path(path);
     let args = vec!["log"];
     let output = exec_git_command(args);
@@ -74,7 +75,8 @@ fn log(path: &str) -> Vec<Commit> {
             isMessage = true;
         }
     }
-    return logs;
+
+    return Ok(serde_json::to_string(&logs).unwrap());
 }
 
 #[tauri::command]

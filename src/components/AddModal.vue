@@ -5,23 +5,30 @@ import LightButton from "./LightButton.vue";
 import FilledButton from "./FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
 import { useStore } from "../store";
+import { storeToRefs } from "pinia";
 
 const isOpen = ref(false);
 const message = ref("");
 
-const { project } = useStore();
+const store = useStore();
+const { project } = storeToRefs(store);
 
 const commit = () => {
   if (!message.value) message.value = "New Checkpoint";
-  if (!project?.path) return;
+  if (!project.value?.path) return;
 
   console.log("DATA PASSED", {
     message: message.value,
-    path: project?.path,
+    path: project.value?.path,
   });
   invoke("commit", {
     message: message.value,
-    path: project?.path,
+    path: project.value?.path,
+  }).then(() => {
+    // Get timeline with a small delay
+    setTimeout(() => {
+      store.getTimeline();
+    }, 500);
   });
 
   message.value = "";
