@@ -6,6 +6,8 @@ import { useStore } from "../../store";
 import { useRoute, RouterLink } from "vue-router";
 import AddModal from "../../components/AddModal.vue";
 import { onBeforeMount, onMounted } from "vue";
+import OutlineButton from "../../components/OutlineButton.vue";
+import { invoke } from "@tauri-apps/api";
 
 const store = useStore();
 const route = useRoute();
@@ -32,6 +34,13 @@ onMounted(() => {
   // Fetch git logs
   store.getTimeline();
 });
+
+const simulate = () => {
+  invoke("write_file", {
+    path: project.value?.path + "/" + Math.round(Math.random() * 1e3) + ".txt",
+    contents: "hello there " + Math.round(Math.random() * 1e3),
+  });
+};
 </script>
 
 <template>
@@ -78,7 +87,12 @@ onMounted(() => {
 
         <div class="flex justify-between">
           <div></div>
-          <AddModal />
+          <div>
+            <OutlineButton class="mr-2" @click="simulate"
+              >Simulate file change</OutlineButton
+            >
+            <AddModal />
+          </div>
         </div>
 
         <div class="space-y-3">
