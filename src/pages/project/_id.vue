@@ -6,12 +6,11 @@ import { useStore } from "../../store";
 import { useRoute, RouterLink } from "vue-router";
 import AddModal from "../../components/AddModal.vue";
 import { onBeforeMount, onMounted } from "vue";
-import { invoke } from "@tauri-apps/api";
 
 const store = useStore();
 const route = useRoute();
 
-const { project, projects, timeline } = storeToRefs(store);
+const { project, projects } = storeToRefs(store);
 
 onBeforeMount(() => {
   if (route.params.id && +route.params.id !== -1) {
