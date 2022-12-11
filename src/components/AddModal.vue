@@ -2,14 +2,48 @@
 import { ref } from "vue";
 import Modal from "./Modal.vue";
 import LightButton from "./LightButton.vue";
+import FilledButton from "./FilledButton.vue";
+import { invoke } from "@tauri-apps/api";
+import { useStore } from "../store";
 
 const isOpen = ref(false);
+const message = ref("");
+
+const { project } = useStore();
+
+const commit = () => {
+  if (!message.value) message.value = "New Checkpoint";
+  if (!project?.path) return;
+
+  console.log("DATA PASSED", {
+    message: message.value,
+    path: project?.path,
+  });
+  invoke("commit", {
+    message: message.value,
+    path: project?.path,
+  });
+
+  message.value = "";
+  isOpen.value = false;
+};
 </script>
 
 <template>
-  <LightButton @click="isOpen = true">+ Add</LightButton>
+  <LightButton @click="isOpen = true">+ Checkpoint</LightButton>
 
   <Modal v-model="isOpen">
-    Add
+    <h1 class="font-deca">Add Checkpoint</h1>
+
+    <form @submit.prevent="">
+      <input
+        type="text"
+        placeholder="Checkpoint Message"
+        class="mt-2"
+        v-model="message"
+      />
+
+      <FilledButton class="mt-5 float-right" @click="commit">Add</FilledButton>
+    </form>
   </Modal>
 </template>
