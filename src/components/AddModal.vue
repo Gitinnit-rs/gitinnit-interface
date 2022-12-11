@@ -17,10 +17,6 @@ const commit = () => {
   if (!message.value) message.value = "New Checkpoint";
   if (!project.value?.path) return;
 
-  console.log("DATA PASSED", {
-    message: message.value,
-    path: project.value?.path,
-  });
   invoke("commit", {
     message: message.value,
     path: project.value?.path,

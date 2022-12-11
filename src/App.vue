@@ -4,7 +4,7 @@
 
 import { invoke } from "@tauri-apps/api";
 import { onMounted } from "vue";
-import { fetchProjects, globalAppPath, globalConfigPath } from "./utils";
+import { fetchConfigData, globalAppPath, globalConfigPath } from "./utils";
 
 onMounted(async () => {
   const result = await invoke("create_dir_if_not_exists", {
@@ -26,7 +26,7 @@ onMounted(async () => {
     });
   }
 
-  fetchProjects();
+  fetchConfigData();
 });
 </script>
 

@@ -9,6 +9,7 @@ export const useStore = defineStore("gitinnit-store", {
     project: undefined as Project | undefined,
     timeline: [] as Commit[],
     scrollLock: false,
+    user: undefined as any,
   }),
   actions: {
     toggleCompact() {
