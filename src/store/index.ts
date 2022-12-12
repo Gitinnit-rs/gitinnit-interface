@@ -21,7 +21,7 @@ export const useStore = defineStore("gitinnit-store", {
       // Fetch git logs
       this.timeline = JSON.parse(
         await invoke("log", {
-          commit_hash: "",
+          hash: "",
           path: this.project.path,
         })
       );
