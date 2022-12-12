@@ -49,7 +49,7 @@ pub fn log(path: &str) -> Result<String, String> {
     let output = exec_git_command(args);
 
     let mut logs = Vec::<Commit>::new();
-    let mut isMessage = false;
+    let mut is_message = false;
     let mut commit = Commit {
         message: String::from(""),
         hash: String::from(""),
@@ -58,10 +58,10 @@ pub fn log(path: &str) -> Result<String, String> {
     };
 
     for x in output.split("\n\n") {
-        if isMessage {
+        if is_message {
             commit.message = x.to_string();
             logs.push(commit.clone());
-            isMessage = false;
+            is_message = false;
         } else {
             let lines = x.split("\n").collect::<Vec<&str>>();
             let start_bytes = lines[0].find(" ").unwrap_or(0);
