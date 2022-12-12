@@ -6,6 +6,7 @@ import ProjectCard from "../components/ProjectCard.vue";
 import { useStore } from "../store";
 import { Project } from "../types";
 import { randomImage } from "../utils";
+import { login } from "../utils/auth";
 
 const store = useStore();
 
@@ -61,8 +62,8 @@ const { projects } = storeToRefs(store);
           Version Control for Musicians
         </h2>
         <div class="mt-4 space-x-2">
-          <FilledButton>Register</FilledButton>
-          <OutlineButton>Log in</OutlineButton>
+          <!-- <OutlineButton>Register</OutlineButton> -->
+          <FilledButton @click="login">Log in</FilledButton>
         </div>
       </div>
     </div>
