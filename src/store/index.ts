@@ -1,7 +1,7 @@
-import { http, invoke } from "@tauri-apps/api";
+import { invoke } from "@tauri-apps/api";
 import { open } from "@tauri-apps/api/shell";
 import { defineStore } from "pinia";
-import { AUTH_URL } from "../constants";
+import { AUTH_URL, LOCAL_AUTH_URL } from "../constants";
 import { Commit, Project } from "../types";
 import { fetchConfigData, globalConfigPath } from "../utils";
 
@@ -30,7 +30,7 @@ export const useStore = defineStore("gitinnit-store", {
       );
     },
     async login() {
-      open(AUTH_URL + `/login?returnUrl=http://127.0.0.1:7878`);
+      open(AUTH_URL + `/login?returnUrl=${LOCAL_AUTH_URL}`);
 
       // Start internal auth server
       let http_response: string = await invoke("start_auth_server");
@@ -43,7 +43,6 @@ export const useStore = defineStore("gitinnit-store", {
       const access_token = new URLSearchParams(http_response).get(
         "accessToken"
       );
-      console.log({ access_token });
       // Fetch user object
       // utils->updateGlobalConfig with the user object
     },
