@@ -43,9 +43,9 @@ pub fn init(path: &str) {
 }
 
 #[tauri::command]
-pub fn log(path: &str) -> Result<String, String> {
+pub fn log(commit_hash:&str, path: &str) -> Result<String, String> {
     set_path(path);
-    let args = vec!["log"];
+    let args = vec!["log", commit_hash];
     let output = exec_git_command(args);
 
     let mut logs = Vec::<Commit>::new();
