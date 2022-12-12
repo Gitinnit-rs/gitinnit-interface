@@ -104,6 +104,14 @@ pub fn commit(message: &str, path: &str) {
     let return_val: String = exec_git_command(args);
 }
 
+#[tauri::command]
+pub fn checkout(checkout_path: &str, path: &str) -> String {
+    set_path(path);
+    let args = vec!["checkout",  &checkout_path];
+    let return_val: String = exec_git_command(args);
+    return return_val
+}
+
 pub fn status(path: &str) {
     set_path(path);
     let add_result = add(path);
