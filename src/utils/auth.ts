@@ -1,7 +1,6 @@
 import { invoke } from "@tauri-apps/api";
 import { open } from "@tauri-apps/api/shell";
 import { AUTH_URL, LOCAL_AUTH_URL } from "../constants";
-import { fetchConfigData, globalConfigPath } from "../utils";
 
 export async function login() {
   open(AUTH_URL + `/login?returnUrl=${LOCAL_AUTH_URL}`);

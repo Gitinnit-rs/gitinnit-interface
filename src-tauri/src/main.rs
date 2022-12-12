@@ -13,6 +13,7 @@ fn main() {
             utils::log,
             utils::init,
             utils::commit,
+            utils::checkout,
             file_handler::read_file,
             file_handler::write_file,
             file_handler::create_dir_if_not_exists,
