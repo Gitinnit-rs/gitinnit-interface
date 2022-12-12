@@ -6,6 +6,7 @@ import ProjectCard from "../components/ProjectCard.vue";
 import { useStore } from "../store";
 import { Project } from "../types";
 import { randomImage } from "../utils";
+import { login } from "../utils/auth";
 
 const store = useStore();
 
@@ -49,7 +50,6 @@ const communityProjects = [
 ];
 
 const { projects } = storeToRefs(store);
-const { login } = store;
 </script>
 
 <template>
