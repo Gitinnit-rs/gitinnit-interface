@@ -64,15 +64,20 @@ pub fn log(path: &str) -> Result<String, String> {
             is_message = false;
         } else {
             let lines = x.split("\n").collect::<Vec<&str>>();
-            let start_bytes = lines[0].find(" ").unwrap_or(0);
-            commit.hash = lines[0][start_bytes..].to_string();
+            if lines.len() == 3 {
 
-            let start_bytes = lines[1].find(" ").unwrap_or(0);
-            commit.author = lines[1][start_bytes..].to_string();
-
-            let start_bytes = lines[2].find(" ").unwrap_or(0);
-            commit.date = lines[2][start_bytes..].to_string();
-            is_message = true;
+                let start_bytes = lines[0].find(" ").unwrap_or(0);
+                commit.hash = lines[0][start_bytes..].to_string();
+                
+                let start_bytes = lines[1].find(" ").unwrap_or(0);
+                commit.author = lines[1][start_bytes..].to_string();
+                
+                let start_bytes = lines[2].find(" ").unwrap_or(0);
+                commit.date = lines[2][start_bytes..].to_string();
+                is_message = true;
+            }else{
+                break
+            }
         }
     }
 
