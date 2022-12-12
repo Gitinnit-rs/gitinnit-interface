@@ -4,24 +4,43 @@ import Pill from "../../components/Pill.vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "../../store";
 import { useRoute, RouterLink } from "vue-router";
+import AddModal from "../../components/AddModal.vue";
+import { onBeforeMount, onMounted } from "vue";
+import OutlineButton from "../../components/OutlineButton.vue";
+import { invoke } from "@tauri-apps/api";
 
 const store = useStore();
 const route = useRoute();
 
 const { project, projects } = storeToRefs(store);
-if (route.params.id && +route.params.id !== -1) {
-  store.$patch({
-    project: projects.value.find((item) => item.id === +route.params.id),
+
+onBeforeMount(() => {
+  if (route.params.id && +route.params.id !== -1) {
+    store.$patch({
+      project: projects.value.find((item) => item.id === +route.params.id),
+    });
+  } else if (
+    +route.params.id === -1 &&
+    !project.value &&
+    projects.value.length > 0
+  ) {
+    store.$patch({
+      project: projects.value[0],
+    });
+  }
+});
+
+onMounted(() => {
+  // Fetch git logs
+  store.getTimeline();
+});
+
+const simulate = () => {
+  invoke("write_file", {
+    path: project.value?.path + "/" + Math.round(Math.random() * 1e3) + ".txt",
+    contents: "hello there " + Math.round(Math.random() * 1e3),
   });
-} else if (
-  +route.params.id === -1 &&
-  !project.value &&
-  projects.value.length > 0
-) {
-  store.$patch({
-    project: projects.value[0],
-  });
-}
+};
 </script>
 
 <template>
@@ -60,11 +79,21 @@ if (route.params.id && +route.params.id !== -1) {
         </div>
       </section>
 
-      <section class="p-10">
+      <section class="p-10 pt-8">
         <!-- <div class="uppercase tracking-widest text-gray-500 text-xs flex justify-end items-center space-x-2">
         <div class="w-2.5 h-2.5 mb-0.5 bg-green-500 rounded-full"></div>
         <span>Last Updated 3 days ago</span>
       </div> -->
+
+        <div class="flex justify-between">
+          <div></div>
+          <div>
+            <OutlineButton class="mr-2" @click="simulate"
+              >Simulate file change</OutlineButton
+            >
+            <AddModal />
+          </div>
+        </div>
 
         <div class="space-y-3">
           <p class="text-sm"><Pill>Local Path</Pill> {{ project?.path }}</p>

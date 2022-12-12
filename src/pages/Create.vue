@@ -4,7 +4,7 @@ import Vue3TagsInput from "vue3-tags-input";
 import { reactive, ref } from "vue";
 import FilledButton from "../components/FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
-import { fetchProjects, globalConfigPath, randomImage } from "../utils";
+import { fetchConfigData, globalConfigPath, randomImage } from "../utils";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -37,7 +37,7 @@ async function submit() {
     path: _globalConfig,
     contents: JSON.stringify(globalData),
   }).then(() => {
-    setTimeout(fetchProjects, 1000);
+    setTimeout(fetchConfigData, 1000);
 
     invoke("init", {
       path: data.path,

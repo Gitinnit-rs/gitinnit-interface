@@ -1,16 +1,16 @@
-use std::borrow::Borrow;
+use serde::Serialize;
+use serde_json;
 use std::env;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-#[derive( Clone)]
-struct Commit{
+#[derive(Clone, Serialize)]
+struct Commit {
     message: String,
     hash: String,
     author: String,
-    date: String
+    date: String,
 }
-
 
 fn exec_git_command(args: Vec<&str>) -> String {
     let output = Command::new("git")
@@ -20,8 +20,7 @@ fn exec_git_command(args: Vec<&str>) -> String {
         .unwrap();
 
     let stdout = String::from_utf8(output.stdout).unwrap();
-    return stdout
-
+    return stdout;
 }
 
 #[tauri::command]
@@ -44,46 +43,50 @@ pub fn init(path: &str) {
 }
 
 #[tauri::command]
-fn log(path: &str)->Vec<Commit>{
+pub fn log(path: &str) -> Result<String, String> {
     set_path(path);
     let args = vec!["log"];
     let output = exec_git_command(args);
 
     let mut logs = Vec::<Commit>::new();
-    let mut is_message = false;
-    let mut commit = Commit{
+    let mut isMessage = false;
+    let mut commit = Commit {
         message: String::from(""),
         hash: String::from(""),
         author: String::from(""),
-        date: String::from("")
+        date: String::from(""),
     };
-    
-    for x in output.split("\n\n"){
-        if is_message{
+
+    for x in output.split("\n\n") {
+        if isMessage {
             commit.message = x.to_string();
             logs.push(commit.clone());
-            is_message = false;
-        }else{
+            isMessage = false;
+        } else {
             let lines = x.split("\n").collect::<Vec<&str>>();
-            let start_bytes = lines[0].find(" ").unwrap_or(0); 
+            let start_bytes = lines[0].find(" ").unwrap_or(0);
             commit.hash = lines[0][start_bytes..].to_string();
-            
-            let start_bytes = lines[1].find(" ").unwrap_or(0); 
+
+            let start_bytes = lines[1].find(" ").unwrap_or(0);
             commit.author = lines[1][start_bytes..].to_string();
-            
-            let start_bytes = lines[2].find(" ").unwrap_or(0); 
+
+            let start_bytes = lines[2].find(" ").unwrap_or(0);
             commit.date = lines[2][start_bytes..].to_string();
             is_message = true;
         }
     }
-    return logs
+
+    return Ok(serde_json::to_string(&logs).unwrap());
 }
 
 #[tauri::command]
 pub fn add(path: &str) -> String {
     set_path(path);
     let args = vec!["add", "."];
-    let return_val: String = exec_git_command(args);
+    let mut return_val: String = exec_git_command(args);
+    if return_val == "" {
+        return_val = "success".to_string();
+    }
     return return_val;
 }
 

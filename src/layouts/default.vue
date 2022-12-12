@@ -2,7 +2,9 @@
 import { storeToRefs } from "pinia";
 import Sidebar from "../components/Sidebar.vue";
 import { useStore } from "../store";
-const { compact } = storeToRefs(useStore());
+import { vScrollLock } from "@vueuse/components";
+
+const { compact, scrollLock } = storeToRefs(useStore());
 </script>
 
 <template>
@@ -13,7 +15,7 @@ const { compact } = storeToRefs(useStore());
       :class="compact ? 'ml-[6rem]' : 'ml-[10rem]'"
     >
       <transition name="fade" mode="out-in">
-        <component :is="Component" />
+        <component :is="Component" v-scroll-lock="scrollLock" />
       </transition>
     </router-view>
   </div>
