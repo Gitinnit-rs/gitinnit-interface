@@ -49,6 +49,7 @@ const communityProjects = [
 ];
 
 const { projects } = storeToRefs(store);
+const { login } = store;
 </script>
 
 <template>
@@ -61,8 +62,8 @@ const { projects } = storeToRefs(store);
           Version Control for Musicians
         </h2>
         <div class="mt-4 space-x-2">
-          <FilledButton>Register</FilledButton>
-          <OutlineButton>Log in</OutlineButton>
+          <!-- <OutlineButton>Register</OutlineButton> -->
+          <FilledButton @click="login">Log in</FilledButton>
         </div>
       </div>
     </div>

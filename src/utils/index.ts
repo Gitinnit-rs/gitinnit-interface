@@ -18,6 +18,25 @@ export async function fetchConfigData() {
   });
 }
 
+export async function updateGlobalConfig(property: string, value: any) {
+  const _globalConfig = await globalConfigPath();
+
+  const globalConfigJSON: string = await invoke("read_file", {
+    path: _globalConfig,
+  });
+
+  const globalData = JSON.parse(globalConfigJSON);
+
+  globalData[property] = value;
+
+  invoke("write_file", {
+    path: _globalConfig,
+    contents: JSON.stringify(globalData),
+  }).then(() => {
+    setTimeout(fetchConfigData, 1000);
+  });
+}
+
 /**
  * Random image generator function
  */
