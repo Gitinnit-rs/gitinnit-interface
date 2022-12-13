@@ -14,8 +14,8 @@ const store = useStore();
 const { project } = storeToRefs(store);
 
 const commit = () => {
-  if (!message.value) message.value = "New Checkpoint";
   if (!project.value?.path) return;
+  if (!message.value) message.value = "New Checkpoint";
 
   invoke("commit", {
     message: message.value,

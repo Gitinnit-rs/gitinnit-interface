@@ -6,6 +6,8 @@ import FilledButton from "../components/FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
 import { fetchConfigData, globalConfigPath, randomImage } from "../utils";
 import { useRouter } from "vue-router";
+import { open } from "@tauri-apps/api/dialog";
+import Pill from "../components/Pill.vue";
 
 const router = useRouter();
 
@@ -21,6 +23,15 @@ const data = reactive({
 
 function onTagsChanged(value: any) {
   data.tags = value;
+}
+
+async function openFileSelect() {
+  const result = await open({
+    title: "Select folder",
+    directory: true,
+    multiple: false,
+  });
+  data.path = result as string;
 }
 
 async function submit() {
@@ -70,7 +81,17 @@ async function submit() {
         </div>
         <div>
           <label for="path">Path</label> <br />
-          <input type="text" name="path" v-model="data.path" /> <br />
+          <div class="flex justify-between items-center space-x-2">
+            <div>
+              <FilledButton @click="openFileSelect" type="button" class="w-26"
+                >Select File</FilledButton
+              >
+            </div>
+            <Pill v-if="data.path">
+              {{ data.path }}
+            </Pill>
+          </div>
+          <br />
         </div>
       </div>
 
