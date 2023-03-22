@@ -38,7 +38,7 @@ function setNameAndEmail(e: Event): any {
     email: email.value,
   });
 
-  toast.success('Updated')
+  toast.success("Updated");
 }
 </script>
 
@@ -71,9 +71,16 @@ function setNameAndEmail(e: Event): any {
           <component :is="Github" class="text-xl"></component>
         </div>
         <div class="flex space-x-2 items-center">
-          <p class="text-sm">neelansh15</p>
-          <button class="text-xs px-2 py-1 bg-green-100 rounded-full">
+          <p v-if="user" class="text-sm">neelansh15</p>
+          <p v-else class="text-sm">Github</p>
+          <button
+            v-if="user"
+            class="text-xs px-2 py-1 bg-green-100 rounded-full"
+          >
             Connected
+          </button>
+          <button v-else class="text-xs px-2 py-1 bg-red-100 rounded-full">
+            Not Connected
           </button>
         </div>
       </div>
@@ -87,7 +94,7 @@ function setNameAndEmail(e: Event): any {
           <button
             class="text-xs px-3 py-1 bg-primary-100 text-black rounded-full"
           >
-            Connect
+            Coming Soon
           </button>
         </div>
       </div>
