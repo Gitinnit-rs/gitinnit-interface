@@ -7,7 +7,7 @@ export async function getUserDetails(access_token: string) {
     const { data, status } = await axios.get(url, {
         headers: {
             Accept: "application/vnd.github+json",
-            Authorization: "token " + access_token,
+            Authorization: "Bearer " + access_token,
             "X-GitHub-Api-Version": "2022-11-28"
         }
     })
