@@ -9,5 +9,11 @@ import 'virtual:windi.css'
 import './assets/style.css'
 import 'vue-material-design-icons/styles.css';
 
+import Toast, { PluginOptions, POSITION } from 'vue-toastification'
+import "./assets/toastification.css";
 
-createApp(App).use(router).use(createPinia()).mount('#app')
+const toastOptions: PluginOptions = {
+    position: POSITION.BOTTOM_RIGHT
+}
+
+createApp(App).use(router).use(createPinia()).use(Toast, toastOptions).mount('#app')

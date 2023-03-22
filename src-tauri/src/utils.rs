@@ -24,13 +24,25 @@ fn exec_git_command(args: Vec<&str>) -> String {
 }
 
 #[tauri::command]
-fn set_user_name(name: &str) {
+pub fn get_user_name() -> String {
+    let args = vec!["config", "--global", "user.name"];
+    return exec_git_command(args);
+}
+
+#[tauri::command]
+pub fn get_user_email() -> String {
+    let args = vec!["config", "--global", "user.email"];
+    return exec_git_command(args);
+}
+
+#[tauri::command]
+pub fn set_user_name(name: &str) {
     let args = vec!["config", "--global", "user.name", &name];
     exec_git_command(args);
 }
 
 #[tauri::command]
-fn set_user_email(email: &str) {
+pub fn set_user_email(email: &str) {
     let args = vec!["config", "--global", "user.email", &email];
     exec_git_command(args);
 }
@@ -43,11 +55,11 @@ pub fn init(path: &str) {
 }
 
 #[tauri::command]
-pub fn log(hash:&str, path: &str) -> Result<String, String> {
+pub fn log(hash: &str, path: &str) -> Result<String, String> {
     set_path(path);
     println!("print {}", hash);
     let mut args = vec!["log"];
-    if hash.len() != 0{
+    if hash.len() != 0 {
         args.push(hash);
     }
     let output = exec_git_command(args);
@@ -69,18 +81,17 @@ pub fn log(hash:&str, path: &str) -> Result<String, String> {
         } else {
             let lines = x.split("\n").collect::<Vec<&str>>();
             if lines.len() == 3 {
-
                 let start_bytes = lines[0].find(" ").unwrap_or(0);
                 commit.hash = lines[0][start_bytes..].to_string();
-                
+
                 let start_bytes = lines[1].find(" ").unwrap_or(0);
                 commit.author = lines[1][start_bytes..].to_string();
-                
+
                 let start_bytes = lines[2].find(" ").unwrap_or(0);
                 commit.date = lines[2][start_bytes..].to_string();
                 is_message = true;
-            }else{
-                break
+            } else {
+                break;
             }
         }
     }
@@ -111,9 +122,9 @@ pub fn commit(message: &str, path: &str) {
 #[tauri::command]
 pub fn checkout(checkout_path: &str, path: &str) -> String {
     set_path(path);
-    let args = vec!["checkout",  &checkout_path];
+    let args = vec!["checkout", &checkout_path];
     let return_val: String = exec_git_command(args);
-    return return_val
+    return return_val;
 }
 
 pub fn status(path: &str) {

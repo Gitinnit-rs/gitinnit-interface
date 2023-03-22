@@ -7,26 +7,38 @@ import { loginWithSupabase } from "../utils/auth";
 import FilledButton from "../components/FilledButton.vue";
 import { useOnline } from "@vueuse/core";
 import { invoke } from "@tauri-apps/api";
+import { onMounted, ref } from "vue";
+import { useToast } from "vue-toastification";
 
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
 const isOnline = useOnline();
 
+const toast = useToast();
+
+const name = ref("");
+const email = ref("");
+
+onMounted(fetchNameAndEmail);
+
+async function fetchNameAndEmail() {
+  name.value = await invoke("get_user_name");
+  email.value = await invoke("get_user_email");
+}
+
 function setNameAndEmail(e: Event): any {
   e.preventDefault();
 
-  const formData = new FormData(e.target as HTMLFormElement);
-  const name = formData.get("git_name");
-  const email = formData.get("git_email");
-
   invoke("set_user_name", {
-    name,
+    name: name.value,
   });
 
   invoke("set_user_email", {
-    email,
+    email: email.value,
   });
+
+  toast.success('Updated')
 }
 </script>
 
@@ -96,6 +108,7 @@ function setNameAndEmail(e: Event): any {
             id="git_name"
             class="mt-1"
             placeholder="Name"
+            v-model="name"
             required
           />
         </div>
@@ -107,6 +120,7 @@ function setNameAndEmail(e: Event): any {
             id="git_email"
             class="mt-1"
             placeholder="Email"
+            v-model="email"
             required
           />
         </div>
