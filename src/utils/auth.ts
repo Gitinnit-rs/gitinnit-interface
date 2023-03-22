@@ -23,7 +23,8 @@ export async function loginWithSupabase() {
   await client.auth.signInWithOAuth({
     provider: "github",
     options: {
-      redirectTo: window.location.origin + "/auth_callback"
+      redirectTo: window.location.origin + "/auth_callback",
+      scopes: "user repo"
     }
   })
 }
