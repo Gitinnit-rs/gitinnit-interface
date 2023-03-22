@@ -6,11 +6,28 @@ import { useUserStore } from "../store/user";
 import { loginWithSupabase } from "../utils/auth";
 import FilledButton from "../components/FilledButton.vue";
 import { useOnline } from "@vueuse/core";
+import { invoke } from "@tauri-apps/api";
 
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
 const isOnline = useOnline();
+
+function setNameAndEmail(e: Event): any {
+  e.preventDefault();
+
+  const formData = new FormData(e.target as HTMLFormElement);
+  const name = formData.get("git_name");
+  const email = formData.get("git_email");
+
+  invoke("set_user_name", {
+    name,
+  });
+
+  invoke("set_user_email", {
+    email,
+  });
+}
 </script>
 
 <template>
@@ -67,8 +84,9 @@ const isOnline = useOnline();
     <div class="mt-5 border p-5 rounded-xl">
       <h1 class="font-semibold">Version Control</h1>
       <form
-        @submit="(e) => e.preventDefault()"
+        @submit="setNameAndEmail"
         class="mt-3 flex items-center space-x-3"
+        enctype="multipart/form-data"
       >
         <div>
           <label for="git_name">Name</label> <br />
@@ -78,18 +96,22 @@ const isOnline = useOnline();
             id="git_name"
             class="mt-1"
             placeholder="Name"
+            required
           />
         </div>
         <div>
           <label for="git_email" class="mt-3">Email</label> <br />
           <input
-            type="text"
+            type="email"
             name="git_email"
             id="git_email"
             class="mt-1"
             placeholder="Email"
+            required
           />
         </div>
+
+        <FilledButton class="mt-6">Set</FilledButton>
       </form>
     </div>
   </section>

@@ -13,7 +13,7 @@ defineProps<{
         ? 'bg-gray-400 cursor-not-allowed'
         : 'bg-primary-400 hover:bg-primary-500/80',
     ]"
-    :title="disabled ? 'Disabled. Check internet connection' : 'Log in'"
+    :title="disabled ? 'Disabled. Check internet connection' : undefined"
   >
     <slot />
   </button>
