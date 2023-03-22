@@ -40,21 +40,28 @@ function setNameAndEmail(e: Event): any {
 
   toast.success("Updated");
 }
+
+function disconnect() {
+  if (user) userStore.setUser(null);
+}
 </script>
 
 <template>
   <section class="p-10">
     <div class="mt-3">
       <div v-if="user" class="flex items-center space-x-2">
+        <!-- src="https://upload.wikimedia.org/wikipedia/en/4/46/Martin_Garrix_-_Summer_Days.png" -->
         <img
-          src="https://upload.wikimedia.org/wikipedia/en/4/46/Martin_Garrix_-_Summer_Days.png"
+          :src="user.user_metadata.avatar_url"
           width="60"
           class="rounded-full"
           alt="Profile Image"
         />
         <div>
-          <h1 class="font-semibold">Neelansh Mathur</h1>
-          <p class="text-gray-400 text-xs">Alkibiadez</p>
+          <h1 class="font-semibold">{{ user.user_metadata.name }}</h1>
+          <p class="text-gray-400 text-xs ml-[0.5px]">
+            {{ user.user_metadata.email }}
+          </p>
         </div>
       </div>
       <div v-else>
@@ -71,11 +78,14 @@ function setNameAndEmail(e: Event): any {
           <component :is="Github" class="text-xl"></component>
         </div>
         <div class="flex space-x-2 items-center">
-          <p v-if="user" class="text-sm">neelansh15</p>
+          <p v-if="user" class="text-sm">{{ user.user_metadata.user_name }}</p>
           <p v-else class="text-sm">Github</p>
           <button
             v-if="user"
-            class="text-xs px-2 py-1 bg-green-100 rounded-full"
+            class="text-xs px-2 py-1 bg-green-100 hover:bg-red-100 rounded-full"
+            onmouseover="this.innerText = 'Disconnect'"
+            onmouseout="this.innerText = 'Connected'"
+            @click="disconnect"
           >
             Connected
           </button>

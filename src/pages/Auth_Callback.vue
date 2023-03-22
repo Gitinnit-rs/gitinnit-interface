@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";
+import { useUserStore } from "../store/user";
+import { parseJwt } from "../utils";
 import { getUserDetails } from "../utils/github";
 
 const isLoading = ref(true);
 const error = ref("");
+
+const userStore = useUserStore();
+const { setUser } = useUserStore();
 
 onMounted(init);
 
@@ -12,6 +18,7 @@ async function init() {
     isLoading.value = true;
 
     const params = new URLSearchParams(window.location.hash.replace("#", "?"));
+    console.log("PARAM", window.location.hash.slice(918));
 
     const access_token = params.get("access_token");
     const refresh_token = params.get("refresh_token");
@@ -20,6 +27,9 @@ async function init() {
     console.log(refresh_token);
 
     if (!access_token) throw new Error("Access token is null or undefined");
+
+    const data = parseJwt(access_token);
+    setUser(data);
 
     const user = await getUserDetails(access_token);
 

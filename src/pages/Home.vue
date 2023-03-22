@@ -5,11 +5,13 @@ import FilledButton from "../components/FilledButton.vue";
 import OutlineButton from "../components/OutlineButton.vue";
 import ProjectCard from "../components/ProjectCard.vue";
 import { useStore } from "../store";
+import { useUserStore } from "../store/user";
 import { Project } from "../types";
 import { randomImage } from "../utils";
 import { loginWithSupabase as login } from "../utils/auth";
 
 const store = useStore();
+const { user } = storeToRefs(useUserStore());
 const isOnline = useOnline();
 
 const communityProjects = [
@@ -56,7 +58,7 @@ const { projects } = storeToRefs(store);
 
 <template>
   <div>
-    <div class="p-5 mx-5">
+    <div class="p-5 mx-5 flex items-center justify-between">
       <div class="pt-5">
         <h3 class="tracking-widest text-gray-500 text-xs">v0.1.0</h3>
         <h1 class="text-6xl font-semibold font-lobster">Gitinnit</h1>
@@ -65,10 +67,14 @@ const { projects } = storeToRefs(store);
         </h2>
         <div class="mt-4 space-x-2">
           <!-- <OutlineButton>Register</OutlineButton> -->
-          <FilledButton :disabled="!isOnline" @click="login"
+          <FilledButton v-if="!user" :disabled="!isOnline" @click="login"
             >Log in</FilledButton
           >
         </div>
+      </div>
+
+      <div v-if="user">
+        <p>Howdy, {{ user.user_metadata.name.split(" ")[0] }}!</p>
       </div>
     </div>
 

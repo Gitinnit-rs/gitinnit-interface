@@ -4,10 +4,18 @@ import Sidebar from "../components/Sidebar.vue";
 import { useStore } from "../store";
 import { vScrollLock } from "@vueuse/components";
 import { useOnline } from "@vueuse/core";
+import { watch } from "vue";
+import { useToast } from "vue-toastification";
 
 const { compact, scrollLock } = storeToRefs(useStore());
 
 const isOnline = useOnline();
+const toast = useToast();
+
+watch(isOnline, (val) => {
+  if (val) toast.success("Back Online", { timeout: 3000 });
+  else toast.warning("You are Offline now", { timeout: 3000 });
+});
 </script>
 
 <template>
@@ -24,11 +32,13 @@ const isOnline = useOnline();
       <transition name="fade" mode="out-in">
         <div
           v-if="!isOnline"
-          class="bg-gray-100 fixed bottom-0 w-full px-3 py-1 text-xs flex items-center space-x-1 justify-end"
+          class="fixed bottom-3 right-3 px-3 py-1 border border-yellow-100 text-xs flex items-center space-x-1 justify-end bg-yellow-50 rounded-full"
         >
-          <div class="relative right-2 bottom-1">
+          <div class="relative right-2 bottom-1 px-1">
             <div class="absolute w-2 h-2 rounded-full bg-yellow-500"></div>
-            <div class="absolute w-2 h-2 rounded-full bg-yellow-500 animate-ping"></div>
+            <div
+              class="absolute w-2 h-2 rounded-full bg-yellow-500 animate-ping"
+            ></div>
           </div>
           <span class="text-yellow-700"> Offline</span>
         </div>

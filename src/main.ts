@@ -13,7 +13,8 @@ import Toast, { PluginOptions, POSITION } from 'vue-toastification'
 import "./assets/toastification.css";
 
 const toastOptions: PluginOptions = {
-    position: POSITION.BOTTOM_RIGHT
+    position: POSITION.BOTTOM_RIGHT,
+    transition: "Vue-Toastification__fade"
 }
 
 createApp(App).use(router).use(createPinia()).use(Toast, toastOptions).mount('#app')
