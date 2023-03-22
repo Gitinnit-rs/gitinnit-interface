@@ -4,10 +4,13 @@ import Github from "vue-material-design-icons/Github.vue";
 import SoundCloud from "vue-material-design-icons/SoundCloud.vue";
 import { useUserStore } from "../store/user";
 import { loginWithSupabase } from "../utils/auth";
-import FilledButton from '../components/FilledButton.vue'
+import FilledButton from "../components/FilledButton.vue";
+import { useOnline } from "@vueuse/core";
 
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
+
+const isOnline = useOnline();
 </script>
 
 <template>
@@ -26,7 +29,9 @@ const { user } = storeToRefs(userStore);
         </div>
       </div>
       <div v-else>
-        <FilledButton @click="loginWithSupabase">Log in</FilledButton>
+        <FilledButton :disabled="!isOnline" @click="loginWithSupabase"
+          >Log in</FilledButton
+        >
       </div>
     </div>
 

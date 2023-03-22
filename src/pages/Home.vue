@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useOnline } from "@vueuse/core";
 import { storeToRefs } from "pinia";
 import FilledButton from "../components/FilledButton.vue";
 import OutlineButton from "../components/OutlineButton.vue";
@@ -9,6 +10,7 @@ import { randomImage } from "../utils";
 import { loginWithSupabase as login } from "../utils/auth";
 
 const store = useStore();
+const isOnline = useOnline();
 
 const communityProjects = [
   {
@@ -63,7 +65,9 @@ const { projects } = storeToRefs(store);
         </h2>
         <div class="mt-4 space-x-2">
           <!-- <OutlineButton>Register</OutlineButton> -->
-          <FilledButton @click="login">Log in</FilledButton>
+          <FilledButton :disabled="!isOnline" @click="login"
+            >Log in</FilledButton
+          >
         </div>
       </div>
     </div>
