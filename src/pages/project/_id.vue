@@ -45,14 +45,16 @@ const simulate = () => {
 
 <template>
   <div>
-    <div v-if="!project" class="p-10">
-      <h1 class="font-semibold">No project found</h1>
-      <p>
-        Go ahead and
-        <router-link to="/create"
-          >start your own new musical journey!</router-link
-        >
-      </p>
+    <div v-if="!project" class="p-10 grid place-items-center min-h-screen">
+      <div>
+        <h1 class="font-semibold">No project found</h1>
+        <p>
+          Go ahead and
+          <router-link to="/create" class="text-primary-700 hover:underline"
+            >start your own new musical journey!</router-link
+          >
+        </p>
+      </div>
     </div>
     <div v-else>
       <section class="p-10 bg-primary-100">
