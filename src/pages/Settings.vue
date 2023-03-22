@@ -31,11 +31,11 @@ function setNameAndEmail(e: Event): any {
   e.preventDefault();
 
   invoke("set_user_name", {
-    name: name.value,
+    name: name.value.trim(),
   });
 
   invoke("set_user_email", {
-    email: email.value,
+    email: email.value.trim(),
   });
 
   toast.success("Updated");
