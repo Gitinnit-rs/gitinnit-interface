@@ -6,7 +6,7 @@ import ProjectCard from "../components/ProjectCard.vue";
 import { useStore } from "../store";
 import { Project } from "../types";
 import { randomImage } from "../utils";
-import { login } from "../utils/auth";
+import { loginWithSupabase as login } from "../utils/auth";
 
 const store = useStore();
 

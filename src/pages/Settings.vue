@@ -1,13 +1,19 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import Github from "vue-material-design-icons/Github.vue";
 import SoundCloud from "vue-material-design-icons/SoundCloud.vue";
-import Pill from "../components/Pill.vue";
+import { useUserStore } from "../store/user";
+import { loginWithSupabase } from "../utils/auth";
+import FilledButton from '../components/FilledButton.vue'
+
+const userStore = useUserStore();
+const { user } = storeToRefs(userStore);
 </script>
 
 <template>
   <section class="p-10">
     <div class="mt-3">
-      <div class="flex items-center space-x-2">
+      <div v-if="user" class="flex items-center space-x-2">
         <img
           src="https://upload.wikimedia.org/wikipedia/en/4/46/Martin_Garrix_-_Summer_Days.png"
           width="60"
@@ -18,6 +24,9 @@ import Pill from "../components/Pill.vue";
           <h1 class="font-semibold">Neelansh Mathur</h1>
           <p class="text-gray-400 text-xs">Alkibiadez</p>
         </div>
+      </div>
+      <div v-else>
+        <FilledButton @click="loginWithSupabase">Log in</FilledButton>
       </div>
     </div>
 

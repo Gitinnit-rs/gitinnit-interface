@@ -69,6 +69,17 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/auth_callback",
+    component: defaultLayout,
+    children: [
+      {
+        path: "",
+        name: "auth_callback",
+        component: () => import("../pages/Auth_Callback.vue"),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
