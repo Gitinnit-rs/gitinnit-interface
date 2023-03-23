@@ -45,9 +45,22 @@
     transform: translateY(2px);
 }
 
+.slight_fade-enter-active,
+.slight_fade-leave-active {
+    transition: all .5s;
+}
+
+.slight_fade-enter-from,
+.slight_fade-leave-to {
+    opacity: 0;
+    /* transform: translateY(1px); */
+}
+
 label {
     @apply text-sm;
 }
-input[type="text"], input[type="email"] {
+
+input[type="text"],
+input[type="email"] {
     @apply border py-2 px-3 rounded-lg text-sm w-full;
 }
