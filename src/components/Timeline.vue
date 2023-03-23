@@ -8,6 +8,7 @@ import { vOnClickOutside } from "@vueuse/components";
 import { ref } from "vue";
 import FilledButton from "./FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
+import Pill from "./Pill.vue";
 
 dayjs.extend(relativeTime);
 
@@ -17,19 +18,26 @@ const { timeline, project } = storeToRefs(store);
 const toast = useToast();
 
 const logOpen = ref([] as boolean[]);
+const activeCommit = ref(0); // Need to fetch the active commit on load too
 
 const checkout = (i: number) => {
   if (!project.value?.path) {
     toast.error("Error while switching checkpoints");
     return;
   }
+  let hash;
 
-  const hash = timeline.value[i].hash.trim();
+  if (i === 0) hash = "main"; // Whatever timeline the user is on. Fetch this later
+  else hash = timeline.value[i].hash.trim();
+
+  console.log("Checking out with hash", hash);
 
   invoke("checkout", {
-    checkout_path: hash,
+    checkoutPath: hash,
     path: project.value.path,
   });
+
+  activeCommit.value = i;
 };
 </script>
 
@@ -61,7 +69,8 @@ const checkout = (i: number) => {
               {{ log.author.split(" <")[0] }}
             </p>
           </div>
-          <div>
+          <div class="flex items-center space-x-5">
+            <Pill v-if="activeCommit === i" class="py-1">Current</Pill>
             <p class="uppercase tracking-widest text-gray-400 text-xs">
               {{ dayjs(log.date).fromNow() }}
             </p>

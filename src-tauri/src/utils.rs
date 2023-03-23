@@ -121,6 +121,7 @@ pub fn commit(message: &str, path: &str) {
 
 #[tauri::command]
 pub fn checkout(checkout_path: &str, path: &str) -> String {
+    println!("Checkout called");
     set_path(path);
     let args = vec!["checkout", &checkout_path];
     let return_val: String = exec_git_command(args);
