@@ -74,7 +74,7 @@ const { projects } = storeToRefs(store);
       </div>
 
       <div v-if="user">
-        <p>Howdy, {{ user.user_metadata.name.split(" ")[0] }}!</p>
+        <p class="text-gray-500 font-deca">Howdy, {{ user.user_metadata.name.split(" ")[0] }}!</p>
       </div>
     </div>
 

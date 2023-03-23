@@ -8,7 +8,6 @@ import { getUserDetails } from "../utils/github";
 const isLoading = ref(true);
 const error = ref("");
 
-const userStore = useUserStore();
 const { setUser } = useUserStore();
 
 onMounted(init);

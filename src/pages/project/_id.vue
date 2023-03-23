@@ -47,7 +47,7 @@ const simulate = () => {
   <div>
     <div v-if="!project" class="p-10 grid place-items-center min-h-screen">
       <div>
-        <h1 class="font-semibold">No project found</h1>
+        <h1 class="font-semibold">Project not found</h1>
         <p>
           Go ahead and
           <router-link to="/create" class="text-primary-700 hover:underline"
