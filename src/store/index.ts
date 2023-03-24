@@ -7,7 +7,10 @@ export const useStore = defineStore("gitinnit-store", {
     compact: true,
     projects: [] as Project[],
     project: undefined as Project | undefined,
+
     timeline: [] as Commit[],
+    mainTimeline: [] as Commit[],
+
     scrollLock: false,
     user: undefined as any,
   }),
@@ -22,6 +25,14 @@ export const useStore = defineStore("gitinnit-store", {
       this.timeline = JSON.parse(
         await invoke("log", {
           hash: "",
+          path: this.project.path,
+        })
+      );
+
+      // Fetch main branchs' timeline
+      this.mainTimeline = JSON.parse(
+        await invoke("log", {
+          hash: this.project.defaultBranch || "main",
           path: this.project.path,
         })
       );

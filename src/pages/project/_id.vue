@@ -30,11 +30,6 @@ onBeforeMount(() => {
   }
 });
 
-onMounted(() => {
-  // Fetch git logs
-  store.getTimeline();
-});
-
 const simulate = () => {
   invoke("write_file", {
     path: project.value?.path + "/" + Math.round(Math.random() * 1e3) + ".txt",

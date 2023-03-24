@@ -6,6 +6,7 @@ export interface Project {
   path: string;
   image: string;
   tags: string[];
+  defaultBranch: string
 }
 
 export interface Commit {

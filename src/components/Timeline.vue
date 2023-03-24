@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useToast } from "vue-toastification";
 import { vOnClickOutside } from "@vueuse/components";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import FilledButton from "./FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
 import Pill from "./Pill.vue";
@@ -13,12 +13,29 @@ import Pill from "./Pill.vue";
 dayjs.extend(relativeTime);
 
 const store = useStore();
-const { timeline, project } = storeToRefs(store);
+const { timeline, mainTimeline, project } = storeToRefs(store);
 
 const toast = useToast();
 
+const activeCommit = ref(0);
 const logOpen = ref([] as boolean[]);
-const activeCommit = ref(0); // Need to fetch the active commit on load too
+
+onMounted(async () => {
+  await store.getTimeline();
+  fetchActiveCommit();
+});
+
+const fetchActiveCommit = () => {
+  // Fetch Active commit on Load
+  if (mainTimeline.value.length > timeline.value.length) {
+    const activeCommitData = mainTimeline.value.find(
+      (item) => item.hash === timeline.value[0].hash
+    );
+
+    if (activeCommitData)
+      activeCommit.value = mainTimeline.value.indexOf(activeCommitData);
+  }
+};
 
 const checkout = (i: number) => {
   if (!project.value?.path) {
@@ -27,8 +44,9 @@ const checkout = (i: number) => {
   }
   let hash;
 
-  if (i === 0) hash = "main"; // Whatever timeline the user is on. Fetch this later
-  else hash = timeline.value[i].hash.trim();
+  if (i === 0)
+    hash = "main"; // Whatever timeline the user is on. Fetch this later
+  else hash = mainTimeline.value[i].hash.trim();
 
   console.log("Checking out with hash", hash);
 
@@ -38,18 +56,20 @@ const checkout = (i: number) => {
   });
 
   activeCommit.value = i;
+  
+  store.getTimeline()
 };
 </script>
 
 <template>
   <div class="border rounded-xl">
     <!-- Individual Commit -->
-    <template v-if="timeline.length > 0">
+    <template v-if="mainTimeline.length > 0">
       <div
-        v-for="(log, i) in timeline"
+        v-for="(log, i) in mainTimeline"
         class="cursor-pointer hover:bg-gray-50 transition"
         :class="[
-          i != timeline.length - 1 ? 'border-b' : 'rounded-b-xl',
+          i != mainTimeline.length - 1 ? 'border-b' : 'rounded-b-xl',
           i === 0 && 'rounded-t-xl',
         ]"
         :key="i"
@@ -79,7 +99,9 @@ const checkout = (i: number) => {
 
         <Transition name="slight_fade" mode="in-out">
           <div v-if="logOpen[i]" class="p-1 pb-2">
-            <FilledButton class="ml-4 px-3 py-1.5 text-xs" @click="checkout(i)"
+            <FilledButton
+              class="ml-4 px-3 py-1.5 mb-1.5 text-xs"
+              @click="checkout(i)"
               >Go here</FilledButton
             >
           </div>

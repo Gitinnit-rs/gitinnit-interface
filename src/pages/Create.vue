@@ -8,6 +8,7 @@ import { fetchConfigData, globalConfigPath, randomImage } from "../utils";
 import { useRouter } from "vue-router";
 import { open } from "@tauri-apps/api/dialog";
 import Pill from "../components/Pill.vue";
+import { Project } from "../types";
 
 const router = useRouter();
 
@@ -19,7 +20,8 @@ const data = reactive({
   path: "",
   tags: [] as string[],
   image: randomImage(),
-});
+  defaultBranch: "main"
+} as Project);
 
 function onTagsChanged(value: any) {
   data.tags = value;
