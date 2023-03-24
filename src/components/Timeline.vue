@@ -45,7 +45,7 @@ const checkout = (i: number) => {
   let hash;
 
   if (i === 0)
-    hash = "main"; // Whatever timeline the user is on. Fetch this later
+    hash = project.value.defaultBranch; // Whatever timeline the user is on. Fetch this later
   else hash = mainTimeline.value[i].hash.trim();
 
   console.log("Checking out with hash", hash);
