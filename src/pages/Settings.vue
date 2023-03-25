@@ -3,7 +3,7 @@ import { storeToRefs } from "pinia";
 import Github from "vue-material-design-icons/Github.vue";
 import SoundCloud from "vue-material-design-icons/SoundCloud.vue";
 import { useUserStore } from "../store/user";
-import { loginWithSupabase } from "../utils/auth";
+import { login } from "../utils/auth";
 import FilledButton from "../components/FilledButton.vue";
 import { useOnline } from "@vueuse/core";
 import { invoke } from "@tauri-apps/api";
@@ -52,20 +52,20 @@ function disconnect() {
       <div v-if="user" class="flex items-center space-x-2">
         <!-- src="https://upload.wikimedia.org/wikipedia/en/4/46/Martin_Garrix_-_Summer_Days.png" -->
         <img
-          :src="user.user_metadata.avatar_url"
+          :src="user.avatar_url"
           width="60"
           class="rounded-full"
           alt="Profile Image"
         />
         <div>
-          <h1 class="font-semibold">{{ user.user_metadata.name }}</h1>
+          <h1 class="font-semibold">{{ user.name }}</h1>
           <p class="text-gray-400 text-xs ml-[0.5px]">
-            {{ user.user_metadata.email }}
+            {{ user.login }}
           </p>
         </div>
       </div>
       <div v-else>
-        <FilledButton :disabled="!isOnline" disabled-text="Disabled. Check your internet connection" @click="loginWithSupabase"
+        <FilledButton :disabled="!isOnline" disabled-text="Disabled. Check your internet connection" @click="login"
           >Log in</FilledButton
         >
       </div>
@@ -78,7 +78,7 @@ function disconnect() {
           <component :is="Github" class="text-xl"></component>
         </div>
         <div class="flex space-x-2 items-center">
-          <p v-if="user" class="text-sm">{{ user.user_metadata.user_name }}</p>
+          <p v-if="user" class="text-sm">{{ user.login }}</p>
           <p v-else class="text-sm">Github</p>
           <button
             v-if="user"

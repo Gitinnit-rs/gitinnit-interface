@@ -19,12 +19,16 @@ import client from "./supabase";
 //   // utils->updateGlobalConfig with the user object
 // }
 
-export async function loginWithSupabase() {
-  await client.auth.signInWithOAuth({
-    provider: "github",
-    options: {
-      redirectTo: window.location.origin + "/auth_callback",
-      scopes: "user repo"
-    }
-  })
+// export async function loginWithSupabase() {
+//   await client.auth.signInWithOAuth({
+//     provider: "github",
+//     options: {
+//       redirectTo: window.location.origin + "/auth_callback",
+//       scopes: "user repo"
+//     }
+//   })
+// }
+
+export async function login() {
+  window.open(AUTH_URL + "/auth/github/?returnUrl=" + window.location.origin + "/auth_callback", "_self")
 }

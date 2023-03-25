@@ -33,6 +33,14 @@
             #d1fae5);
 }
 
+.thin-text {
+    @apply text-xs text-gray-500 uppercase font-light tracking-widest;
+}
+
+.image-line img {
+    @apply rounded-full w-8 h-8;
+}
+
 /* Vue Transition class */
 .fade-enter-active,
 .fade-leave-active {

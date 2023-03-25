@@ -2,13 +2,12 @@
 import { useOnline } from "@vueuse/core";
 import { storeToRefs } from "pinia";
 import FilledButton from "../components/FilledButton.vue";
-import OutlineButton from "../components/OutlineButton.vue";
 import ProjectCard from "../components/ProjectCard.vue";
 import { useStore } from "../store";
 import { useUserStore } from "../store/user";
 import { Project } from "../types";
 import { randomImage } from "../utils";
-import { loginWithSupabase as login } from "../utils/auth";
+import { login } from "../utils/auth";
 
 const store = useStore();
 const { user } = storeToRefs(useUserStore());
@@ -74,7 +73,7 @@ const { projects } = storeToRefs(store);
       </div>
 
       <div v-if="user">
-        <p class="text-gray-500 font-deca">Howdy, {{ user.user_metadata.name.split(" ")[0] }}!</p>
+        <p class="text-gray-500 font-deca">Howdy, {{ user.name.split(" ")[0] }}!</p>
       </div>
     </div>
 

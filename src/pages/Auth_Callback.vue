@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 import { useUserStore } from "../store/user";
-import { parseJwt } from "../utils";
+import { updateGlobalConfig } from "../utils";
 import { getUserDetails } from "../utils/github";
 
 const isLoading = ref(true);
@@ -10,34 +10,33 @@ const error = ref("");
 
 const { setUser } = useUserStore();
 
+const router = useRouter();
+
 onMounted(init);
 
 async function init() {
   try {
     isLoading.value = true;
 
-    const params = new URLSearchParams(window.location.hash.replace("#", "?"));
-    console.log("PARAM", window.location.hash.slice(918));
+    const params = new URLSearchParams(window.location.search);
 
-    // const access_token = params.get("access_token");
-    const access_token = params.get("provider_token");
-    const refresh_token = params.get("refresh_token");
+    const access_token = params.get("access_token");
 
     console.log(access_token);
-    console.log(refresh_token);
 
     if (!access_token) throw new Error("Access token is null or undefined");
 
-    const data = parseJwt(access_token);
-    setUser(data);
+    const userData = await getUserDetails(access_token);
+    const user = { access_token, ...userData };
+    
+    console.log("User", user);
+    setUser(user);
 
-    console.log("Before getUserDetails")
+    await updateGlobalConfig("user", user);
 
-    // const user = await getUserDetails(access_token);
+    router.push("/settings");
 
-    // console.log("User", user);
-
-    isLoading.value = false;
+    // isLoading.value = false;
   } catch (e) {
     console.error("An error occured while processing authentication.", e);
     error.value = e as any;
