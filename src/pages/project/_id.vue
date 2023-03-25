@@ -94,17 +94,22 @@ const simulate = () => {
           </div>
         </div>
 
-        <div class="border p-5 rounded-xl space-y-2">
-          <div class="text-sm flex items-center justify-between">
-            <span class="thin-text">Local Path</span> <span class="text-sm text-gray-600">{{ project?.path }}</span>
+        <div class="xl:(flex space-x-5)">
+          <div class="border p-5 rounded-xl space-y-2 w-full xl:(h-[6.55rem] mt-7 pt-7)">
+            <div class="text-sm flex items-center justify-between">
+              <span class="thin-text">Local Path</span>
+              <span class="text-sm text-gray-600">{{ project?.path }}</span>
+            </div>
+            <div class="text-sm flex items-center justify-between">
+              <span class="thin-text">Remote Path</span>
+              <span class="text-sm text-gray-600"
+                >https://github.com/neelansh15/test-git-innit-11</span
+              >
+            </div>
           </div>
-          <div class="text-sm flex items-center justify-between">
-            <span class="thin-text">Remote Path</span>
-            <span class="text-sm text-gray-600">https://github.com/neelansh15/test-git-innit-11</span>
-          </div>
-        </div>
 
-        <Collaborators class="mt-7" />
+          <Collaborators class="mt-7 w-full" />
+        </div>
 
         <div class="mt-7">
           <h2 class="thin-text">Timeline</h2>
