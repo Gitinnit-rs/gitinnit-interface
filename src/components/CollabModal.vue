@@ -19,7 +19,7 @@ const { collabModalOpen } = storeToRefs(store);
     <form @submit.prevent="" class="flex items-center space-x-2">
       <input type="text" placeholder="Username" class="mt-2" required />
 
-      <FilledButton class="mt-2" @click="() => {}">Add</FilledButton>
+      <FilledButton class="mt-2" @click="() => {}">Invite</FilledButton>
     </form>
 
     <div>
@@ -32,7 +32,7 @@ const { collabModalOpen } = storeToRefs(store);
             <img :src="user.avatar_url" v-tooltip="user.login" />
             <div class="ml-2 transform scale-90">
               <h3>{{ user.name }}</h3>
-              <p class="text-sm">{{ user.login }}</p>
+              <p class="text-sm text-gray-500">{{ user.login }}</p>
             </div>
           </div>
 

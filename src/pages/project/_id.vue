@@ -94,12 +94,14 @@ const simulate = () => {
           </div>
         </div>
 
-        <div class="space-y-3">
-          <p class="text-sm"><Pill>Local Path</Pill> {{ project?.path }}</p>
-          <p class="text-sm">
-            <Pill>Remote Path</Pill>
-            https://github.com/neelansh15/test-git-innit-11
-          </p>
+        <div class="border p-5 rounded-xl space-y-2">
+          <div class="text-sm flex items-center justify-between">
+            <span class="thin-text">Local Path</span> <span class="text-sm text-gray-600">{{ project?.path }}</span>
+          </div>
+          <div class="text-sm flex items-center justify-between">
+            <span class="thin-text">Remote Path</span>
+            <span class="text-sm text-gray-600">https://github.com/neelansh15/test-git-innit-11</span>
+          </div>
         </div>
 
         <Collaborators class="mt-7" />
