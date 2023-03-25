@@ -38,7 +38,11 @@
 }
 
 .image-line img {
-    @apply rounded-full w-8 h-8;
+    @apply rounded-full w-8 h-8 border-2 border-white;
+}
+
+.image-line-list img {
+    @apply rounded-full w-12 h-12 border-2 border-gray-200;
 }
 
 /* Vue Transition class */

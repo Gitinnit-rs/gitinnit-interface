@@ -8,6 +8,8 @@ import AddModal from "../../components/AddModal.vue";
 import { onBeforeMount, onMounted } from "vue";
 import OutlineButton from "../../components/OutlineButton.vue";
 import { invoke } from "@tauri-apps/api";
+import Collaborators from "../../components/Collaborators.vue";
+import CollabModal from "../../components/CollabModal.vue";
 
 const store = useStore();
 const route = useRoute();
@@ -100,31 +102,7 @@ const simulate = () => {
           </p>
         </div>
 
-        <div
-          class="mt-7 cursor-pointer border p-5 rounded-xl hover:bg-gray-50 transition"
-        >
-          <h2 class="thin-text">Collaborators</h2>
-
-          <!-- Image Line -->
-          <div class="mt-3 flex items-center -space-x-2 image-line">
-            <img
-              src="https://xsgames.co/randomusers/avatar.php?g=male"
-              v-tooltip="'Gigachad'"
-            />
-            <img
-              src="https://xsgames.co/randomusers/avatar.php?g=male"
-              v-tooltip="'Gigachad'"
-            />
-            <img
-              src="https://xsgames.co/randomusers/avatar.php?g=male"
-              v-tooltip="'Gigachad'"
-            />
-            <img
-              src="https://xsgames.co/randomusers/avatar.php?g=male"
-              v-tooltip="'Gigachad'"
-            />
-          </div>
-        </div>
+        <Collaborators class="mt-7" />
 
         <div class="mt-7">
           <h2 class="thin-text">Timeline</h2>
@@ -132,5 +110,7 @@ const simulate = () => {
         </div>
       </section>
     </div>
+
+    <CollabModal />
   </div>
 </template>

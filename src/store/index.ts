@@ -13,6 +13,8 @@ export const useStore = defineStore("gitinnit-store", {
 
     scrollLock: false,
     user: undefined as any,
+
+    collabModalOpen: false,
   }),
   actions: {
     toggleCompact() {
@@ -37,5 +39,11 @@ export const useStore = defineStore("gitinnit-store", {
         })
       );
     },
+    openCollabModal() {
+      this.collabModalOpen = true
+    },
+    closeCollabModal() {
+      this.collabModalOpen = false
+    }
   },
 });
