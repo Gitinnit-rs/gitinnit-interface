@@ -9,6 +9,7 @@ import { useOnline } from "@vueuse/core";
 import { invoke } from "@tauri-apps/api";
 import { onMounted, ref } from "vue";
 import { useToast } from "vue-toastification";
+import { updateGlobalConfig } from "../utils";
 
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
@@ -42,7 +43,10 @@ function setNameAndEmail(e: Event): any {
 }
 
 function disconnect() {
-  if (user) userStore.setUser(null);
+  if (user) {
+    userStore.setUser(null);
+    updateGlobalConfig("user", undefined);
+  }
 }
 </script>
 
@@ -65,7 +69,10 @@ function disconnect() {
         </div>
       </div>
       <div v-else>
-        <FilledButton :disabled="!isOnline" disabled-text="Disabled. Check your internet connection" @click="login"
+        <FilledButton
+          :disabled="!isOnline"
+          disabled-text="Disabled. Check your internet connection"
+          @click="login"
           >Log in</FilledButton
         >
       </div>

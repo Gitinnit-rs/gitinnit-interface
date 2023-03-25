@@ -15,7 +15,7 @@ export async function fetchConfigData() {
     path: await globalConfigPath(),
   });
 
-  // TODO: Verify login information. If access_token expired (user details call doesn't work), don't set user. Have to re-login
+  // TODO: Verify login information. If access_token expired (user details call doesn't work), don't set user. Have to re-login. Also to update information
   store.$patch({
     projects: JSON.parse(data).projects,
   });
