@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   disabled?: boolean;
+  disabledText?: string;
 }>();
 </script>
 
@@ -13,7 +14,7 @@ defineProps<{
         ? 'bg-gray-400 cursor-not-allowed'
         : 'bg-primary-400 hover:bg-primary-500/80',
     ]"
-    :title="disabled ? 'Disabled. Check internet connection' : undefined"
+    :title="disabled ? disabledText : undefined"
   >
     <slot />
   </button>

@@ -65,7 +65,7 @@ function disconnect() {
         </div>
       </div>
       <div v-else>
-        <FilledButton :disabled="!isOnline" @click="loginWithSupabase"
+        <FilledButton :disabled="!isOnline" disabled-text="Disabled. Check your internet connection" @click="loginWithSupabase"
           >Log in</FilledButton
         >
       </div>

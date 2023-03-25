@@ -67,7 +67,7 @@ const { projects } = storeToRefs(store);
         </h2>
         <div class="mt-4 space-x-2">
           <!-- <OutlineButton>Register</OutlineButton> -->
-          <FilledButton v-if="!user" :disabled="!isOnline" @click="login"
+          <FilledButton v-if="!user" :disabled="!isOnline" disabled-text="Disabled. Check your internet connection" @click="login"
             >Log in</FilledButton
           >
         </div>

@@ -12,6 +12,11 @@ export async function getUserDetails(access_token: string) {
         }
     })
 
+    console.log("Data in getUserDetails", {
+        data,
+        status
+    })
+
     if (status !== 200) throw new Error("Got invalid status code " + status)
 
     return data

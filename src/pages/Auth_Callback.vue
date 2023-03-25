@@ -19,7 +19,8 @@ async function init() {
     const params = new URLSearchParams(window.location.hash.replace("#", "?"));
     console.log("PARAM", window.location.hash.slice(918));
 
-    const access_token = params.get("access_token");
+    // const access_token = params.get("access_token");
+    const access_token = params.get("provider_token");
     const refresh_token = params.get("refresh_token");
 
     console.log(access_token);
@@ -30,9 +31,11 @@ async function init() {
     const data = parseJwt(access_token);
     setUser(data);
 
-    const user = await getUserDetails(access_token);
+    console.log("Before getUserDetails")
 
-    console.log(user);
+    // const user = await getUserDetails(access_token);
+
+    // console.log("User", user);
 
     isLoading.value = false;
   } catch (e) {

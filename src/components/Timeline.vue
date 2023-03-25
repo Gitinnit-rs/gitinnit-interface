@@ -44,8 +44,8 @@ const checkout = (i: number) => {
   }
   let hash;
 
-  if (i === 0)
-    hash = project.value.defaultBranch || "main"; // Whatever timeline the user is on. Fetch this later
+  if (i === 0) hash = project.value.defaultBranch || "main";
+  // Whatever timeline the user is on. Fetch this later
   else hash = mainTimeline.value[i].hash.trim();
 
   console.log("Checking out with hash", hash);
@@ -56,8 +56,8 @@ const checkout = (i: number) => {
   });
 
   activeCommit.value = i;
-  
-  store.getTimeline()
+
+  store.getTimeline();
 };
 </script>
 
@@ -102,6 +102,8 @@ const checkout = (i: number) => {
             <FilledButton
               class="ml-4 px-3 py-1.5 mb-1.5 text-xs"
               @click="checkout(i)"
+              :disabled="activeCommit === i"
+              disabled-text="Already at this checkpoint"
               >Go here</FilledButton
             >
           </div>
