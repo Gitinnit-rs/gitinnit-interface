@@ -12,9 +12,12 @@ import 'vue-material-design-icons/styles.css';
 import Toast, { PluginOptions, POSITION } from 'vue-toastification'
 import "./assets/toastification.css";
 
+import FloatingVue from 'floating-vue'
+import 'floating-vue/dist/style.css'
+
 const toastOptions: PluginOptions = {
     position: POSITION.BOTTOM_RIGHT,
     transition: "Vue-Toastification__fade"
 }
 
-createApp(App).use(router).use(createPinia()).use(Toast, toastOptions).mount('#app')
+createApp(App).use(router).use(createPinia()).use(Toast, toastOptions).use(FloatingVue).mount('#app')

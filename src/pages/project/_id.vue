@@ -83,15 +83,7 @@ const simulate = () => {
       </div> -->
 
         <div class="flex justify-between mb-10">
-          <div class="px-5 cursor-pointer">
-            <!-- Image Line -->
-            <div class="mt-2 flex items-center -space-x-2 image-line">
-              <img src="https://xsgames.co/randomusers/avatar.php?g=male" />
-              <img src="https://xsgames.co/randomusers/avatar.php?g=male" />
-              <img src="https://xsgames.co/randomusers/avatar.php?g=male" />
-              <img src="https://xsgames.co/randomusers/avatar.php?g=male" />
-            </div>
-          </div>
+          <div></div>
           <div>
             <OutlineButton class="mr-2" @click="simulate"
               >Simulate file change</OutlineButton
@@ -108,7 +100,33 @@ const simulate = () => {
           </p>
         </div>
 
-        <div class="mt-5">
+        <div
+          class="mt-7 cursor-pointer border p-5 rounded-xl hover:bg-gray-50 transition"
+        >
+          <h2 class="thin-text">Collaborators</h2>
+
+          <!-- Image Line -->
+          <div class="mt-3 flex items-center -space-x-2 image-line">
+            <img
+              src="https://xsgames.co/randomusers/avatar.php?g=male"
+              v-tooltip="'Gigachad'"
+            />
+            <img
+              src="https://xsgames.co/randomusers/avatar.php?g=male"
+              v-tooltip="'Gigachad'"
+            />
+            <img
+              src="https://xsgames.co/randomusers/avatar.php?g=male"
+              v-tooltip="'Gigachad'"
+            />
+            <img
+              src="https://xsgames.co/randomusers/avatar.php?g=male"
+              v-tooltip="'Gigachad'"
+            />
+          </div>
+        </div>
+
+        <div class="mt-7">
           <h2 class="thin-text">Timeline</h2>
           <Timeline class="mt-3" />
         </div>

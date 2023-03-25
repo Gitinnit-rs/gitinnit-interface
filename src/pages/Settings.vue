@@ -69,10 +69,7 @@ function disconnect() {
         </div>
       </div>
       <div v-else>
-        <FilledButton
-          :disabled="!isOnline"
-          disabled-text="Disabled. Check your internet connection"
-          @click="login"
+        <FilledButton :requires-online="true" @click="login"
           >Log in</FilledButton
         >
       </div>
@@ -89,12 +86,20 @@ function disconnect() {
           <p v-else class="text-sm">Github</p>
           <button
             v-if="user"
-            class="text-xs px-2 py-1 bg-green-100 hover:bg-red-100 rounded-full"
+            class="text-xs px-2 py-1 hover:bg-red-100 rounded-full"
+            :class="isOnline ? 'bg-green-100' : 'bg-yellow-100'"
             onmouseover="this.innerText = 'Disconnect'"
-            onmouseout="this.innerText = 'Connected'"
+            @mouseout="
+              (val) => {
+                // @ts-ignore
+                val.target.innerText = isOnline
+                  ? 'Connected'
+                  : 'Connected, Offline';
+              }
+            "
             @click="disconnect"
           >
-            Connected
+            {{ isOnline ? "Connected" : "Connected, Offline" }}
           </button>
           <button v-else class="text-xs px-2 py-1 bg-red-100 rounded-full">
             Not Connected
