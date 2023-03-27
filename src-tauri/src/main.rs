@@ -13,6 +13,7 @@ fn main() {
             utils::log,
             utils::init,
             utils::commit,
+            utils::fetch,
             utils::checkout,
             utils::get_user_name,
             utils::set_user_name,

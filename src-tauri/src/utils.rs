@@ -228,3 +228,10 @@ pub fn get_current_branch(path: &str) -> String {
     }
     return name
 }
+
+#[tauri::command]
+pub fn add_remote(path: &str, url: &str){
+    set_path(path);
+    let args = ["remote", "add", "origin", url];
+    exec_git_command(args);
+}
