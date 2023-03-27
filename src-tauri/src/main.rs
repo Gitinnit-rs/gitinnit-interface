@@ -11,10 +11,14 @@ fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             utils::log,
+            utils::push,
+            utils::pull,
             utils::init,
-            utils::commit,
             utils::fetch,
+            utils::status,
+            utils::commit,
             utils::checkout,
+            utils::add_remote,
             utils::get_user_name,
             utils::set_user_name,
             utils::set_user_email,
