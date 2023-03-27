@@ -8,6 +8,8 @@ import AddModal from "../../components/AddModal.vue";
 import { onBeforeMount, onMounted } from "vue";
 import OutlineButton from "../../components/OutlineButton.vue";
 import { invoke } from "@tauri-apps/api";
+import Collaborators from "../../components/Collaborators.vue";
+import CollabModal from "../../components/CollabModal.vue";
 
 const store = useStore();
 const route = useRoute();
@@ -82,7 +84,7 @@ const simulate = () => {
         <span>Last Updated 3 days ago</span>
       </div> -->
 
-        <div class="flex justify-between">
+        <div class="flex justify-between mb-10">
           <div></div>
           <div>
             <OutlineButton class="mr-2" @click="simulate"
@@ -92,19 +94,30 @@ const simulate = () => {
           </div>
         </div>
 
-        <div class="space-y-3">
-          <p class="text-sm"><Pill>Local Path</Pill> {{ project?.path }}</p>
-          <p class="text-sm">
-            <Pill>Remote Path</Pill>
-            https://github.com/neelansh15/test-git-innit-11
-          </p>
+        <div class="xl:(flex space-x-5)">
+          <div class="border p-5 rounded-xl space-y-2 w-full xl:(h-[6.55rem] mt-7 pt-7)">
+            <div class="text-sm flex items-center justify-between">
+              <span class="thin-text">Local Path</span>
+              <span class="text-sm text-gray-600">{{ project?.path }}</span>
+            </div>
+            <div class="text-sm flex items-center justify-between">
+              <span class="thin-text">Remote Path</span>
+              <span class="text-sm text-gray-600"
+                >https://github.com/neelansh15/test-git-innit-11</span
+              >
+            </div>
+          </div>
+
+          <Collaborators class="mt-7 w-full" />
         </div>
 
-        <div class="mt-5">
-          <h2 class="font-semibold">Timeline</h2>
+        <div class="mt-7">
+          <h2 class="thin-text">Timeline</h2>
           <Timeline class="mt-3" />
         </div>
       </section>
     </div>
+
+    <CollabModal />
   </div>
 </template>

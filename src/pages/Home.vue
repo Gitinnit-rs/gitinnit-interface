@@ -2,13 +2,12 @@
 import { useOnline } from "@vueuse/core";
 import { storeToRefs } from "pinia";
 import FilledButton from "../components/FilledButton.vue";
-import OutlineButton from "../components/OutlineButton.vue";
 import ProjectCard from "../components/ProjectCard.vue";
 import { useStore } from "../store";
 import { useUserStore } from "../store/user";
 import { Project } from "../types";
 import { randomImage } from "../utils";
-import { loginWithSupabase as login } from "../utils/auth";
+import { login } from "../utils/auth";
 
 const store = useStore();
 const { user } = storeToRefs(useUserStore());
@@ -23,6 +22,7 @@ const communityProjects = [
     genre: "Electro House",
     path: "",
     tags: [],
+    defaultBranch: "main",
   },
   {
     id: 1,
@@ -32,6 +32,7 @@ const communityProjects = [
     genre: "Hip-Hop",
     path: "",
     tags: [],
+    defaultBranch: "main",
   },
   {
     id: 2,
@@ -41,6 +42,7 @@ const communityProjects = [
     genre: "Electronic",
     path: "",
     tags: [],
+    defaultBranch: "main",
   },
   {
     id: 3,
@@ -50,6 +52,7 @@ const communityProjects = [
     genre: "Electronic",
     path: "",
     tags: [],
+    defaultBranch: "main",
   },
 ];
 
@@ -67,14 +70,16 @@ const { projects } = storeToRefs(store);
         </h2>
         <div class="mt-4 space-x-2">
           <!-- <OutlineButton>Register</OutlineButton> -->
-          <FilledButton v-if="!user" :disabled="!isOnline" @click="login"
+          <FilledButton v-if="!user" :requires-online="true" @click="login"
             >Log in</FilledButton
           >
         </div>
       </div>
 
       <div v-if="user">
-        <p class="text-gray-500 font-deca">Howdy, {{ user.user_metadata.name.split(" ")[0] }}!</p>
+        <p class="text-gray-500 font-deca">
+          Howdy, {{ user.name.split(" ")[0] }}!
+        </p>
       </div>
     </div>
 
