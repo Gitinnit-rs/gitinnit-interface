@@ -8,7 +8,6 @@ mod file_handler;
 mod utils;
 
 fn main() {
-    utils::get_all_branches("C:\\Users\\vedant\\Desktop\\Current\\Projects\\Gitinnit\\gitinnit-interface");
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             utils::log,
