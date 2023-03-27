@@ -14,6 +14,7 @@ fn main() {
             utils::init,
             utils::commit,
             utils::checkout,
+            utils::get_all_branches,
             utils::get_user_name,
             utils::get_user_email,
             utils::set_user_name,

@@ -3,6 +3,7 @@ use serde_json;
 use std::env;
 use std::path::Path;
 use std::process::{Command, Stdio};
+use regex::Regex;
 
 #[derive(Clone, Serialize)]
 struct Commit {
@@ -10,6 +11,14 @@ struct Commit {
     hash: String,
     author: String,
     date: String,
+}
+
+#[derive(Clone, Serialize)]
+struct Branch {
+    type_of_branch: String,
+    name: String,
+    is_head: bool,
+    is_remote: bool
 }
 
 fn exec_git_command(args: Vec<&str>) -> String {
@@ -57,7 +66,6 @@ pub fn init(path: &str) {
 #[tauri::command]
 pub fn log(hash: &str, path: &str) -> Result<String, String> {
     set_path(path);
-    println!("print {}", hash);
     let mut args = vec!["log"];
     if hash.len() != 0 {
         args.push(hash);
@@ -98,6 +106,56 @@ pub fn log(hash: &str, path: &str) -> Result<String, String> {
 
     return Ok(serde_json::to_string(&logs).unwrap());
 }
+
+#[tauri::command]
+pub fn get_all_branches(path: &str) -> Result<String, String> {
+    set_path(path);
+    let mut args = vec!["branch", "-a"];
+    let output = exec_git_command(args);
+    let mut branch = Branch {
+        type_of_branch: String::from(""),
+        name: String::from(""),
+        is_head: false,
+        is_remote: false
+    };
+
+    let mut branches = Vec::<Branch>::new();
+
+    let remote_re = Regex::new("^ *remotes/.*").unwrap();
+    let head_re = Regex::new("/HEAD").unwrap();
+    
+    for x in output.split("\n") {
+        if x.len() == 0{
+            continue;
+        }
+        if remote_re.is_match(x){
+            branch.is_remote = true;
+            if head_re.is_match(x) {
+                branch.is_head = true;
+            }else{
+                branch.is_head = false;
+            }
+            let (_, name) = x.rsplit_once('/').unwrap();
+            branch.name = name.to_string();
+        }else{
+            branch.is_remote = false;
+            if x.contains("*"){
+                branch.is_head = true
+            }else{
+                branch.is_head = false;
+            }
+            branch.name = x.to_string();
+        }
+        branches.push(branch.clone());
+        //reset
+        branch.name = String::from("");
+        branch.is_remote = false;
+        branch.is_head = false;
+    }
+
+    return Ok(serde_json::to_string(&branches).unwrap());
+}
+
 
 #[tauri::command]
 pub fn add(path: &str) -> String {
