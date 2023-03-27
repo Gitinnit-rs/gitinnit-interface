@@ -139,13 +139,16 @@ pub fn get_all_branches(path: &str) -> Result<String, String> {
             branch.name = name.to_string();
         }else{
             branch.is_remote = false;
+            branch.name = x.to_string();
             if x.contains("*"){
-                branch.is_head = true
+                branch.is_head = true;
+                let mut name = branch.name.split(" ");
+                branch.name = name.nth(1).unwrap().to_string();
             }else{
                 branch.is_head = false;
             }
-            branch.name = x.to_string();
         }
+        println!("name:{}, remote:{}, head:{}", branch.name, branch.is_remote,branch.is_head);
         branches.push(branch.clone());
         //reset
         branch.name = String::from("");
@@ -154,6 +157,22 @@ pub fn get_all_branches(path: &str) -> Result<String, String> {
     }
 
     return Ok(serde_json::to_string(&branches).unwrap());
+}
+#[tauri::command]
+pub fn get_current_branch(path: &str) -> String {
+    // CALL THIS METHOD WHEN DETACHED HEAD
+    set_path(path);
+    let mut args = vec!["branch", "--contains", "HEAD"];
+    let output = exec_git_command(args);
+    let mut name = String::from("");
+    for x in output.split("\n") {
+        if x.len() == 0{
+            continue;
+        }
+        let mut temp = x.split(" ");
+        name = temp.nth(1).unwrap().to_string();
+    }
+    return name
 }
 
 
