@@ -232,6 +232,20 @@ pub fn get_current_branch(path: &str) -> String {
 #[tauri::command]
 pub fn add_remote(path: &str, url: &str){
     set_path(path);
-    let args = ["remote", "add", "origin", url];
+    let args = vec!["remote", "add", "origin", url];
     exec_git_command(args);
+}
+
+#[tauri::command]
+pub fn pull(path: &str) -> String{
+    set_path(path);
+    let args = vec!["pull"];
+    return exec_git_command(args);
+}
+
+#[tauri::command]
+pub fn push(path: &str, branch:&str) -> String{
+    set_path(path);
+    let args = vec!["push", "origin", branch];
+    return exec_git_command(args);
 }
