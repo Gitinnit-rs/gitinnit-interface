@@ -15,10 +15,8 @@ struct Commit {
 
 #[derive(Clone, Serialize)]
 struct Branch {
-    type_of_branch: String,
     name: String,
-    is_head: bool,
-    is_remote: bool
+    current: bool,
 }
 
 fn exec_git_command(args: Vec<&str>) -> String {
@@ -30,6 +28,15 @@ fn exec_git_command(args: Vec<&str>) -> String {
 
     let stdout = String::from_utf8(output.stdout).unwrap();
     return stdout;
+}
+
+pub fn set_path(path: &str) {
+    let root = Path::new(path);
+    assert!(env::set_current_dir(&root).is_ok());
+    println!(
+        "Successfully changed working directory to {}!",
+        root.display()
+    );
 }
 
 #[tauri::command]
@@ -62,6 +69,71 @@ pub fn init(path: &str) {
     let args = vec!["init"];
     exec_git_command(args);
 }
+
+#[tauri::command]
+pub fn fetch(path: &str){
+    set_path(path);
+    let args = vec!["fetch"];
+    exec_git_command(args);
+    create_local_branch(path)
+}
+
+pub fn create_local_branch(path: &str){
+    set_path(path);
+    let mut args = vec!["branch", "-a"];
+    let output = exec_git_command(args);
+
+    let remote_re = Regex::new("^ *remotes/.*").unwrap();
+    
+    for x in output.split("\n") {
+        if x.len() == 0{
+            continue;
+        }
+        if remote_re.is_match(x){
+            let (_, name) = x.rsplit_once('/').unwrap();
+            let create_branch_args = vec!["branch", name];
+            exec_git_command(create_branch_args);
+        }
+    }
+}
+
+#[tauri::command]
+pub fn add(path: &str) -> String {
+    set_path(path);
+    let args = vec!["add", "."];
+    let mut return_val: String = exec_git_command(args);
+    if return_val == "" {
+        return_val = "success".to_string();
+    }
+    return return_val;
+}
+
+#[tauri::command]
+pub fn commit(message: &str, path: &str) {
+    set_path(path);
+    let add_result = add(path);
+    assert!(add_result == "success", "{}", add_result);
+    let args = vec!["commit", "-m", &message];
+    let return_val: String = exec_git_command(args);
+}
+
+#[tauri::command]
+pub fn checkout(checkout_path: &str, path: &str) -> String {
+    set_path(path);
+    let args = vec!["checkout", &checkout_path];
+    let return_val: String = exec_git_command(args);
+    return return_val;
+}
+
+pub fn status(path: &str) {
+    set_path(path);
+    let add_result = add(path);
+    assert!(add_result == "success", "{}", add_result);
+    let args = vec!["status"];
+    let return_val: String = exec_git_command(args);
+}
+
+
 
 #[tauri::command]
 pub fn log(hash: &str, path: &str) -> Result<String, String> {
@@ -108,56 +180,38 @@ pub fn log(hash: &str, path: &str) -> Result<String, String> {
 }
 
 #[tauri::command]
-pub fn get_all_branches(path: &str) -> Result<String, String> {
+pub fn get_local_branches(path: &str) -> Result<String, String> {
     set_path(path);
-    let mut args = vec!["branch", "-a"];
+    let mut args = vec!["branch"];
     let output = exec_git_command(args);
     let mut branch = Branch {
-        type_of_branch: String::from(""),
         name: String::from(""),
-        is_head: false,
-        is_remote: false
+        current: false,
     };
 
     let mut branches = Vec::<Branch>::new();
 
-    let remote_re = Regex::new("^ *remotes/.*").unwrap();
-    let head_re = Regex::new("/HEAD").unwrap();
-    
     for x in output.split("\n") {
         if x.len() == 0{
             continue;
         }
-        if remote_re.is_match(x){
-            branch.is_remote = true;
-            if head_re.is_match(x) {
-                branch.is_head = true;
-            }else{
-                branch.is_head = false;
-            }
-            let (_, name) = x.rsplit_once('/').unwrap();
-            branch.name = name.to_string();
+        branch.name = x.to_string().trim().to_string();
+        if x.contains("*"){
+            branch.current = true;
+            let mut name = branch.name.split(" ");
+            branch.name = name.nth(1).unwrap().to_string();
         }else{
-            branch.is_remote = false;
-            branch.name = x.to_string();
-            if x.contains("*"){
-                branch.is_head = true;
-                let mut name = branch.name.split(" ");
-                branch.name = name.nth(1).unwrap().to_string();
-            }else{
-                branch.is_head = false;
-            }
+            branch.current = false;
         }
-        println!("name:{}, remote:{}, head:{}", branch.name, branch.is_remote,branch.is_head);
         branches.push(branch.clone());
+        
         //reset
         branch.name = String::from("");
-        branch.is_remote = false;
-        branch.is_head = false;
+        branch.current = false;
     }
-
     return Ok(serde_json::to_string(&branches).unwrap());
 }
+
 #[tauri::command]
 pub fn get_current_branch(path: &str) -> String {
     // CALL THIS METHOD WHEN DETACHED HEAD
@@ -174,50 +228,3 @@ pub fn get_current_branch(path: &str) -> String {
     }
     return name
 }
-
-
-#[tauri::command]
-pub fn add(path: &str) -> String {
-    set_path(path);
-    let args = vec!["add", "."];
-    let mut return_val: String = exec_git_command(args);
-    if return_val == "" {
-        return_val = "success".to_string();
-    }
-    return return_val;
-}
-
-#[tauri::command]
-pub fn commit(message: &str, path: &str) {
-    set_path(path);
-    let add_result = add(path);
-    assert!(add_result == "success", "{}", add_result);
-    let args = vec!["commit", "-m", &message];
-    let return_val: String = exec_git_command(args);
-}
-
-#[tauri::command]
-pub fn checkout(checkout_path: &str, path: &str) -> String {
-    set_path(path);
-    let args = vec!["checkout", &checkout_path];
-    let return_val: String = exec_git_command(args);
-    return return_val;
-}
-
-pub fn status(path: &str) {
-    set_path(path);
-    let add_result = add(path);
-    assert!(add_result == "success", "{}", add_result);
-    let args = vec!["status"];
-    let return_val: String = exec_git_command(args);
-}
-
-pub fn set_path(path: &str) {
-    let root = Path::new(path);
-    assert!(env::set_current_dir(&root).is_ok());
-    println!(
-        "Successfully changed working directory to {}!",
-        root.display()
-    );
-}
-

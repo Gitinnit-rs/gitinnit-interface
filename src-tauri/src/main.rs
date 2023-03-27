@@ -18,7 +18,7 @@ fn main() {
             utils::set_user_name,
             utils::set_user_email,
             utils::get_user_email,
-            utils::get_all_branches,
+            utils::get_local_branches,
             utils::get_current_branch,
             file_handler::read_file,
             file_handler::write_file,
