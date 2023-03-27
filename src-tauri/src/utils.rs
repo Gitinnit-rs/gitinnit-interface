@@ -13,10 +13,6 @@ struct Commit {
     date: String,
 }
 
-#[derive(Clone, serde::Serialize)]
-struct Payload {
-    message: String,
-  }
 
 #[derive(Clone, Serialize)]
 struct Branch {
@@ -74,7 +70,7 @@ pub fn set_user_email(email: &str) {
 }
 
 #[tauri::command]
-pub fn init( app: tauri::Window, path: &str ) {
+pub fn init( path: &str ) {
     set_path(path);
     let args = vec!["init"];
     exec_git_command(args);
