@@ -20,9 +20,9 @@ const isOnline = useOnline();
         : 'bg-primary-400 hover:bg-primary-500/80',
     ]"
     :title="
-      disabled && isOnline
+      disabled
         ? disabledText
-        : requiresOnline
+        : requiresOnline && !isOnline
         ? 'Disabled. Check your internet connection'
         : undefined
     "

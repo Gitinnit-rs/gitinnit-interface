@@ -4,9 +4,10 @@ export interface Project {
   genre: string;
   author: string;
   path: string;
+  remoteURL: string;
   image: string;
   tags: string[];
-  defaultBranch: string
+  defaultBranch: string;
 }
 
 export interface Commit {

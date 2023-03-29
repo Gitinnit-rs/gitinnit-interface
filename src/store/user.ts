@@ -1,16 +1,21 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
 interface IUserStore {
-    user: any
+  user: any;
 }
 
-export const useUserStore = defineStore('user', {
-    state: (): IUserStore => ({
-        user: null
-    }),
-    actions: {
-        setUser(user: any) {
-            this.user = user
-        }
-    }
-})
+export const useUserStore = defineStore("user", {
+  state: (): IUserStore => ({
+    user: null,
+  }),
+  actions: {
+    setUser(user: any) {
+      this.user = user;
+    },
+    updateAccessToken(access_token: string) {
+      if (this.user) {
+        this.user.access_token = access_token;
+      }
+    },
+  },
+});

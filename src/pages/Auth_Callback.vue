@@ -25,7 +25,7 @@ async function init() {
     console.log(access_token);
 
     if (!access_token) throw new Error("Access token is null or undefined");
-
+    
     const userData = await getUserDetails(access_token);
     const user = { access_token, ...userData };
     

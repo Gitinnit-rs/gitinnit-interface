@@ -9,8 +9,11 @@ import { useRouter } from "vue-router";
 import { open } from "@tauri-apps/api/dialog";
 import Pill from "../components/Pill.vue";
 import { Project } from "../types";
+import { useToast } from "vue-toastification";
+import { createRepository } from "../utils/github";
 
 const router = useRouter();
+const toast = useToast();
 
 const data = reactive({
   id: Math.round(Math.random() * 1e6),
@@ -20,7 +23,9 @@ const data = reactive({
   path: "",
   tags: [] as string[],
   image: randomImage(),
-  defaultBranch: "main"
+  defaultBranch: "main",
+
+  remoteURL: "",
 } as Project);
 
 function onTagsChanged(value: any) {
@@ -36,28 +41,58 @@ async function openFileSelect() {
   data.path = result as string;
 }
 
+async function submitTemp() {
+  console.log("alright then");
+  const remoteUrl = await createRepository(data);
+  data.remoteURL = remoteUrl;
+}
+
 async function submit() {
-  const _globalConfig = await globalConfigPath();
+  if (!data.path) {
+    toast.error("Select a folder");
+    return;
+  }
 
-  const globalConfigJSON: string = await invoke("read_file", {
-    path: _globalConfig,
-  });
+  try {
+    // Attempt to create a repository online
+    const remoteUrl = await createRepository(data);
+    data.remoteURL = remoteUrl;
 
-  const globalData = JSON.parse(globalConfigJSON);
-  globalData.projects.push(data);
+    // Save data to globalConfig
+    const _globalConfig = await globalConfigPath();
 
-  invoke("write_file", {
-    path: _globalConfig,
-    contents: JSON.stringify(globalData),
-  }).then(() => {
-    setTimeout(fetchConfigData, 1000);
-
-    invoke("init", {
-      path: data.path,
-    }).then(() => {
-      router.push("/");
+    const globalConfigJSON: string = await invoke("read_file", {
+      path: _globalConfig,
     });
-  });
+
+    const globalData = JSON.parse(globalConfigJSON);
+    globalData.projects.push(data);
+
+    // Update the globalConfig with the new project
+    invoke("write_file", {
+      path: _globalConfig,
+      contents: JSON.stringify(globalData),
+    }).then(() => {
+      setTimeout(fetchConfigData, 1000);
+
+      // Put data in project.json in local repository
+      invoke("write_file", {
+        path: data.path + "/project.json",
+        contents: JSON.stringify(data),
+      }).then(() => {
+        // Initialize repository in project folder
+        invoke("init", {
+          path: data.path,
+        }).then(() => {
+          router.push("/");
+          toast.success("Project created");
+        });
+      });
+    });
+  } catch (e) {
+    console.error("Error while creating new project", e);
+    toast.error("Error while creating new project");
+  }
 }
 </script>
 
@@ -65,29 +100,31 @@ async function submit() {
   <div class="p-10 pt-12">
     <h1 class="text-5xl font-lobster">Create a new project</h1>
 
-    <form @submit.prevent="submit" class="mt-5" ref="create_form">
+    <form @submit.prevent="submit" class="mt-5">
       <div class="grid grid-cols-3 gap-10">
         <div>
           <label for="name">Music Name</label> <br />
-          <input type="text" name="name" v-model="data.name" /> <br />
+          <input type="text" name="name" v-model="data.name" required /> <br />
         </div>
         <div>
           <label for="genre">Genre</label> <br />
-          <input type="text" name="genre" v-model="data.genre" /> <br />
+          <input type="text" name="genre" v-model="data.genre" required />
+          <br />
         </div>
       </div>
       <div class="grid grid-cols-3 gap-10 my-3">
         <div>
           <label for="author">Author</label> <br />
-          <input type="text" name="author" v-model="data.author" /> <br />
+          <input type="text" name="author" v-model="data.author" required />
+          <br />
         </div>
         <div>
           <label for="path">Path</label> <br />
           <div class="flex justify-between items-center space-x-2">
             <div>
-              <FilledButton @click="openFileSelect" type="button" class="w-26"
-                >Select File</FilledButton
-              >
+              <FilledButton @click="openFileSelect" type="button" class="w-32">
+                Select Folder
+              </FilledButton>
             </div>
             <Pill v-if="data.path">
               {{ data.path }}
@@ -103,7 +140,7 @@ async function submit() {
         placeholder="Enter tags"
         @on-tags-changed="onTagsChanged"
       />
-      <FilledButton class="mt-6">Create project</FilledButton>
+      <FilledButton class="mt-6" requires-online>Create project</FilledButton>
     </form>
   </div>
 </template>
