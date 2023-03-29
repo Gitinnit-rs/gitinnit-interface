@@ -78,7 +78,7 @@ const { projects } = storeToRefs(store);
 
       <div v-if="user">
         <p class="text-gray-500 font-deca">
-          Howdy, {{ user.name.split(" ")[0] }}!
+          Howdy, {{ user.name ? user.name.split(" ")[0] : user.login }}!
         </p>
       </div>
     </div>

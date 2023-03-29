@@ -62,8 +62,9 @@ function disconnect() {
           alt="Profile Image"
         />
         <div>
-          <h1 class="font-semibold">{{ user.name }}</h1>
-          <p class="text-gray-400 text-xs ml-[0.5px]">
+          <h1 class="font-semibold">{{ user.name || user.login }}</h1>
+
+          <p class="text-gray-400 text-xs ml-[0.5px]" v-if="user.name">
             {{ user.login }}
           </p>
         </div>
