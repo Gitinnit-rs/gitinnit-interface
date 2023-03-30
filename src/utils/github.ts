@@ -52,11 +52,6 @@ export async function createRepository(project: Project) {
     },
   });
 
-  if (status === 401) {
-    login();
-    return;
-  }
-
   if (status !== 201) throw new Error("Got invalid status code " + status);
 
   return data.html_url;
