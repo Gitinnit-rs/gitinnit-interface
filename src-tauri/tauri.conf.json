@@ -7,7 +7,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "gitinnit-interface",
+    "productName": "Gitinnit",
     "version": "0.1.0"
   },
   "tauri": {
