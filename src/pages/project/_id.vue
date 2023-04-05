@@ -1,20 +1,24 @@
 <script setup lang="ts">
 import Timeline from "../../components/Timeline.vue";
-import Pill from "../../components/Pill.vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "../../store";
 import { useRoute, RouterLink } from "vue-router";
 import AddModal from "../../components/AddModal.vue";
-import { onBeforeMount, onMounted } from "vue";
+import { onBeforeMount } from "vue";
 import OutlineButton from "../../components/OutlineButton.vue";
 import { invoke } from "@tauri-apps/api";
 import Collaborators from "../../components/Collaborators.vue";
 import CollabModal from "../../components/CollabModal.vue";
+import FilledButton from "../../components/FilledButton.vue";
+import CloudUploadOutline from "vue-material-design-icons/CloudUploadOutline.vue";
+import { useToast } from "vue-toastification";
 
 const store = useStore();
 const route = useRoute();
 
 const { project, projects } = storeToRefs(store);
+
+const toast = useToast();
 
 onBeforeMount(() => {
   if (route.params.id && +route.params.id !== -1) {
@@ -37,6 +41,29 @@ const simulate = () => {
     path: project.value?.path + "/" + Math.round(Math.random() * 1e3) + ".txt",
     contents: "hello there " + Math.round(Math.random() * 1e3),
   });
+};
+
+const push = async () => {
+  try {
+    const currentbranch = await invoke("get_current_branch", {
+      path: project.value?.path,
+    });
+
+    // In the future, errors will be strings passed from Rust then handling it here. Currently not detectable easily
+    console.log("passing to push", {
+      path: project.value?.path,
+      branch: currentbranch,
+    });
+    await invoke("push", {
+      path: project.value?.path,
+      branch: currentbranch,
+    });
+
+    toast.info("Operation completed");
+  } catch (e) {
+    console.error("Error while pushing:", e);
+    toast.error("Error, couldn't save to cloud");
+  }
 };
 </script>
 
@@ -86,11 +113,15 @@ const simulate = () => {
 
         <div class="flex justify-between mb-10">
           <div></div>
-          <div>
-            <OutlineButton class="mr-2" @click="simulate"
+          <div class="space-x-2">
+            <OutlineButton @click="simulate"
               >Simulate file change</OutlineButton
             >
             <AddModal />
+            <FilledButton @click="push"
+              ><CloudUploadOutline class="mr-1" />
+              <span>Save to Cloud</span></FilledButton
+            >
           </div>
         </div>
 

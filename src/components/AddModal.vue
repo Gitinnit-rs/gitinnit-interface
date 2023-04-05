@@ -37,8 +37,9 @@ const commit = () => {
 
   <Modal v-model="isOpen">
     <h1 class="font-deca">Add Checkpoint</h1>
+    <p class="text-gray-500 text-xs">Make sure changes have been made since last checkpoint</p>
 
-    <form @submit.prevent="">
+    <form @submit.prevent="" class="mt-2">
       <input
         type="text"
         placeholder="Checkpoint Message"
@@ -46,7 +47,7 @@ const commit = () => {
         v-model="message"
       />
 
-      <FilledButton class="mt-5 float-right" @click="commit">Add</FilledButton>
+      <FilledButton class="mt-3 float-right" @click="commit">Add</FilledButton>
     </form>
   </Modal>
 </template>

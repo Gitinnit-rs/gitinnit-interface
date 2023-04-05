@@ -79,6 +79,12 @@ async function submit() {
         invoke("init", {
           path: data.path,
         }).then(() => {
+          // Set remote origin
+          invoke("add_remote", {
+            path: data.path,
+            url: remoteUrl,
+          });
+
           router.push("/");
           toast.success("Project created");
         });
