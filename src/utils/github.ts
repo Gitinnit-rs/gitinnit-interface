@@ -9,7 +9,7 @@ export async function getUserDetails(initial_access_token?: string) {
 
   const { user, updateAccessToken } = useUserStore();
 
-  const access_token = initial_access_token || user.access_token
+  const access_token = initial_access_token || user.access_token;
 
   const { data, status } = await axios.get(url, {
     headers: {
@@ -36,20 +36,24 @@ export async function createRepository(project: Project) {
     user: { access_token },
   } = useUserStore(); // No need to storeToRefs because one-time use
 
-  console.log("Access Token in create repository", access_token);
-  console.log("HIHAIFUAIHFIUH");
-
-  const { data, status } = await axios.post(url, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      Authorization: "Bearer " + access_token,
-    },
-    data: {
+  const { data, status } = await axios.post(
+    url,
+    {
       name: project.name,
-      description: "Gitinnit Project with Genre " + project.genre,
+      description:
+        "Gitinnit Project with Genre " +
+        project.genre +
+        " by " +
+        project.author,
       private: true,
     },
-  });
+    {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: "Bearer " + access_token,
+      },
+    }
+  );
 
   if (status !== 201) throw new Error("Got invalid status code " + status);
 

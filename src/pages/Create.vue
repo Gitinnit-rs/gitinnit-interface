@@ -17,15 +17,16 @@ const toast = useToast();
 
 const data = reactive({
   id: Math.round(Math.random() * 1e6),
-  name: "",
-  genre: "",
-  author: "",
+  name: "gi-test-1",
+  genre: "EDM",
+  author: "Alkibiadez",
   path: "",
-  tags: [] as string[],
+  tags: ["EDM"] as string[],
   image: randomImage(),
   defaultBranch: "main",
 
   remoteURL: "",
+  musicFilePath: "",
 } as Project);
 
 function onTagsChanged(value: any) {
@@ -41,12 +42,6 @@ async function openFileSelect() {
   data.path = result as string;
 }
 
-// async function submitTemp() {
-//   console.log("alright then");
-//   const remoteUrl = await createRepository(data);
-//   data.remoteURL = remoteUrl;
-// }
-
 async function submit() {
   if (!data.path) {
     toast.error("Select a folder");
@@ -55,8 +50,8 @@ async function submit() {
 
   try {
     // Attempt to create a repository online
-    // const remoteUrl = await createRepository(data);
-    // data.remoteURL = remoteUrl;
+    const remoteUrl = await createRepository(data);
+    data.remoteURL = remoteUrl;
 
     // Save data to globalConfig
     const _globalConfig = await globalConfigPath();
