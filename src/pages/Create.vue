@@ -41,11 +41,11 @@ async function openFileSelect() {
   data.path = result as string;
 }
 
-async function submitTemp() {
-  console.log("alright then");
-  const remoteUrl = await createRepository(data);
-  data.remoteURL = remoteUrl;
-}
+// async function submitTemp() {
+//   console.log("alright then");
+//   const remoteUrl = await createRepository(data);
+//   data.remoteURL = remoteUrl;
+// }
 
 async function submit() {
   if (!data.path) {
@@ -55,8 +55,8 @@ async function submit() {
 
   try {
     // Attempt to create a repository online
-    const remoteUrl = await createRepository(data);
-    data.remoteURL = remoteUrl;
+    // const remoteUrl = await createRepository(data);
+    // data.remoteURL = remoteUrl;
 
     // Save data to globalConfig
     const _globalConfig = await globalConfigPath();

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useUserStore } from "../store/user";
 import { Project } from "../types";
-import { login } from "./auth";
 
 const BASE_URL = "https://api.github.com";
 
