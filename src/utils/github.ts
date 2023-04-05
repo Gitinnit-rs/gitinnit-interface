@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useUserStore } from "../store/user";
 import { Project } from "../types";
+import { slugify } from ".";
 
 const BASE_URL = "https://api.github.com";
 
@@ -39,7 +40,7 @@ export async function createRepository(project: Project) {
   const { data, status } = await axios.post(
     url,
     {
-      name: project.name,
+      name: slugify(project.name),
       description:
         "Gitinnit Project with Genre " +
         project.genre +

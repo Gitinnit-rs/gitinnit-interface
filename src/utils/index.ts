@@ -9,7 +9,7 @@ export const globalConfigPath = async () =>
 
 export async function fetchConfigData() {
   const store = useStore();
-  const userStore = useUserStore()
+  const userStore = useUserStore();
 
   const data: string = await invoke("read_file", {
     path: await globalConfigPath(),
@@ -59,3 +59,11 @@ export async function updateGlobalConfig(property: string, value: any) {
 export function randomImage() {
   return `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/400/400`;
 }
+
+export const slugify = (str: string) =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
