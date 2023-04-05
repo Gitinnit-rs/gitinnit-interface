@@ -8,7 +8,8 @@ export interface Project {
   image: string;
   tags: string[];
   defaultBranch: string;
-
+  
+  repo?: any;
   musicFilePath?: string;
 }
 

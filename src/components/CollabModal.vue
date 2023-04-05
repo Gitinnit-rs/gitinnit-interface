@@ -5,11 +5,32 @@ import Modal from "./Modal.vue";
 import FilledButton from "./FilledButton.vue";
 import { useUserStore } from "../store/user";
 import DeleteIcon from "vue-material-design-icons/Delete.vue";
+import { addCollaborator } from "../utils/github";
+import { ref } from "vue";
+import { useToast } from "vue-toastification";
 
 const store = useStore();
 const { user } = storeToRefs(useUserStore());
 
 const { collabModalOpen, collaborators } = storeToRefs(store);
+
+const toast = useToast();
+
+const username = ref("");
+
+async function invite() {
+  try {
+    const result = await addCollaborator(username.value);
+    if (!result) toast.warning("Already a collaborator");
+    else {
+      toast.success("Invitation sent!");
+      username.value = "";
+    }
+  } catch (e) {
+    console.error("Error while adding collaborator", e);
+    toast.error("Error while adding collaborator");
+  }
+}
 </script>
 
 <template>
@@ -17,9 +38,15 @@ const { collabModalOpen, collaborators } = storeToRefs(store);
     <h1 class="font-deca">Collaborators ({{ collaborators.length + 1 }})</h1>
 
     <form @submit.prevent="" class="flex items-center space-x-2">
-      <input type="text" placeholder="Username" class="mt-2" required />
+      <input
+        type="text"
+        placeholder="Username"
+        class="mt-2"
+        v-model="username"
+        required
+      />
 
-      <FilledButton class="mt-2" @click="() => {}">Invite</FilledButton>
+      <FilledButton class="mt-2" @click="invite">Invite</FilledButton>
     </form>
 
     <div>

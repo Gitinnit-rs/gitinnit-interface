@@ -25,6 +25,7 @@ const data = reactive({
   image: randomImage(),
   defaultBranch: "main",
 
+  repo: {},
   remoteURL: "",
   musicFilePath: "",
 } as Project);
@@ -49,9 +50,10 @@ async function submit() {
   }
 
   try {
-    // Attempt to create a repository online
-    const remoteUrl = await createRepository(data);
-    data.remoteURL = remoteUrl;
+    // Create a repository on Github
+    const repoData = await createRepository(data);
+    data.remoteURL = repoData.url;
+    data.repo = repoData;
 
     // Save data to globalConfig
     const _globalConfig = await globalConfigPath();
@@ -82,7 +84,7 @@ async function submit() {
           // Set remote origin
           invoke("add_remote", {
             path: data.path,
-            url: remoteUrl,
+            url: repoData.url,
           });
 
           router.push("/");
