@@ -59,7 +59,7 @@ const push = async () => {
       branch: currentbranch,
     });
 
-    toast.info("Operation completed");
+    toast.info("Saved to Cloud");
   } catch (e) {
     console.error("Error while pushing:", e);
     toast.error("Error, couldn't save to cloud");
