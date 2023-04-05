@@ -17,7 +17,7 @@ const toast = useToast();
 
 const data = reactive({
   id: Math.round(Math.random() * 1e6),
-  name: "git-test-1",
+  name: "Git Test 1",
   genre: "EDM",
   author: "Alkibiadez",
   path: "",

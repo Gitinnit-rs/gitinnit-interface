@@ -9,12 +9,12 @@ import DeleteIcon from "vue-material-design-icons/Delete.vue";
 const store = useStore();
 const { user } = storeToRefs(useUserStore());
 
-const { collabModalOpen } = storeToRefs(store);
+const { collabModalOpen, collaborators } = storeToRefs(store);
 </script>
 
 <template>
   <Modal v-model="collabModalOpen">
-    <h1 class="font-deca">Collaborators (5)</h1>
+    <h1 class="font-deca">Collaborators ({{ collaborators.length + 1 }})</h1>
 
     <form @submit.prevent="" class="flex items-center space-x-2">
       <input type="text" placeholder="Username" class="mt-2" required />
@@ -27,12 +27,26 @@ const { collabModalOpen } = storeToRefs(store);
         class="mt-3 p-3 flex flex-col space-y-3 image-line-list overflow-y-scroll"
         style="max-height: 250px"
       >
-        <div v-for="n in 5" :key="n" class="flex justify-between">
+        <div class="flex items-center">
+          <img :src="user.avatar_url" v-tooltip="user.login" />
+          <div class="ml-2 transform scale-90">
+            <h3>{{ user.login }}</h3>
+            <p class="text-sm text-gray-500">You</p>
+          </div>
+        </div>
+        <div
+          v-for="collaborator in collaborators"
+          :key="collaborator.id"
+          class="flex justify-between"
+        >
           <div class="flex items-center">
-            <img :src="user.avatar_url" v-tooltip="user.login" />
+            <img
+              :src="collaborator.avatar_url"
+              v-tooltip="collaborator.login"
+            />
             <div class="ml-2 transform scale-90">
-              <h3>{{ user.name }}</h3>
-              <p class="text-sm text-gray-500">{{ user.login }}</p>
+              <h3>{{ collaborator.login }}</h3>
+              <p class="text-sm text-gray-500">{{ collaborator.type }}</p>
             </div>
           </div>
 

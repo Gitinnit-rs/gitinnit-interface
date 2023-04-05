@@ -11,6 +11,8 @@ export const useStore = defineStore("gitinnit-store", {
     timeline: [] as Commit[],
     mainTimeline: [] as Commit[],
 
+    collaborators: [] as any[],
+
     scrollLock: false,
     user: undefined as any,
 

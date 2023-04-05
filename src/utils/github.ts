@@ -2,6 +2,7 @@ import axios from "axios";
 import { useUserStore } from "../store/user";
 import { Project } from "../types";
 import { slugify } from ".";
+import { useStore } from "../store";
 
 const BASE_URL = "https://api.github.com";
 
@@ -59,4 +60,30 @@ export async function createRepository(project: Project) {
   if (status !== 201) throw new Error("Got invalid status code " + status);
 
   return data.html_url;
+}
+
+export async function getCollaborators() {
+  const store = useStore();
+  const { project } = store;
+  const { user } = useUserStore();
+
+  if (!project || !project.remoteURL) return [];
+
+  const url =
+    BASE_URL + `/repos/${user.login}/${project.remoteURL}/collaborators`;
+
+  const { data, status } = await axios.get(url, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: "Bearer " + user.access_token,
+    },
+  });
+
+  if (status !== 200) throw new Error("Got invalid status code " + status);
+
+  store.$patch({
+    collaborators: data,
+  });
+
+  return data;
 }
