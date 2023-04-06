@@ -2,7 +2,6 @@
 import { computed, ref, watch } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { useStore } from "../store";
-import { storeToRefs } from "pinia";
 
 const store = useStore();
 
@@ -19,7 +18,7 @@ const isOpen = computed({
 
 const modal = ref(null);
 
-onClickOutside(modal, () => (isOpen.value = false));
+// onClickOutside(modal, () => (isOpen.value = false));
 
 watch(isOpen, (value) =>
   store.$patch({

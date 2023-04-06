@@ -126,3 +126,33 @@ export async function addCollaborator(username: string) {
 
   return true; // 201, Invitation created
 }
+
+export async function removeCollaborator(username: string) {
+  const {
+    user: { access_token, login },
+  } = useUserStore(); // No need to storeToRefs because one-time use
+
+  const store = useStore();
+  const { project } = store;
+
+  if (!project || !project.remoteURL) return [];
+
+  const url =
+    BASE_URL + `/repos/${login}/${project.repo.name}/collaborators/${username}`;
+
+  const { status } = await axios.delete(url, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: "Bearer " + access_token,
+    },
+    data: {
+      owner: login,
+      repo: project.repo.name,
+      username,
+    },
+  });
+
+  if (status !== 204) throw new Error("Got invalid status code " + status);
+
+  return true;
+}
