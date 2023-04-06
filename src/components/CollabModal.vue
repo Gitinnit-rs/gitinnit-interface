@@ -34,13 +34,12 @@ async function invite() {
   }
 }
 
-async function removeCollab(username: any) {
+async function removeCollab(usernameToRemove: any) {
   try {
-    await removeCollaborator(username);
+    await removeCollaborator(usernameToRemove);
     await getCollaborators();
 
     toast("Removed as collaborator");
-    username.value = "";
   } catch (e) {
     console.error("Error while removing collaborator", e);
     toast.error("Error while removing collaborator");
