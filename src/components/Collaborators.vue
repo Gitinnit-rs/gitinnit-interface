@@ -2,18 +2,12 @@
 import { storeToRefs } from "pinia";
 import { useStore } from "../store";
 import { useUserStore } from "../store/user";
-import { getCollaborators } from "../utils/github";
-import { onMounted } from "vue";
 
 const store = useStore();
 const { openCollabModal } = store;
 const { project, collaborators } = storeToRefs(store);
 
 const { user } = storeToRefs(useUserStore());
-
-onMounted(() => {
-  getCollaborators();
-});
 </script>
 <template>
   <div

@@ -12,6 +12,7 @@ import CollabModal from "../../components/CollabModal.vue";
 import FilledButton from "../../components/FilledButton.vue";
 import CloudUploadOutline from "vue-material-design-icons/CloudUploadOutline.vue";
 import { useToast } from "vue-toastification";
+import { getCollaborators } from "../../utils/github";
 
 const store = useStore();
 const route = useRoute();
@@ -34,6 +35,8 @@ onBeforeMount(() => {
       project: projects.value[0],
     });
   }
+
+  getCollaborators();
 });
 
 const simulate = () => {

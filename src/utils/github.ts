@@ -71,10 +71,14 @@ export async function getCollaborators() {
   const { project } = store;
   const { user } = useUserStore();
 
+  store.$patch({
+    collaborators: [],
+  });
+
   if (!project || !project.remoteURL) return [];
 
   const url =
-    BASE_URL + `/repos/${user.login}/${project.remoteURL}/collaborators`;
+    BASE_URL + `/repos/${user.login}/${project.repo.name}/collaborators`;
 
   const { data, status } = await axios.get(url, {
     headers: {
@@ -86,10 +90,10 @@ export async function getCollaborators() {
   if (status !== 200) throw new Error("Got invalid status code " + status);
 
   store.$patch({
-    collaborators: data,
+    collaborators: data.slice(1),
   });
 
-  return data;
+  return data.slice(1);
 }
 
 export async function addCollaborator(username: string) {
