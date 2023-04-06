@@ -3,7 +3,7 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../store/user";
 import { updateGlobalConfig } from "../utils";
-import { getUserDetails } from "../utils/github";
+import { getUserDetails } from "../utils/user";
 
 const isLoading = ref(true);
 const error = ref("");

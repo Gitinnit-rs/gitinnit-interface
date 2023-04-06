@@ -10,7 +10,7 @@ import { open } from "@tauri-apps/api/dialog";
 import Pill from "../components/Pill.vue";
 import { Project } from "../types";
 import { useToast } from "vue-toastification";
-import { createRepository } from "../utils/github";
+import { createRepository } from "../utils/user";
 
 const router = useRouter();
 const toast = useToast();

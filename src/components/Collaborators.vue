@@ -5,7 +5,7 @@ import { useUserStore } from "../store/user";
 
 const store = useStore();
 const { openCollabModal } = store;
-const { project, collaborators } = storeToRefs(store);
+const { collaborators } = storeToRefs(store);
 
 const { user } = storeToRefs(useUserStore());
 </script>

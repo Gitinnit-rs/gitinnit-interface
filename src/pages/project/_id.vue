@@ -12,7 +12,7 @@ import CollabModal from "../../components/CollabModal.vue";
 import FilledButton from "../../components/FilledButton.vue";
 import CloudUploadOutline from "vue-material-design-icons/CloudUploadOutline.vue";
 import { useToast } from "vue-toastification";
-import { getCollaborators } from "../../utils/github";
+import { getCollaborators } from "../../utils/collaborators";
 
 const store = useStore();
 const route = useRoute();

@@ -6,10 +6,13 @@ import FilledButton from "./FilledButton.vue";
 import { useUserStore } from "../store/user";
 import DeleteIcon from "vue-material-design-icons/Delete.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
-import { addCollaborator, removeCollaborator } from "../utils/github";
+import {
+  getCollaborators,
+  addCollaborator,
+  removeCollaborator,
+} from "../utils/collaborators";
 import { ref } from "vue";
 import { useToast } from "vue-toastification";
-import { getCollaborators } from "../utils/github";
 
 const store = useStore();
 const { user } = storeToRefs(useUserStore());

@@ -5,7 +5,7 @@
 import { invoke } from "@tauri-apps/api";
 import { onMounted } from "vue";
 import { fetchConfigData, globalAppPath, globalConfigPath } from "./utils";
-import { getUserDetails } from "./utils/github";
+import { getUserDetails } from "./utils/user";
 
 onMounted(async () => {
   const result = await invoke("create_dir_if_not_exists", {
