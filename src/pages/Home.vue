@@ -69,7 +69,6 @@ const { projects } = storeToRefs(store);
           Version Control for Musicians
         </h2>
         <div class="mt-4 space-x-2">
-          <!-- <OutlineButton>Register</OutlineButton> -->
           <FilledButton v-if="!user" :requires-online="true" @click="login"
             >Log in</FilledButton
           >

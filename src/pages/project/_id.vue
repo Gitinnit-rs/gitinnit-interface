@@ -121,7 +121,7 @@ const push = async () => {
               >Simulate file change</OutlineButton
             >
             <AddModal />
-            <FilledButton @click="push"
+            <FilledButton @click="push" :requires-online="true"
               ><CloudUploadOutline class="mr-1" />
               <span>Save to Cloud</span></FilledButton
             >

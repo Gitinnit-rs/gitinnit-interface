@@ -3,7 +3,9 @@ import { BASE_URL } from "../constants";
 import { useStore } from "../store";
 import { useUserStore } from "../store/user";
 
-/* Collaborators */
+/**
+ * Get Collaborators
+ */
 export async function getCollaborators() {
   const store = useStore();
   const { project } = store;
@@ -35,6 +37,9 @@ export async function getCollaborators() {
   return data.slice(1);
 }
 
+/**
+ * Add Collaborators
+ */
 export async function addCollaborator(username: string) {
   const {
     user: { access_token, login },
@@ -66,6 +71,9 @@ export async function addCollaborator(username: string) {
   return true; // 201, Invitation created
 }
 
+/**
+ * Remove Collaborators
+ */
 export async function removeCollaborator(username: string) {
   const {
     user: { access_token, login },
