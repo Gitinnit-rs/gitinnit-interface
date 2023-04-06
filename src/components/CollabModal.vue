@@ -35,9 +35,11 @@ async function invite() {
 }
 
 async function removeCollab(usernameToRemove: any) {
+  console.log("Remove collaborators called");
   try {
     await removeCollaborator(usernameToRemove);
-    await getCollaborators();
+
+    setTimeout(() => getCollaborators(), 1000);
 
     toast("Removed as collaborator");
   } catch (e) {
@@ -54,7 +56,10 @@ async function removeCollab(usernameToRemove: any) {
         <h1 class="font-deca">
           Collaborators ({{ collaborators.length + 1 }})
         </h1>
-        <span @click="() => store.$patch({ collabModalOpen: false })" class="mb-2 cursor-pointer text-gray-800">
+        <span
+          @click="() => store.$patch({ collabModalOpen: false })"
+          class="mb-2 cursor-pointer text-gray-800"
+        >
           <CloseIcon />
         </span>
       </div>
@@ -84,7 +89,7 @@ async function removeCollab(usernameToRemove: any) {
             </div>
           </div>
           <div
-            v-for="collaborator in collaborators"
+            v-for="(collaborator, i) in collaborators"
             :key="collaborator.id"
             class="flex justify-between"
           >
@@ -99,10 +104,12 @@ async function removeCollab(usernameToRemove: any) {
               </div>
             </div>
 
-            <div class="grid place-items-center">
+            <div
+              class="grid place-items-center"
+              @click="removeCollab(collaborator.login)"
+            >
               <component
                 :is="DeleteIcon"
-                @click="removeCollab(collaborator.login)"
                 class="text-red-500 text-2xl mb-1.5 cursor-pointer"
               />
             </div>

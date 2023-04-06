@@ -84,6 +84,7 @@ export async function getCollaborators() {
     headers: {
       Accept: "application/vnd.github+json",
       Authorization: "Bearer " + user.access_token,
+      "Cache-Control": "no-cache",
     },
   });
 
