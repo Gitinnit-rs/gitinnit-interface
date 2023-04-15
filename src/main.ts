@@ -7,6 +7,7 @@ import router from './router'
 
 import 'virtual:windi.css'
 import './assets/style.css'
+import './assets/nprogress.css'
 import 'vue-material-design-icons/styles.css';
 
 import Toast, { PluginOptions, POSITION } from 'vue-toastification'

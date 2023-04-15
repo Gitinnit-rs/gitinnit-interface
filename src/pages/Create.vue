@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // @ts-ignore
 import Vue3TagsInput from "vue3-tags-input";
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import FilledButton from "../components/FilledButton.vue";
 import { invoke } from "@tauri-apps/api";
 import { fetchConfigData, globalConfigPath, randomImage } from "../utils";

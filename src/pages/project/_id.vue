@@ -13,6 +13,9 @@ import FilledButton from "../../components/FilledButton.vue";
 import CloudUploadOutline from "vue-material-design-icons/CloudUploadOutline.vue";
 import { useToast } from "vue-toastification";
 import { getCollaborators } from "../../utils/collaborators";
+import { open } from "@tauri-apps/api/dialog";
+import LightButton from "../../components/LightButton.vue";
+import { useNProgress } from "@vueuse/integrations/useNProgress";
 
 const store = useStore();
 const route = useRoute();
@@ -20,6 +23,8 @@ const route = useRoute();
 const { project, projects } = storeToRefs(store);
 
 const toast = useToast();
+
+const np = useNProgress();
 
 onBeforeMount(() => {
   if (route.params.id && +route.params.id !== -1) {
@@ -32,7 +37,7 @@ onBeforeMount(() => {
     projects.value.length > 0
   ) {
     store.$patch({
-      project: projects.value[0],
+      project: projects.value[projects.value.length - 1],
     });
   }
 
@@ -48,6 +53,8 @@ const simulate = () => {
 
 const push = async () => {
   try {
+    np.isLoading.value = true;
+
     const currentbranch = await invoke("get_current_branch", {
       path: project.value?.path,
     });
@@ -62,11 +69,23 @@ const push = async () => {
       branch: currentbranch,
     });
 
+    np.done(true);
+
     toast.info("Saved to Cloud");
   } catch (e) {
+    np.done(true);
+
     console.error("Error while pushing:", e);
     toast.error("Error, couldn't save to cloud");
   }
+};
+
+const selectMusicFile = async () => {
+  const result = await open({
+    title: "Select Music File",
+    directory: false,
+    multiple: false,
+  });
 };
 </script>
 
@@ -141,6 +160,18 @@ const push = async () => {
               <span class="text-sm text-gray-600">
                 {{ project.remoteURL || "Unknown" }}
               </span>
+            </div>
+            <div class="text-sm flex items-center justify-between">
+              <span class="thin-text">Music File</span>
+              <div class="space-x-2">
+                <span class="text-sm text-gray-600">
+                  {{ project.musicFilePath || "Not Set" }}
+                </span>
+
+                <LightButton class="px-3 py-1.5" @click="selectMusicFile"
+                  >Select</LightButton
+                >
+              </div>
             </div>
           </div>
 
