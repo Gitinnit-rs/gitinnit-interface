@@ -71,7 +71,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <div class="fixed bottom-3 left-[50%] text-white z-10">
+  <div class="fixed bottom-3 left-[50%] text-white z-10 select-none">
     <transition name="pushup" mode="out-in">
       <div
         v-if="compact"
