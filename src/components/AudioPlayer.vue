@@ -46,7 +46,7 @@ const toggleCompact = () => {
         class="p-3 bg-teal-500 w-50 relative right-[4.6rem] rounded-lg"
         v-else
       >
-        <div class="flex items-center justify-between px-4">
+        <div class="flex items-center justify-between px-3">
           <div class="text-2xl">
             <!-- Find out how to get sound later -->
             <VolumeMute v-if="sound.volume === 0" />
@@ -67,14 +67,14 @@ const toggleCompact = () => {
         <div class="mt-2">
           <div class="bg-teal-600 h-2 rounded-lg"></div>
           <!-- <div class="bg-teal-600 h-2 rounded-lg"></div> -->
-          <div class="flex justify-between text-xs mt-1 text-teal-100">
+          <div class="flex justify-between text-xs font-medium mt-1 text-teal-100">
             <span>0:00</span>
             <span>2:30</span>
           </div>
         </div>
         <!-- End of Progress Bar -->
         <div
-          class="relative -bottom-2 right-0 text-center cursor-pointer"
+          class="relative -bottom-2 h-5 right-0 text-center cursor-pointer"
           @click="toggleCompact"
         >
           <ChevronDown />
