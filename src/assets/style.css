@@ -70,16 +70,18 @@
 .pushup-enter-active,
 .pushup-leave-active {
     transition: all .1s ease-in;
+    transform: scale(1);
 }
 
 .pushup-enter-from,
 .pushup-leave-to {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(0.95);
 
     /* clip-path Somehow helped with percieved performance hmm */
     clip-path: circle(100%);
 }
 
+/* HTML Forms */
 label {
     @apply text-sm;
 }

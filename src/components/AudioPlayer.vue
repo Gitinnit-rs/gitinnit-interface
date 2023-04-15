@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-import { useSound } from "@vueuse/sound";
 import { storeToRefs } from "pinia";
 import { useStore } from "../store";
-import { computed, ref, watchEffect } from "vue";
+import { Ref, ref, watch, watchEffect } from "vue";
+
+// Tauri
+import { readBinaryFile } from "@tauri-apps/api/fs";
 
 // Icons
 import PlayCircle from "vue-material-design-icons/PlayCircle.vue";
@@ -12,24 +14,60 @@ import ChevronDown from "vue-material-design-icons/ChevronDown.vue";
 import DotsHorizontal from "vue-material-design-icons/DotsHorizontal.vue";
 import VolumeHigh from "vue-material-design-icons/VolumeHigh.vue";
 import VolumeMute from "vue-material-design-icons/VolumeMute.vue";
+import { useToast } from "vue-toastification";
 
 const store = useStore();
 const { project } = storeToRefs(store);
 
+const toast = useToast();
+
 const compact = ref(true);
+const isPlaying = ref(false);
 
-const filePath = computed(() => {
-  // Try to check if it is a music file or not
-  return project.value?.musicFilePath || "";
-});
+// Web Audio API
+const audioContext = new AudioContext();
+const buffer = ref(null as AudioBuffer | null);
+const source = ref(null as AudioBufferSourceNode | null);
 
-const { play, pause, stop, isPlaying, duration, sound } = useSound(
-  filePath.value
-);
+const play = () => {
+  if (!source.value) return;
+
+  source.value?.start();
+};
+const pause = () => {};
 
 const toggleCompact = () => {
   compact.value = !compact.value;
 };
+
+const togglePlay = () => {
+  if (isPlaying.value) pause();
+  else play();
+};
+
+watchEffect(async () => {
+  if (!project.value?.musicFilePath) return;
+
+  // try {
+  //   const contents = await readBinaryFile(project.value?.musicFilePath);
+
+  //   console.log("HERE");
+
+  //   await audioContext.decodeAudioData(
+  //     contents,
+  //     (data) => (buffer.value = data)
+  //   );
+
+  //   console.log("THERE");
+
+  //   source.value = audioContext.createBufferSource();
+  //   source.value.buffer = buffer.value;
+  //   source.value.connect(audioContext.destination);
+  // } catch (e) {
+  //   console.error("Error while attempting to extract and set the Audio file");
+  //   toast.error("Error while attempting to play music");
+  // }
+});
 </script>
 
 <template>
@@ -49,13 +87,13 @@ const toggleCompact = () => {
         <div class="flex items-center justify-between px-3">
           <div class="text-2xl">
             <!-- Find out how to get sound later -->
-            <VolumeMute v-if="sound.volume === 0" />
+            <VolumeMute v-if="false" />
             <VolumeHigh v-else />
           </div>
 
-          <div class="text-4xl mb-1">
-            <PlayCircle v-if="isPlaying" />
-            <PauseCircle v-else />
+          <div class="text-4xl mb-1 cursor-pointer" @click="togglePlay">
+            <PauseCircle v-if="isPlaying" />
+            <PlayCircle v-else />
           </div>
 
           <div class="text-2xl">
@@ -67,7 +105,9 @@ const toggleCompact = () => {
         <div class="mt-2">
           <div class="bg-primary-600 h-2 rounded-lg"></div>
           <!-- <div class="bg-primary-600 h-2 rounded-lg"></div> -->
-          <div class="flex justify-between text-xs font-medium mt-1 text-primary-100">
+          <div
+            class="flex justify-between text-xs font-medium mt-1 text-primary-100"
+          >
             <span>0:00</span>
             <span>2:30</span>
           </div>
