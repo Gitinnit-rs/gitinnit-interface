@@ -11,9 +11,11 @@ import Pill from "../components/Pill.vue";
 import { Project } from "../types";
 import { useToast } from "vue-toastification";
 import { createRepository } from "../utils/user";
+import { useNProgress } from "@vueuse/integrations/useNProgress";
 
 const router = useRouter();
 const toast = useToast();
+const np = useNProgress();
 
 const data = reactive({
   id: Math.round(Math.random() * 1e6),
@@ -50,6 +52,8 @@ async function submit() {
   }
 
   try {
+    np.start();
+
     // Create a repository on Github
     const repoData = await createRepository(data);
     data.remoteURL = repoData.url;
@@ -92,7 +96,10 @@ async function submit() {
         });
       });
     });
+
+    np.done();
   } catch (e) {
+    np.done();
     console.error("Error while creating new project", e);
     toast.error("Error while creating new project");
   }

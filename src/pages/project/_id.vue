@@ -13,9 +13,11 @@ import FilledButton from "../../components/FilledButton.vue";
 import CloudUploadOutline from "vue-material-design-icons/CloudUploadOutline.vue";
 import { useToast } from "vue-toastification";
 import { getCollaborators } from "../../utils/collaborators";
+import { updateProjectConfig } from "../../utils";
 import { open } from "@tauri-apps/api/dialog";
 import LightButton from "../../components/LightButton.vue";
 import { useNProgress } from "@vueuse/integrations/useNProgress";
+import { fetchConfigData } from "../../utils";
 
 const store = useStore();
 const route = useRoute();
@@ -53,7 +55,7 @@ const simulate = () => {
 
 const push = async () => {
   try {
-    np.isLoading.value = true;
+    np.start();
 
     const currentbranch = await invoke("get_current_branch", {
       path: project.value?.path,
@@ -81,11 +83,26 @@ const push = async () => {
 };
 
 const selectMusicFile = async () => {
-  const result = await open({
-    title: "Select Music File",
-    directory: false,
-    multiple: false,
-  });
+  if (!project.value) return;
+
+  try {
+    const result = await open({
+      title: "Select Music File",
+      directory: false,
+      multiple: false,
+    });
+
+    if (result) {
+      np.start();
+      await updateProjectConfig(project.value.id, "musicFilePath", result);
+    }
+
+    np.done();
+  } catch (e) {
+    np.done();
+    toast.error("Error while selecting file");
+    console.error("Error while selecting and updating music file", e);
+  }
 };
 </script>
 
