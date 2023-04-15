@@ -96,9 +96,8 @@ const selectMusicFile = async () => {
     if (result) {
       np.start();
       await updateProjectConfig(project.value.id, "musicFilePath", result);
+      np.done();
     }
-
-    np.done();
   } catch (e) {
     np.done();
     toast.error("Error while selecting file");
@@ -167,7 +166,7 @@ const selectMusicFile = async () => {
 
         <div class="xl:(flex space-x-5)">
           <div
-            class="border p-5 rounded-xl space-y-2 w-full xl:(h-[6.55rem] mt-7 pt-7)"
+            class="border p-5 rounded-xl space-y-2 w-full xl:(h-[8rem] mt-7 pt-6)"
           >
             <div class="text-sm flex items-center justify-between">
               <span class="thin-text">Local Path</span>
@@ -183,7 +182,13 @@ const selectMusicFile = async () => {
               <span class="thin-text">Music File</span>
               <div class="space-x-2">
                 <span class="text-sm text-gray-600">
-                  {{ project.musicFilePath || "Not Set" }}
+                  {{
+                    (project.musicFilePath as any)
+                      .split("\\")
+                      .pop()
+                      .split("/")
+                      .pop() || "Not Set"
+                  }}
                 </span>
 
                 <LightButton class="px-3 py-1.5" @click="selectMusicFile"

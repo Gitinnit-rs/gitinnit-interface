@@ -65,7 +65,19 @@
 .slight_fade-enter-from,
 .slight_fade-leave-to {
     opacity: 0;
-    /* transform: translateY(1px); */
+}
+
+.pushup-enter-active,
+.pushup-leave-active {
+    transition: all .1s ease-in;
+}
+
+.pushup-enter-from,
+.pushup-leave-to {
+    transform: translateY(-5px);
+
+    /* clip-path Somehow helped with percieved performance hmm */
+    clip-path: circle(100%);
 }
 
 label {

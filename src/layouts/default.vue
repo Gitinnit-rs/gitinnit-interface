@@ -6,6 +6,7 @@ import { vScrollLock } from "@vueuse/components";
 import { useOnline } from "@vueuse/core";
 import { watch } from "vue";
 import { useToast } from "vue-toastification";
+import AudioPlayer from "../components/AudioPlayer.vue";
 
 const { compact, scrollLock } = storeToRefs(useStore());
 
@@ -29,6 +30,10 @@ watch(isOnline, (val) => {
         <component :is="Component" v-scroll-lock="scrollLock" />
       </transition>
 
+      <transition name="fade" mode="out-in">
+        <AudioPlayer />
+      </transition>
+      
       <transition name="fade" mode="out-in">
         <div
           v-if="!isOnline"
