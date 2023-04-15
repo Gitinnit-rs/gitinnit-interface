@@ -90,6 +90,7 @@ const selectMusicFile = async () => {
       title: "Select Music File",
       directory: false,
       multiple: false,
+      defaultPath: project.value.path,
     });
 
     if (result) {
