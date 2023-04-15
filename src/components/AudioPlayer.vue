@@ -37,13 +37,13 @@ const toggleCompact = () => {
     <transition name="pushup" mode="out-in">
       <div
         v-if="compact"
-        class="px-4 bg-teal-500 rounded-full cursor-pointer"
+        class="px-4 bg-primary-500 rounded-full cursor-pointer"
         @click="toggleCompact"
       >
         <DotsHorizontal class="text-xl" />
       </div>
       <div
-        class="p-3 bg-teal-500 w-50 relative right-[4.6rem] rounded-lg"
+        class="p-3 bg-primary-500 w-50 relative right-[4.6rem] rounded-lg"
         v-else
       >
         <div class="flex items-center justify-between px-3">
@@ -65,9 +65,9 @@ const toggleCompact = () => {
 
         <!-- Progress Bar -->
         <div class="mt-2">
-          <div class="bg-teal-600 h-2 rounded-lg"></div>
-          <!-- <div class="bg-teal-600 h-2 rounded-lg"></div> -->
-          <div class="flex justify-between text-xs font-medium mt-1 text-teal-100">
+          <div class="bg-primary-600 h-2 rounded-lg"></div>
+          <!-- <div class="bg-primary-600 h-2 rounded-lg"></div> -->
+          <div class="flex justify-between text-xs font-medium mt-1 text-primary-100">
             <span>0:00</span>
             <span>2:30</span>
           </div>
