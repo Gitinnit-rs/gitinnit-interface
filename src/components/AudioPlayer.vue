@@ -1,10 +1,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import { useStore } from "../store";
-import { Ref, ref, watch, watchEffect } from "vue";
-
-// Tauri
-import { readBinaryFile } from "@tauri-apps/api/fs";
+import { Ref, onMounted, ref, watch, watchEffect } from "vue";
 
 // Icons
 import PlayCircle from "vue-material-design-icons/PlayCircle.vue";
@@ -24,16 +21,15 @@ const toast = useToast();
 const compact = ref(true);
 const isPlaying = ref(false);
 
-// Web Audio API
-const audioContext = new AudioContext();
-const buffer = ref(null as AudioBuffer | null);
-const source = ref(null as AudioBufferSourceNode | null);
+// Audio Player
+const audioPlayer: Ref<HTMLAudioElement | null> = ref(null);
+const src = ref("");
 
-const play = () => {
-  if (!source.value) return;
+onMounted(() => {
+  // Set the appData output.mp3
+});
 
-  source.value?.start();
-};
+const play = () => {};
 const pause = () => {};
 
 const toggleCompact = () => {
@@ -47,26 +43,6 @@ const togglePlay = () => {
 
 watchEffect(async () => {
   if (!project.value?.musicFilePath) return;
-
-  // try {
-  //   const contents = await readBinaryFile(project.value?.musicFilePath);
-
-  //   console.log("HERE");
-
-  //   await audioContext.decodeAudioData(
-  //     contents,
-  //     (data) => (buffer.value = data)
-  //   );
-
-  //   console.log("THERE");
-
-  //   source.value = audioContext.createBufferSource();
-  //   source.value.buffer = buffer.value;
-  //   source.value.connect(audioContext.destination);
-  // } catch (e) {
-  //   console.error("Error while attempting to extract and set the Audio file");
-  //   toast.error("Error while attempting to play music");
-  // }
 });
 </script>
 
@@ -121,5 +97,7 @@ watchEffect(async () => {
         </div>
       </div>
     </transition>
+
+    <audio ref="audioPlayer" :src="src" />
   </div>
 </template>

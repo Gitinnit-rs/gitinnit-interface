@@ -70,13 +70,14 @@
 .pushup-enter-active,
 .pushup-leave-active {
     transition: all .1s ease-in;
+    /* will-change: transform; */
 }
 
 .pushup-enter-from,
 .pushup-leave-to {
     transform: translateY(-5px);
 
-    /* clip-path Somehow helped with percieved performance hmm */
+    /* clip-path Somehow helped with percieved performance hmm. Maybe because it triggers will-change like thing? */
     clip-path: circle(100%);
 }
 
