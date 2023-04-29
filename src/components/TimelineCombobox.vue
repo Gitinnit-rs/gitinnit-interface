@@ -53,10 +53,11 @@ async function createTimeline() {
     if (!query.value) return;
 
     try {
-        await invoke("checkout", {
+        const returnValue = await invoke("checkout", {
             path: project.value?.path,
             checkoutPath: " -b " + query.value,
         });
+        console.log("RESULT", returnValue);
 
         setTimeout(fetchTimelines, 500);
 
