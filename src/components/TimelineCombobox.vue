@@ -15,16 +15,24 @@ import ChevronUpDownIcon from "vue-material-design-icons/UnfoldMoreHorizontal.vu
 import { useStore } from "../store";
 import { storeToRefs } from "pinia";
 import { Timeline } from "../types";
+import { useToast } from "vue-toastification";
+import { slugify } from "../utils";
 
 const timelines: Ref<Timeline[]> = ref([]);
-const selectedTimeline = ref(timelines.value[0]);
+const selectedTimeline = ref("Unknown");
 
 const query = ref("");
 
 const store = useStore();
 const { project } = storeToRefs(store);
 
-onMounted(async () => {
+const toast = useToast();
+
+onMounted(() => {
+    fetchTimelines();
+});
+
+async function fetchTimelines() {
     const branches = JSON.parse(
         await invoke("get_local_branches", {
             path: project.value?.path,
@@ -38,14 +46,25 @@ onMounted(async () => {
     const currentBranch = timelines.value.find((item) => item.current === true);
     console.log({ currentBranch });
 
-    selectedTimeline.value = currentBranch || {
-        name: "Unknown",
-        current: true,
-    };
-});
+    selectedTimeline.value = currentBranch?.name || "Unknown";
+}
 
-function onChange(e: any) {
-    // event.target.value
+async function createTimeline() {
+    if (!query.value) return;
+
+    try {
+        await invoke("checkout", {
+            path: project.value?.path,
+            checkoutPath: " -b " + query.value,
+        });
+
+        setTimeout(fetchTimelines, 500);
+
+        toast.success("Created branch " + query.value + "!");
+    } catch (e) {
+        console.error("Error while creating a new branch", e);
+        toast.error("Error while creating branch");
+    }
 }
 </script>
 
@@ -53,12 +72,12 @@ function onChange(e: any) {
     <Combobox v-model="selectedTimeline">
         <div class="relative mt-1">
             <div
-                class="relative w-1/2 cursor-default overflow-hidden rounded-lg bg-white text-left border focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
+                class="relative cursor-default overflow-hidden rounded-lg bg-white text-left border focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
             >
                 <!-- :displayValue="(timeline: any) => timeline.name" -->
                 <ComboboxInput
                     class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-                    @change="query = $event.target.value"
+                    @change="query = slugify($event.target.value)"
                 />
                 <ComboboxButton
                     class="absolute inset-y-0 right-0 flex items-center pr-2"
@@ -76,7 +95,7 @@ function onChange(e: any) {
                 @after-leave="query = ''"
             >
                 <ComboboxOptions
-                    class="absolute mt-1 max-h-60 w-1/2 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                    class="absolute mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                 >
                     <div
                         v-if="timelines.length === 0 && query !== ''"
@@ -93,9 +112,9 @@ function onChange(e: any) {
                         v-slot="{ selected, active }"
                     >
                         <li
-                            class="relative cursor-default select-none py-2 pl-10 pr-4"
+                            class="relative cursor-pointer select-none py-2 pl-10 pr-4"
                             :class="{
-                                'bg-teal-600 text-white': active,
+                                'bg-primary-500 text-white rounded-lg': active,
                                 'text-gray-900': !active,
                             }"
                         >
@@ -113,7 +132,7 @@ function onChange(e: any) {
                                 class="absolute inset-y-0 left-0 flex items-center pl-3"
                                 :class="{
                                     'text-white': active,
-                                    'text-teal-600': !active,
+                                    'text-primary-500': !active,
                                 }"
                             >
                                 <CheckBoldIcon
@@ -123,6 +142,18 @@ function onChange(e: any) {
                             </span>
                         </li>
                     </ComboboxOption>
+
+                    <button
+                        v-if="
+                            query &&
+                            !timelines.map((item) => item.name).includes(query)
+                        "
+                        class="py-2 pl-10 pr-4 bg-gray-50 hover:bg-gray-200 rounded-lg"
+                        @click="createTimeline"
+                    >
+                        + Create
+                        <span class="text-primary-500">{{ query }}</span>
+                    </button>
                 </ComboboxOptions>
             </TransitionRoot>
         </div>
