@@ -55,7 +55,8 @@ async function createTimeline() {
     try {
         const returnValue = await invoke("checkout", {
             path: project.value?.path,
-            checkoutPath: " -b " + query.value,
+            checkoutPath: query.value,
+            createNewBranch: true,
         });
         console.log("RESULT", returnValue);
 

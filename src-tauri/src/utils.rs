@@ -84,7 +84,7 @@ pub fn fetch(path: &str) {
 
 pub fn create_local_branch(path: &str) {
     set_path(path);
-    let mut args = vec!["branch", "-a"];
+    let args = vec!["branch", "-a"];
     let output = exec_git_command(args);
 
     let remote_re = Regex::new("^ *remotes/.*").unwrap();
@@ -113,18 +113,23 @@ pub fn add(path: &str) -> String {
 }
 
 #[tauri::command]
-pub fn commit(message: &str, path: &str) {
+pub fn commit(path: &str, message: &str) -> String {
     set_path(path);
     let add_result = add(path);
     assert!(add_result == "success", "{}", add_result);
     let args = vec!["commit", "-m", &message];
     let return_val: String = exec_git_command(args);
+    return return_val
 }
 
 #[tauri::command]
-pub fn checkout(checkout_path: &str, path: &str) -> String {
+pub fn checkout(path: &str, checkout_path: &str, create_new_branch: bool) -> String {
     set_path(path);
-    let args = vec!["checkout", &checkout_path];
+    let mut args = vec!["checkout"];
+    if create_new_branch{
+        args.push("-b");
+    }
+    args.push(&checkout_path);
     println!("{:#?}", args);
     let return_val: String = exec_git_command(args);
     return return_val;
@@ -186,7 +191,7 @@ pub fn log(hash: &str, path: &str) -> Result<String, String> {
 #[tauri::command]
 pub fn get_local_branches(path: &str) -> Result<String, String> {
     set_path(path);
-    let mut args = vec!["branch"];
+    let args = vec!["branch"];
     let output = exec_git_command(args);
     let mut branch = Branch {
         name: String::from(""),
@@ -220,7 +225,7 @@ pub fn get_local_branches(path: &str) -> Result<String, String> {
 pub fn get_current_branch(path: &str) -> String {
     // CALL THIS METHOD WHEN DETACHED HEAD
     set_path(path);
-    let mut args = vec!["branch", "--contains", "HEAD"];
+    let args = vec!["branch", "--contains", "HEAD"];
     let output = exec_git_command(args);
     let mut name = String::from("");
     for x in output.split("\n") {
