@@ -19,3 +19,8 @@ export interface Commit {
   author: string;
   date: string;
 }
+
+export interface Timeline {
+  name: string;
+  current: boolean;
+}
