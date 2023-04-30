@@ -8,7 +8,7 @@ import {
     ComboboxOptions,
 } from "@headlessui/vue";
 import { invoke } from "@tauri-apps/api";
-import { Ref, onMounted, ref } from "vue";
+import { Ref, onMounted, ref, watchEffect } from "vue";
 
 import CheckBoldIcon from "vue-material-design-icons/CheckBold.vue";
 import ChevronUpDownIcon from "vue-material-design-icons/UnfoldMoreHorizontal.vue";
@@ -53,12 +53,11 @@ async function createTimeline() {
     if (!query.value) return;
 
     try {
-        const returnValue = await invoke("checkout", {
+        await invoke("checkout", {
             path: project.value?.path,
             checkoutPath: query.value,
             createNewBranch: true,
         });
-        console.log("RESULT", returnValue);
 
         setTimeout(fetchTimelines, 500);
 
@@ -68,6 +67,28 @@ async function createTimeline() {
         toast.error("Error while creating branch");
     }
 }
+
+watchEffect(async () => {
+    if (
+        !timelines.value
+            .map((item) => item.name)
+            .includes(selectedTimeline.value)
+    )
+        return;
+    try {
+        const result = await invoke("checkout", {
+            path: project.value?.path,
+            checkoutPath: selectedTimeline.value,
+            createNewBranch: false,
+        });
+
+        if (result === "")
+            toast.success("Switched to timeline " + selectedTimeline.value);
+    } catch (e) {
+        toast.error("Error while switching timeline");
+        console.error(e);
+    }
+});
 </script>
 
 <template>
