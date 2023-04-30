@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import { useStore } from "../store";
-import { Ref, ref, watchEffect } from "vue";
+import { Ref, onMounted, ref, watchEffect } from "vue";
 
 // Icons
 import PlayCircle from "vue-material-design-icons/PlayCircle.vue";
@@ -17,7 +17,7 @@ import { invoke } from "@tauri-apps/api";
 import { convertFileSrc } from "@tauri-apps/api/tauri";
 import { join } from "@tauri-apps/api/path";
 
-import { globalAppPath } from "../utils";
+import { globalAppPath, secondsToString } from "../utils";
 import { useToast } from "vue-toastification";
 
 const store = useStore();
@@ -33,8 +33,16 @@ const isMuted = ref(false);
 const audioPlayer: Ref<HTMLAudioElement | null> = ref(null);
 const src = ref("");
 
-const currentTime = ref("0:00");
-const totalTime = ref("0:00");
+// Audio Player TimingStates
+const currentTime = ref("00:00");
+const totalTime = ref("00:00");
+const interval = ref(setInterval(() => {}));
+const percentage = ref(0);
+
+onMounted(() => {
+    // Attach event listeners
+    attachListeners();
+});
 
 const loadMusic = async () => {
     if (!audioPlayer.value || !project.value?.musicFilePath) return;
@@ -70,8 +78,6 @@ const loadMusic = async () => {
         audioPlayer.value.pause();
 
         totalTime.value = audioPlayer.value.duration.toString();
-
-        console.log("TOTAL TIME", audioPlayer.value.duration);
 
         isPlaying.value = false;
     } catch (e) {
@@ -114,6 +120,35 @@ watchEffect(async () => {
 });
 
 // Listen to audio playing events
+const updateTime = () => {
+    currentTime.value = secondsToString(audioPlayer.value?.currentTime || 0);
+
+    updatePercentage();
+};
+
+const updatePercentage = () => {
+    if (!audioPlayer.value) return;
+
+    percentage.value =
+        (audioPlayer.value?.currentTime / audioPlayer.value?.duration) * 100;
+};
+
+const attachListeners = () => {
+    if (!audioPlayer.value) return;
+
+    audioPlayer.value.oncanplay = function () {
+        totalTime.value = secondsToString(audioPlayer.value?.duration || 0);
+    };
+
+    audioPlayer.value.onplaying = function () {
+        updateTime();
+        interval.value = setInterval(updateTime, 100);
+    };
+
+    // audioPlayer.value.onpause = function () {
+    //     clearInterval(interval.value);
+    // };
+};
 </script>
 
 <template>
@@ -152,8 +187,18 @@ watchEffect(async () => {
 
                 <!-- Progress Bar -->
                 <div class="mt-2">
-                    <div class="bg-primary-600 h-2 rounded-lg"></div>
-                    <!-- <div class="bg-primary-600 h-2 rounded-lg"></div> -->
+                    <div class="relative">
+                        <div
+                            class="bg-primary-600 h-2 rounded-lg"
+                            style="z-index: 5"
+                        ></div>
+                        <div
+                            class="bg-primary-200 h-2 rounded-lg absolute top-0 left-0 z-10 select-none"
+                            :style="{
+                                width: percentage.toString() + '%',
+                            }"
+                        ></div>
+                    </div>
                     <div
                         class="flex justify-between text-xs font-medium mt-1 text-primary-100"
                     >
