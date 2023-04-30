@@ -13,17 +13,17 @@ import VolumeHigh from "vue-material-design-icons/VolumeHigh.vue";
 import VolumeMute from "vue-material-design-icons/VolumeMute.vue";
 
 // Tauri
-import { copyFile } from "@tauri-apps/api/fs";
+import { invoke } from "@tauri-apps/api";
 import { convertFileSrc } from "@tauri-apps/api/tauri";
 import { join } from "@tauri-apps/api/path";
 
 import { globalAppPath } from "../utils";
-// import { useToast } from "vue-toastification";
+import { useToast } from "vue-toastification";
 
 const store = useStore();
 const { project } = storeToRefs(store);
 
-// const toast = useToast();
+const toast = useToast();
 
 const compact = ref(true);
 const isPlaying = ref(false);
@@ -32,6 +32,9 @@ const isMuted = ref(false);
 // Audio Player
 const audioPlayer: Ref<HTMLAudioElement | null> = ref(null);
 const src = ref("");
+
+const currentTime = ref("0:00");
+const totalTime = ref("0:00");
 
 const loadMusic = async () => {
     if (!audioPlayer.value || !project.value?.musicFilePath) return;
@@ -44,20 +47,22 @@ const loadMusic = async () => {
                 filename.length
             ) || filename;
 
-        const outputFilePath = convertFileSrc(
+        const outputFilePath = await join(
+            await globalAppPath(),
+            "output." + fileExtension
+        );
+        const outputFileResourcePath = convertFileSrc(
             await join(await globalAppPath(), "output." + fileExtension)
         );
-        src.value = outputFilePath;
-        console.log("HERE", outputFilePath);
+        src.value = outputFileResourcePath;
 
         // TODO: Validate the file extension too although its done at file selector level too
 
         // Copy over project's music file path to appdata's output.mp3
-        // await invoke("copyFile", {
-        //     from: project.value?.musicFilePath,
-        //     to: outputFilePath,
-        // });
-        await copyFile(project.value.musicFilePath, outputFilePath);
+        await invoke("copyFile", {
+            from: project.value.musicFilePath,
+            to: outputFilePath,
+        });
 
         await new Promise((res, _) => setTimeout(res, 100));
 
@@ -66,10 +71,14 @@ const loadMusic = async () => {
         audioPlayer.value.load();
         audioPlayer.value.pause();
 
+        totalTime.value = audioPlayer.value.duration.toString();
+
+        console.log("TOTAL TIME", audioPlayer.value.duration);
+
         isPlaying.value = false;
     } catch (e) {
         console.error("Error while loading music", e);
-        // toast.error("Error loading audio");
+        toast.error("Error loading audio");
     }
 };
 
@@ -105,6 +114,8 @@ watchEffect(async () => {
 
     loadMusic();
 });
+
+// Listen to audio playing events
 </script>
 
 <template>
@@ -148,8 +159,8 @@ watchEffect(async () => {
                     <div
                         class="flex justify-between text-xs font-medium mt-1 text-primary-100"
                     >
-                        <span>0:00</span>
-                        <span>2:30</span>
+                        <span>{{ currentTime }}</span>
+                        <span>{{ totalTime }}</span>
                     </div>
                 </div>
                 <!-- End of Progress Bar -->

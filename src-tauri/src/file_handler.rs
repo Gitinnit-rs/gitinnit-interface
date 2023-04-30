@@ -29,3 +29,17 @@ pub fn create_dir_if_not_exists(folderpath: &str) -> bool {
 
     return false; // Didn't need to create dir as it already exists
 }
+
+#[tauri::command]
+pub fn copyFile(from: &str, to: &str) -> bool {
+    let fromPath = Path::new(from);
+    let toPath = Path::new(to);
+
+    if !fromPath.exists() {
+        return false;
+    }
+
+    fs::copy(fromPath, toPath);
+
+    return true;
+}
