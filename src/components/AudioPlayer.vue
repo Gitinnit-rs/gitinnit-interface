@@ -51,9 +51,7 @@ const loadMusic = async () => {
             await globalAppPath(),
             "output." + fileExtension
         );
-        const outputFileResourcePath = convertFileSrc(
-            await join(await globalAppPath(), "output." + fileExtension)
-        );
+        const outputFileResourcePath = convertFileSrc(outputFilePath);
         src.value = outputFileResourcePath;
 
         // TODO: Validate the file extension too although its done at file selector level too
