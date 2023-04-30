@@ -113,6 +113,16 @@ const toggleMute = () => {
     audioPlayer.value.volume = isMuted.value ? 0 : 1;
 };
 
+const stop = () => {
+    if (!audioPlayer.value) return;
+
+    pause();
+
+    audioPlayer.value.currentTime = 0;
+
+    updateTime();
+};
+
 watchEffect(async () => {
     if (!project.value?.musicFilePath) return;
 
@@ -142,12 +152,22 @@ const attachListeners = () => {
 
     audioPlayer.value.onplaying = function () {
         updateTime();
+
+        // Currently only setting if needed to clear later, but fine running in background
         interval.value = setInterval(updateTime, 100);
     };
+};
 
-    // audioPlayer.value.onpause = function () {
-    //     clearInterval(interval.value);
-    // };
+const seek = (e: MouseEvent) => {
+    if (!audioPlayer.value) return;
+
+    const x = e.offsetX;
+    const width = (e.target as HTMLDivElement).clientWidth;
+    percentage.value = (x / width) * 100;
+
+    audioPlayer.value.currentTime = (audioPlayer.value.duration * x) / width;
+
+    updateTime();
 };
 </script>
 
@@ -180,7 +200,7 @@ const attachListeners = () => {
                         <PlayCircle v-else />
                     </div>
 
-                    <div class="text-2xl">
+                    <div class="text-2xl cursor-pointer" @click="stop">
                         <StopCircle />
                     </div>
                 </div>
@@ -189,13 +209,14 @@ const attachListeners = () => {
                 <div class="mt-2">
                     <div class="relative">
                         <div
-                            class="bg-primary-600 h-2 rounded-lg"
-                            style="z-index: 5"
+                            class="bg-primary-600 h-2 rounded-lg cursor-pointer"
+                            @click="seek"
                         ></div>
                         <div
-                            class="bg-primary-200 h-2 rounded-lg absolute top-0 left-0 z-10 select-none"
+                            class="bg-primary-200 h-2 rounded-lg absolute top-0 left-0 pointer-events-none"
                             :style="{
                                 width: percentage.toString() + '%',
+                                userSelect: 'none',
                             }"
                         ></div>
                     </div>
