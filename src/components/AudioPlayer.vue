@@ -11,17 +11,23 @@ import ChevronDown from "vue-material-design-icons/ChevronDown.vue";
 import DotsHorizontal from "vue-material-design-icons/DotsHorizontal.vue";
 import VolumeHigh from "vue-material-design-icons/VolumeHigh.vue";
 import VolumeMute from "vue-material-design-icons/VolumeMute.vue";
-import { useToast } from "vue-toastification";
+
+// Tauri
+import { copyFile } from "@tauri-apps/api/fs";
+import { convertFileSrc } from "@tauri-apps/api/tauri";
+import { join } from "@tauri-apps/api/path";
+
 import { globalAppPath } from "../utils";
-import { invoke } from "@tauri-apps/api";
+// import { useToast } from "vue-toastification";
 
 const store = useStore();
 const { project } = storeToRefs(store);
 
-const toast = useToast();
+// const toast = useToast();
 
 const compact = ref(true);
 const isPlaying = ref(false);
+const isMuted = ref(false);
 
 // Audio Player
 const audioPlayer: Ref<HTMLAudioElement | null> = ref(null);
@@ -30,23 +36,41 @@ const src = ref("");
 const loadMusic = async () => {
     if (!audioPlayer.value || !project.value?.musicFilePath) return;
 
-    const filename = project.value.musicFilePath;
-    const fileExtension =
-        filename.substring(filename.lastIndexOf(".") + 1, filename.length) ||
-        filename;
+    try {
+        const filename = project.value.musicFilePath;
+        const fileExtension =
+            filename.substring(
+                filename.lastIndexOf(".") + 1,
+                filename.length
+            ) || filename;
 
-    const outputFilePath = (await globalAppPath()) + "output" + fileExtension;
-    src.value = outputFilePath;
+        const outputFilePath = convertFileSrc(
+            await join(await globalAppPath(), "output." + fileExtension)
+        );
+        src.value = outputFilePath;
+        console.log("HERE", outputFilePath);
 
-    // TODO: Validate the file extension too although its done at file selector level too
+        // TODO: Validate the file extension too although its done at file selector level too
 
-    // Copy over project's music file path to appdata's output.mp3
-    await invoke("copyFile", {
-        from: project.value?.musicFilePath,
-        to: outputFilePath,
-    });
+        // Copy over project's music file path to appdata's output.mp3
+        // await invoke("copyFile", {
+        //     from: project.value?.musicFilePath,
+        //     to: outputFilePath,
+        // });
+        await copyFile(project.value.musicFilePath, outputFilePath);
 
-    audioPlayer.value.load();
+        await new Promise((res, _) => setTimeout(res, 100));
+
+        audioPlayer.value.volume = 1;
+        audioPlayer.value.currentTime = 0;
+        audioPlayer.value.load();
+        audioPlayer.value.pause();
+
+        isPlaying.value = false;
+    } catch (e) {
+        console.error("Error while loading music", e);
+        // toast.error("Error loading audio");
+    }
 };
 
 const play = () => {
@@ -66,6 +90,14 @@ const toggleCompact = () => {
 const togglePlay = () => {
     if (isPlaying.value) pause();
     else play();
+};
+
+const toggleMute = () => {
+    if (!audioPlayer.value) return;
+
+    isMuted.value = !isMuted.value;
+
+    audioPlayer.value.volume = isMuted.value ? 0 : 1;
 };
 
 watchEffect(async () => {
@@ -90,9 +122,9 @@ watchEffect(async () => {
                 v-else
             >
                 <div class="flex items-center justify-between px-3">
-                    <div class="text-2xl">
+                    <div class="text-2xl cursor-pointer" @click="toggleMute">
                         <!-- Find out how to get sound later -->
-                        <VolumeMute v-if="false" />
+                        <VolumeMute v-if="isMuted" />
                         <VolumeHigh v-else />
                     </div>
 
@@ -130,6 +162,6 @@ watchEffect(async () => {
             </div>
         </transition>
 
-        <audio ref="audioPlayer" :src="src" />
+        <audio ref="audioPlayer" :src="src" @ended="isPlaying = false" />
     </div>
 </template>

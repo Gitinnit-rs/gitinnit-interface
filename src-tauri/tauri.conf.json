@@ -12,7 +12,12 @@
   },
   "tauri": {
     "allowlist": {
-      "all": true
+      "all": true,
+      "protocol": {
+        "all": true,
+        "asset": true,
+        "assetScope": ["$APPDATA/output.mp3"]
+      }
     },
     "bundle": {
       "active": true,
@@ -48,7 +53,7 @@
       }
     },
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; media-src 'self' asset: https://asset.localhost"
     },
     "updater": {
       "active": false
