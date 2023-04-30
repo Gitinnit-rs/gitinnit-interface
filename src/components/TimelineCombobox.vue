@@ -70,11 +70,14 @@ async function createTimeline() {
 
 watchEffect(async () => {
     if (
+        timelines.value.find((item) => item.current)?.name ===
+            selectedTimeline.value ||
         !timelines.value
             .map((item) => item.name)
             .includes(selectedTimeline.value)
     )
         return;
+
     try {
         const result = await invoke("checkout", {
             path: project.value?.path,
@@ -82,8 +85,10 @@ watchEffect(async () => {
             createNewBranch: false,
         });
 
-        if (result === "")
+        if (result === "") {
+            await fetchTimelines();
             toast.success("Switched to timeline " + selectedTimeline.value);
+        }
     } catch (e) {
         toast.error("Error while switching timeline");
         console.error(e);
