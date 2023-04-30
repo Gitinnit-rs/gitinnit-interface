@@ -36,7 +36,8 @@ export const useStore = defineStore("gitinnit-store", {
       // Fetch main branchs' timeline
       this.mainTimeline = JSON.parse(
         await invoke("log", {
-          hash: this.project.defaultBranch || "main",
+          // hash: this.project.defaultBranch || "main",
+          hash: "",
           path: this.project.path,
         })
       );

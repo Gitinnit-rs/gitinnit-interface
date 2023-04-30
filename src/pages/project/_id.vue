@@ -18,7 +18,6 @@ import { open } from "@tauri-apps/api/dialog";
 import LightButton from "../../components/LightButton.vue";
 import { useNProgress } from "@vueuse/integrations/useNProgress";
 import TimelineCombobox from "../../components/TimelineCombobox.vue";
-import TonalButton from "../../components/TonalButton.vue";
 
 const store = useStore();
 const route = useRoute();
@@ -224,9 +223,9 @@ const selectMusicFile = async () => {
                     <h2 class="thin-text">Timelines</h2>
                     <div class="grid grid-cols-2">
                         <TimelineCombobox class="mt-[0.6rem]" />
-                        <div class="mt-3 ml-5">
+                        <!-- <div class="mt-3 ml-5">
                             <LightButton>Create Branch</LightButton>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 

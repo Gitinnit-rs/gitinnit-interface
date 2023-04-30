@@ -18,6 +18,9 @@ import { Timeline } from "../types";
 import { useToast } from "vue-toastification";
 import { slugify } from "../utils";
 
+//Icons
+import PlusCircleIcon from "vue-material-design-icons/PlusCircle.vue";
+
 const timelines: Ref<Timeline[]> = ref([]);
 const selectedTimeline = ref("Unknown");
 
@@ -87,6 +90,8 @@ watchEffect(async () => {
 
         if (result === "") {
             await fetchTimelines();
+            await store.getTimeline();
+            // TODO: GET CURRENT BRANCH'S TIMELINE EITHER DETERMINED HERE OR IN RUST
             toast.success("Switched to timeline " + selectedTimeline.value);
         }
     } catch (e) {
@@ -179,7 +184,8 @@ watchEffect(async () => {
                         class="py-2 pl-10 pr-4 bg-gray-50 hover:bg-gray-200 rounded-lg"
                         @click="createTimeline"
                     >
-                        + Create
+                        <PlusCircleIcon />
+                        Create
                         <span class="text-primary-500">{{ query }}</span>
                     </button>
                 </ComboboxOptions>
