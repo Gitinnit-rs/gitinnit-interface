@@ -27,6 +27,7 @@ fn main() {
             utils::get_current_branch,
             file_handler::read_file,
             file_handler::write_file,
+            file_handler::copyFile,
             file_handler::create_dir_if_not_exists,
             auth_server::start_auth_server
         ])

@@ -12,7 +12,12 @@
   },
   "tauri": {
     "allowlist": {
-      "all": true
+      "all": true,
+      "protocol": {
+        "all": true,
+        "asset": true,
+        "assetScope": ["$APPDATA/output.mp3"]
+      }
     },
     "bundle": {
       "active": true,
@@ -48,7 +53,7 @@
       }
     },
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; media-src 'self' asset: https://asset.localhost"
     },
     "updater": {
       "active": false
@@ -58,7 +63,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "",
+        "title": "Gitinnit",
         "width": 1000,
         "minWidth": 800,
         "minHeight": 600,
