@@ -16,7 +16,7 @@ import { useStore } from "../store";
 import { storeToRefs } from "pinia";
 import { Timeline } from "../types";
 import { useToast } from "vue-toastification";
-import { slugify } from "../utils";
+import { slugify, updateProjectConfig } from "../utils";
 
 //Icons
 import PlusCircleIcon from "vue-material-design-icons/PlusCircle.vue";
@@ -36,6 +36,8 @@ onMounted(() => {
 });
 
 async function fetchTimelines() {
+    if (!project.value) return;
+
     const branches = JSON.parse(
         await invoke("get_local_branches", {
             path: project.value?.path,
@@ -44,12 +46,22 @@ async function fetchTimelines() {
 
     console.log({ branches });
 
-    timelines.value = branches;
+    timelines.value = branches.filter((item: any) => item.name !== "(HEAD");
 
     const currentBranch = timelines.value.find((item) => item.current === true);
     console.log({ currentBranch });
 
-    selectedTimeline.value = currentBranch?.name || "Unknown";
+    if (currentBranch?.name.startsWith("(HEAD")) {
+        selectedTimeline.value = project.value.defaultBranch;
+    } else {
+        selectedTimeline.value = currentBranch?.name || "Unknown";
+    }
+
+    store.$patch({
+        project: {
+            defaultBranch: currentBranch?.name,
+        },
+    });
 }
 
 async function createTimeline() {
@@ -72,6 +84,8 @@ async function createTimeline() {
 }
 
 watchEffect(async () => {
+    if (!project.value) return;
+
     if (
         timelines.value.find((item) => item.current)?.name ===
             selectedTimeline.value ||
@@ -88,12 +102,25 @@ watchEffect(async () => {
             createNewBranch: false,
         });
 
-        if (result === "") {
-            await fetchTimelines();
-            await store.getTimeline();
-            // TODO: GET CURRENT BRANCH'S TIMELINE EITHER DETERMINED HERE OR IN RUST
-            toast.success("Switched to timeline " + selectedTimeline.value);
-        }
+        console.log("RESULT from CHECKOUT", result);
+
+        await fetchTimelines();
+        await store.getTimeline(selectedTimeline.value);
+
+        store.$patch({
+            project: {
+                defaultBranch: selectedTimeline.value,
+            },
+        });
+
+        await updateProjectConfig(
+            project.value.id,
+            "defaultBranch",
+            selectedTimeline.value
+        );
+
+        // TODO: GET CURRENT BRANCH'S TIMELINE EITHER DETERMINED HERE OR IN RUST
+        toast.success("Switched to timeline " + selectedTimeline.value);
     } catch (e) {
         toast.error("Error while switching timeline");
         console.error(e);
