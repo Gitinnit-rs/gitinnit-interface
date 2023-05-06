@@ -154,7 +154,15 @@ const attachListeners = () => {
         updateTime();
 
         // Currently only setting if needed to clear later, but fine running in background
-        interval.value = setInterval(updateTime, 100);
+        interval.value = setInterval(updateTime, 10);
+    };
+
+    audioPlayer.value.onended = function () {
+        clearInterval(interval.value);
+    };
+
+    audioPlayer.value.onpause = function () {
+        clearInterval(interval.value);
     };
 };
 
