@@ -150,6 +150,10 @@ const attachListeners = () => {
         totalTime.value = secondsToString(audioPlayer.value?.duration || 0);
     };
 
+    audioPlayer.value.onplay = function () {
+        play();
+    };
+
     audioPlayer.value.onplaying = function () {
         updateTime();
 
@@ -162,6 +166,7 @@ const attachListeners = () => {
     };
 
     audioPlayer.value.onpause = function () {
+        pause();
         clearInterval(interval.value);
     };
 };
