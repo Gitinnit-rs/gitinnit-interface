@@ -197,7 +197,10 @@ const selectMusicFile = async () => {
                         <div class="text-sm flex items-center justify-between">
                             <span class="thin-text">Music File</span>
                             <div class="space-x-2">
-                                <span class="text-sm text-gray-600">
+                                <span
+                                    v-if="project.musicFilePath"
+                                    class="text-sm text-gray-600"
+                                >
                                     {{
                                         (project.musicFilePath as any)
                                             .split("\\")
@@ -205,6 +208,9 @@ const selectMusicFile = async () => {
                                             .split("/")
                                             .pop() || "Not Set"
                                     }}
+                                </span>
+                                <span v-else class="text-sm text-gray-600">
+                                    Not Set
                                 </span>
 
                                 <LightButton
