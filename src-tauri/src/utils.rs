@@ -75,6 +75,13 @@ pub fn init(path: &str) {
 }
 
 #[tauri::command]
+pub fn clone_repository(path: &str, remote_url: &str) {
+    set_path(path);
+    let args = vec!["clone", &remote_url];
+    exec_git_command(args);
+}
+
+#[tauri::command]
 pub fn fetch(path: &str) {
     set_path(path);
     let args = vec!["fetch"];
