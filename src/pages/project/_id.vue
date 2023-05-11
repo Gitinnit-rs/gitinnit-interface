@@ -19,8 +19,13 @@ import LightButton from "../../components/LightButton.vue";
 import { useNProgress } from "@vueuse/integrations/useNProgress";
 import TimelineCombobox from "../../components/TimelineCombobox.vue";
 
+// Icons
+import CopyIcon from "vue-material-design-icons/ContentCopy.vue";
+import { useClipboard } from "@vueuse/core";
+
 const store = useStore();
 const route = useRoute();
+const clipboard = useClipboard();
 
 const { project, projects } = storeToRefs(store);
 
@@ -184,14 +189,23 @@ const selectMusicFile = async () => {
                     >
                         <div class="text-sm flex items-center justify-between">
                             <span class="thin-text">Local Path</span>
-                            <span class="text-sm text-gray-600">{{
-                                project?.path
-                            }}</span>
+                            <span class="text-sm text-gray-600"
+                                >{{ project?.path }}
+                                <CopyIcon
+                                    class="cursor-pointer"
+                                    @click="clipboard.copy(project.path)"
+                                />
+                            </span>
                         </div>
                         <div class="text-sm flex items-center justify-between">
                             <span class="thin-text">Remote Link</span>
                             <span class="text-sm text-gray-600">
                                 {{ project.remoteURL || "Unknown" }}
+                                <CopyIcon
+                                    v-if="project.remoteURL"
+                                    class="cursor-pointer"
+                                    @click="clipboard.copy(project.remoteURL)"
+                                />
                             </span>
                         </div>
                         <div class="text-sm flex items-center justify-between">
