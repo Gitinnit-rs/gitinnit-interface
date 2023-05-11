@@ -189,7 +189,7 @@ const selectMusicFile = async () => {
                             }}</span>
                         </div>
                         <div class="text-sm flex items-center justify-between">
-                            <span class="thin-text">Remote Path</span>
+                            <span class="thin-text">Remote Link</span>
                             <span class="text-sm text-gray-600">
                                 {{ project.remoteURL || "Unknown" }}
                             </span>
