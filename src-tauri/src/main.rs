@@ -25,6 +25,7 @@ fn main() {
             utils::get_user_email,
             utils::get_local_branches,
             utils::get_current_branch,
+            utils::clone_repository,
             file_handler::read_file,
             file_handler::write_file,
             file_handler::copyFile,

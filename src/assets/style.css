@@ -87,6 +87,7 @@ label {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="url"] {
     @apply border py-2 px-3 rounded-lg text-sm w-full;
 }
