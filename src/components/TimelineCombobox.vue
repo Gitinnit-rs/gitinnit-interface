@@ -76,7 +76,7 @@ async function createTimeline() {
 
         setTimeout(fetchTimelines, 500);
 
-        toast.success("Created branch " + query.value + "!");
+        toast.success("Created timeline " + query.value + "!");
     } catch (e) {
         console.error("Error while creating a new branch", e);
         toast.error("Error while creating branch");
