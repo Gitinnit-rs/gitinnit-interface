@@ -82,13 +82,12 @@ pub fn fetch(path: &str) {
     create_local_branch(path);
 }
 
-pub fn create_local_branch(path: &str) {
+pub fn create_local_branch(path: &str)->String {
     set_path(path);
     let args = vec!["branch", "-a"];
     let output = exec_git_command(args);
 
     let remote_re = Regex::new("^ *remotes/.*").unwrap();
-
     for x in output.split("\n") {
         if x.len() == 0 {
             continue;
@@ -96,9 +95,11 @@ pub fn create_local_branch(path: &str) {
         if remote_re.is_match(x) {
             let (_, name) = x.rsplit_once('/').unwrap();
             let create_branch_args = vec!["branch", name];
-            exec_git_command(create_branch_args);
+            return exec_git_command(create_branch_args);
         }
     }
+
+    return "Need to check".to_string();
 }
 
 #[tauri::command]

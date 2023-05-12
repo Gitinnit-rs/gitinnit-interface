@@ -2,7 +2,6 @@ import {render,screen} from "@testing-library/vue";
 import { describe , it , expect,beforeEach } from 'vitest';
 import {mount} from '@vue/test-utils';
 import { setActivePinia, createPinia } from 'pinia'
-import { useCounter } from '../src/stores/counter'
 import Create from '../pages/Create.vue';
 import Home from '../pages/Home.vue'
 import About from '../pages/About.vue'
@@ -17,12 +16,12 @@ import CollabModal from '../components/CollabModal.vue'
 import Collaborators from '../components/Collaborators.vue'
 import Timeline from '../components/Timeline.vue'
 import AudioPlayer from '../components/AudioPlayer.vue'
-
+import TimelineComboboxVue from "../components/TimelineCombobox.vue";
 
 describe('Snapshot',()=>{
     beforeEach(() => {
         // creates a fresh pinia and make it active so it's automatically picked
-        // up by any useStore() call without having to pass it to it:
+        // up by any useStore() caull without having to pass it to it:
         // `useStore(pinia)`
         setActivePinia(createPinia())
       })
@@ -79,7 +78,7 @@ describe('Snapshot',()=>{
         expect(wrapper).toMatchSnapshot();
     })
 
-    it("11.Renders COllaborator module",()=>{
+    it("11.Renders Collaborator module",()=>{
         const wrapper = render(Collaborators,{props:{element:"div"}})
         expect(wrapper).toMatchSnapshot();
     })
@@ -96,6 +95,11 @@ describe('Snapshot',()=>{
 
     it("14.Renders Project",()=>{
         const wrapper = render(Project,{props:{element:"div"}})
+        expect(wrapper).toMatchSnapshot();
+    })
+
+    it("15.Render TimelineComboboxVue",()=>{
+        const wrapper = render(TimelineComboboxVue,{props:{element:"div"}})
         expect(wrapper).toMatchSnapshot();
     })
 })

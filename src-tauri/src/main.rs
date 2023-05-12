@@ -34,3 +34,60 @@ fn main() {
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
+
+
+// #[cfg(test)]
+
+// mod tests {
+//     use super::*;
+//     #[test]
+//     // fn git_add(){
+//     //     assert_eq!("success",utils::add(r"C:\Users\Parth\Documents\Believer"));
+//     //     assert_eq!("success",utils::add());
+//     //     assert_eq!("success",utils::add(r"1"));
+//     //     assert_eq!("success",utils::add(r"#$"))
+//     // }
+
+//     // fn git_commit(){
+//     //     assert_eq!("",utils::commit(r"New song believer",r"C:\Users\Parth\Documents\Believer"));
+//     //     assert_eq!("",utils::commit(r"",r"C:\Users\Parth\Documents\Believer"));
+//     //     assert_eq!("",utils::commit(r"New song believer",r""));
+//     //     assert_eq!("",utils::commit(r"New song believer",r"124"));
+//     //     assert_eq!("",utils::commit(r"New song believer",r"#@"));
+//     // }
+
+//     // fn git_status(){
+//     //     assert_eq!("",utils::status(r"C:\Users\Parth\Documents\Believer"));
+//     //     assert_eq!("",utils::status(r""));
+//     //     assert_eq!("",utils::status(r"123"));
+//     //     assert_eq!("",utils::status(r"#@"));
+//     //     assert_eq!("",utils::status(r"C:\Devs4\Documents"));
+//     // }
+
+//     // fn git_checkout(){    
+//     //     assert_eq!("",utils::checkout(r"C:\Users\Parth\Documents\Believer",r"C:\Users\Parth\Documents"));
+//     //     assert_eq!("",utils::checkout(r"",r"C:\Users\Parth\Documents"));
+//     //     assert_eq!("",utils::checkout(r"C:\Users\Parth\Documents\Believer",r""));
+//     //     assert_eq!("",utils::checkout(r"123",r"C:\Users\Parth\Documents"));
+//     //     assert_eq!("",utils::checkout(r"C:\Users\Parth\Documents\Believer",r"123"));
+//     // }
+
+//     // fn get_set_path(){
+//     //     assert_eq!("Successfully changed working directory!",utils::set_path(r"C:\Users\Parth\Documents"));
+//     //     assert_eq!("Successfully changed working directory!",utils::set_path(r""));
+//     //     assert_eq!("Successfully changed working directory!",utils::set_path(r"C:\Users\dev\Documents"));
+//     // }
+
+//     // fn create_branch(){
+//     //     assert_eq!("",utils::create_local_branch("r'https://github.com/devs4shah/ferries.git/mtest"));
+//     // }
+
+//     // fn git_pull(){
+//     //     assert_eq!("Already up to date",utils::pull("https://github.com/devs4shah/ferries/"))
+//     // }
+
+//     // fn git_push(){
+//     //     assert_eq!("",utils::push("https://github.com/devs4shah/ferries/","master"))
+//     // }
+
+// }

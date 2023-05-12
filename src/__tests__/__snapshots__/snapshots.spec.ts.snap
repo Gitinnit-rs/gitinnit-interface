@@ -544,7 +544,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -572,7 +572,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -600,7 +600,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -628,7 +628,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -656,7 +656,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -684,7 +684,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -712,7 +712,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -740,7 +740,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -845,7 +845,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
               <img
                 alt="Summer Days"
                 class="w-40 h-40 rounded-lg"
-                src="https://picsum.photos/id/46/400/400"
+                src="https://picsum.photos/id/49/400/400"
               />
               <div
                 class="py-3"
@@ -873,7 +873,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
               <img
                 alt="In the name of the king"
                 class="w-40 h-40 rounded-lg"
-                src="https://picsum.photos/id/37/400/400"
+                src="https://picsum.photos/id/42/400/400"
               />
               <div
                 class="py-3"
@@ -901,7 +901,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
               <img
                 alt="SkateLess"
                 class="w-40 h-40 rounded-lg"
-                src="https://picsum.photos/id/51/400/400"
+                src="https://picsum.photos/id/9/400/400"
               />
               <div
                 class="py-3"
@@ -929,7 +929,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
               <img
                 alt="Fireball"
                 class="w-40 h-40 rounded-lg"
-                src="https://picsum.photos/id/56/400/400"
+                src="https://picsum.photos/id/7/400/400"
               />
               <div
                 class="py-3"
@@ -957,7 +957,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
               <img
                 alt="Summer Days"
                 class="w-40 h-40 rounded-lg"
-                src="https://picsum.photos/id/46/400/400"
+                src="https://picsum.photos/id/49/400/400"
               />
               <div
                 class="py-3"
@@ -985,7 +985,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
               <img
                 alt="In the name of the king"
                 class="w-40 h-40 rounded-lg"
-                src="https://picsum.photos/id/37/400/400"
+                src="https://picsum.photos/id/42/400/400"
               />
               <div
                 class="py-3"
@@ -1013,7 +1013,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
               <img
                 alt="SkateLess"
                 class="w-40 h-40 rounded-lg"
-                src="https://picsum.photos/id/51/400/400"
+                src="https://picsum.photos/id/9/400/400"
               />
               <div
                 class="py-3"
@@ -1041,7 +1041,7 @@ exports[`Snapshot > 2.Renders home page 1`] = `
               <img
                 alt="Fireball"
                 class="w-40 h-40 rounded-lg"
-                src="https://picsum.photos/id/56/400/400"
+                src="https://picsum.photos/id/7/400/400"
               />
               <div
                 class="py-3"
@@ -1339,7 +1339,7 @@ exports[`Snapshot > 3.Renders about page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -1367,7 +1367,7 @@ exports[`Snapshot > 3.Renders about page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -1395,7 +1395,7 @@ exports[`Snapshot > 3.Renders about page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -1423,7 +1423,7 @@ exports[`Snapshot > 3.Renders about page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -1451,7 +1451,7 @@ exports[`Snapshot > 3.Renders about page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -1479,7 +1479,7 @@ exports[`Snapshot > 3.Renders about page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -1507,7 +1507,7 @@ exports[`Snapshot > 3.Renders about page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -1535,7 +1535,7 @@ exports[`Snapshot > 3.Renders about page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -1858,7 +1858,7 @@ exports[`Snapshot > 4.Renders explore page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -1886,7 +1886,7 @@ exports[`Snapshot > 4.Renders explore page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -1914,7 +1914,7 @@ exports[`Snapshot > 4.Renders explore page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -1942,7 +1942,7 @@ exports[`Snapshot > 4.Renders explore page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -1970,7 +1970,7 @@ exports[`Snapshot > 4.Renders explore page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -1998,7 +1998,7 @@ exports[`Snapshot > 4.Renders explore page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -2026,7 +2026,7 @@ exports[`Snapshot > 4.Renders explore page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -2054,7 +2054,7 @@ exports[`Snapshot > 4.Renders explore page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -2389,7 +2389,7 @@ exports[`Snapshot > 5.Renders settings page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -2417,7 +2417,7 @@ exports[`Snapshot > 5.Renders settings page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -2445,7 +2445,7 @@ exports[`Snapshot > 5.Renders settings page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -2473,7 +2473,7 @@ exports[`Snapshot > 5.Renders settings page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -2501,7 +2501,7 @@ exports[`Snapshot > 5.Renders settings page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -2529,7 +2529,7 @@ exports[`Snapshot > 5.Renders settings page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -2557,7 +2557,7 @@ exports[`Snapshot > 5.Renders settings page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -2585,7 +2585,7 @@ exports[`Snapshot > 5.Renders settings page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -3242,7 +3242,7 @@ exports[`Snapshot > 6.Renders Auths_Callback page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -3270,7 +3270,7 @@ exports[`Snapshot > 6.Renders Auths_Callback page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -3298,7 +3298,7 @@ exports[`Snapshot > 6.Renders Auths_Callback page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -3326,7 +3326,7 @@ exports[`Snapshot > 6.Renders Auths_Callback page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -3354,7 +3354,7 @@ exports[`Snapshot > 6.Renders Auths_Callback page 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -3382,7 +3382,7 @@ exports[`Snapshot > 6.Renders Auths_Callback page 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -3410,7 +3410,7 @@ exports[`Snapshot > 6.Renders Auths_Callback page 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -3438,7 +3438,7 @@ exports[`Snapshot > 6.Renders Auths_Callback page 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -3952,7 +3952,7 @@ exports[`Snapshot > 7.Renders  add-modal component 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -3980,7 +3980,7 @@ exports[`Snapshot > 7.Renders  add-modal component 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -4008,7 +4008,7 @@ exports[`Snapshot > 7.Renders  add-modal component 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -4036,7 +4036,7 @@ exports[`Snapshot > 7.Renders  add-modal component 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -4064,7 +4064,7 @@ exports[`Snapshot > 7.Renders  add-modal component 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -4092,7 +4092,7 @@ exports[`Snapshot > 7.Renders  add-modal component 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -4120,7 +4120,7 @@ exports[`Snapshot > 7.Renders  add-modal component 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -4148,7 +4148,7 @@ exports[`Snapshot > 7.Renders  add-modal component 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -4699,7 +4699,7 @@ exports[`Snapshot > 10.Renders COllab module 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -4727,7 +4727,7 @@ exports[`Snapshot > 10.Renders COllab module 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -4755,7 +4755,7 @@ exports[`Snapshot > 10.Renders COllab module 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -4783,7 +4783,7 @@ exports[`Snapshot > 10.Renders COllab module 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -4811,7 +4811,7 @@ exports[`Snapshot > 10.Renders COllab module 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -4839,7 +4839,7 @@ exports[`Snapshot > 10.Renders COllab module 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -4867,7 +4867,7 @@ exports[`Snapshot > 10.Renders COllab module 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -4895,7 +4895,7 @@ exports[`Snapshot > 10.Renders COllab module 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -5248,7 +5248,7 @@ exports[`Snapshot > 10.Renders COllab module 1`] = `
 }
 `;
 
-exports[`Snapshot > 11.Renders COllaborator module 1`] = `
+exports[`Snapshot > 11.Renders Collaborator module 1`] = `
 {
   "baseElement": <body>
     <div>
@@ -5462,7 +5462,7 @@ exports[`Snapshot > 11.Renders COllaborator module 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -5490,7 +5490,7 @@ exports[`Snapshot > 11.Renders COllaborator module 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -5518,7 +5518,7 @@ exports[`Snapshot > 11.Renders COllaborator module 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -5546,7 +5546,7 @@ exports[`Snapshot > 11.Renders COllaborator module 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -5574,7 +5574,7 @@ exports[`Snapshot > 11.Renders COllaborator module 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -5602,7 +5602,7 @@ exports[`Snapshot > 11.Renders COllaborator module 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -5630,7 +5630,7 @@ exports[`Snapshot > 11.Renders COllaborator module 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -5658,7 +5658,7 @@ exports[`Snapshot > 11.Renders COllaborator module 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -6249,7 +6249,7 @@ exports[`Snapshot > 12.Renders Timeline module 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -6277,7 +6277,7 @@ exports[`Snapshot > 12.Renders Timeline module 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -6305,7 +6305,7 @@ exports[`Snapshot > 12.Renders Timeline module 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -6333,7 +6333,7 @@ exports[`Snapshot > 12.Renders Timeline module 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -6361,7 +6361,7 @@ exports[`Snapshot > 12.Renders Timeline module 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -6389,7 +6389,7 @@ exports[`Snapshot > 12.Renders Timeline module 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -6417,7 +6417,7 @@ exports[`Snapshot > 12.Renders Timeline module 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -6445,7 +6445,7 @@ exports[`Snapshot > 12.Renders Timeline module 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -7044,7 +7044,7 @@ exports[`Snapshot > 13.Renders Audio Player module 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -7072,7 +7072,7 @@ exports[`Snapshot > 13.Renders Audio Player module 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -7100,7 +7100,7 @@ exports[`Snapshot > 13.Renders Audio Player module 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -7128,7 +7128,7 @@ exports[`Snapshot > 13.Renders Audio Player module 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -7156,7 +7156,7 @@ exports[`Snapshot > 13.Renders Audio Player module 1`] = `
                 <img
                   alt="Summer Days"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/46/400/400"
+                  src="https://picsum.photos/id/49/400/400"
                 />
                 <div
                   class="py-3"
@@ -7184,7 +7184,7 @@ exports[`Snapshot > 13.Renders Audio Player module 1`] = `
                 <img
                   alt="In the name of the king"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/37/400/400"
+                  src="https://picsum.photos/id/42/400/400"
                 />
                 <div
                   class="py-3"
@@ -7212,7 +7212,7 @@ exports[`Snapshot > 13.Renders Audio Player module 1`] = `
                 <img
                   alt="SkateLess"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/51/400/400"
+                  src="https://picsum.photos/id/9/400/400"
                 />
                 <div
                   class="py-3"
@@ -7240,7 +7240,7 @@ exports[`Snapshot > 13.Renders Audio Player module 1`] = `
                 <img
                   alt="Fireball"
                   class="w-40 h-40 rounded-lg"
-                  src="https://picsum.photos/id/56/400/400"
+                  src="https://picsum.photos/id/7/400/400"
                 />
                 <div
                   class="py-3"
@@ -7637,6 +7637,985 @@ exports[`Snapshot > 13.Renders Audio Player module 1`] = `
         src=""
       />
     </div>
+  </div>,
+  "debug": [Function],
+  "emitted": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "html": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Snapshot > 15.Render TimelineComboboxVue 1`] = `
+{
+  "baseElement": <body>
+    <div>
+      <div
+        class="p-10 pt-12"
+        element="div"
+      >
+        <h1
+          class="text-5xl font-lobster"
+        >
+          Create a new project
+        </h1>
+        <form
+          class="mt-5"
+        >
+          <div
+            class="grid grid-cols-3 gap-10"
+          >
+            <div>
+              <label
+                for="name"
+              >
+                Music Name
+              </label>
+               
+              <br />
+              <input
+                name="name"
+                required=""
+                type="text"
+              />
+               
+              <br />
+            </div>
+            <div>
+              <label
+                for="genre"
+              >
+                Genre
+              </label>
+               
+              <br />
+              <input
+                name="genre"
+                required=""
+                type="text"
+              />
+              <br />
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-3 gap-10 my-3"
+          >
+            <div>
+              <label
+                for="author"
+              >
+                Author
+              </label>
+               
+              <br />
+              <input
+                name="author"
+                required=""
+                type="text"
+              />
+              <br />
+            </div>
+            <div>
+              <label
+                for="path"
+              >
+                Path
+              </label>
+               
+              <br />
+              <div
+                class="flex justify-between items-center space-x-2"
+              >
+                <div>
+                  <button
+                    class="px-5 py-2 text-white text-xs rounded-full font-medium transition bg-primary-400 hover:bg-primary-500/80 w-32"
+                    type="button"
+                  >
+                    
+                     Select Folder 
+                    
+                  </button>
+                </div>
+                <!--v-if-->
+              </div>
+              <br />
+            </div>
+          </div>
+          <label
+            class="mt-5"
+            for="tags"
+          >
+            Tags
+          </label>
+           
+          <br />
+          <div
+            class="v3ti"
+          >
+            <div
+              class="v3ti-content"
+            >
+              
+              <span
+                class="v3ti-tag"
+              >
+                <span>
+                  EDM
+                </span>
+                <a
+                  class="v3ti-remove-tag"
+                />
+              </span>
+              
+              <input
+                class="v3ti-new-tag"
+                placeholder="Enter tags"
+              />
+            </div>
+            <!---->
+          </div>
+          <button
+            class="px-5 py-2 text-white text-xs rounded-full font-medium transition bg-primary-400 hover:bg-primary-500/80 mt-6"
+          >
+            
+            Create project
+            
+          </button>
+        </form>
+      </div>
+    </div>
+    <div>
+      <div
+        element="div"
+      >
+        <div
+          class="p-5 mx-5 flex items-center justify-between"
+        >
+          <div
+            class="pt-5"
+          >
+            <h3
+              class="tracking-widest text-gray-500 text-xs"
+            >
+              v0.1.0
+            </h3>
+            <h1
+              class="text-6xl font-semibold font-lobster"
+            >
+              Gitinnit
+            </h1>
+            <h2
+              class="text-primary-400 font-deca mt-1"
+            >
+               Version Control for Musicians 
+            </h2>
+            <div
+              class="mt-4 space-x-2"
+            >
+              <button
+                class="px-5 py-2 text-white text-xs rounded-full font-medium transition bg-primary-400 hover:bg-primary-500/80"
+              >
+                
+                Log in
+                
+              </button>
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="p-5 mx-5"
+        >
+          <h1
+            class="uppercase tracking-widest text-xs text-gray-500"
+          >
+             Your Projects 
+          </h1>
+          <p
+            class="mt-3 mb-5 text-sm text-gray-700"
+          >
+             No projects yet. Create a new one! 
+          </p>
+          <div
+            class="-ml-3 grid grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+          >
+            
+            
+          </div>
+          <h1
+            class="uppercase tracking-widest text-xs text-gray-500"
+          >
+             Community Projects 
+          </h1>
+          <div
+            class="-ml-3"
+          >
+            <div
+              class="grid grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+            >
+              
+              <div
+                class="p-3"
+              >
+                <img
+                  alt="Summer Days"
+                  class="w-40 h-40 rounded-lg"
+                  src="https://picsum.photos/id/49/400/400"
+                />
+                <div
+                  class="py-3"
+                >
+                  <p
+                    class="text-xss uppercase text-primary-500 font-light"
+                  >
+                    Electro House
+                  </p>
+                  <h1
+                    class="text-sm font-semibold"
+                  >
+                    Summer Days
+                  </h1>
+                  <h3
+                    class="text-xs text-gray-500"
+                  >
+                    Martin Garrix
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="p-3"
+              >
+                <img
+                  alt="In the name of the king"
+                  class="w-40 h-40 rounded-lg"
+                  src="https://picsum.photos/id/42/400/400"
+                />
+                <div
+                  class="py-3"
+                >
+                  <p
+                    class="text-xss uppercase text-primary-500 font-light"
+                  >
+                    Hip-Hop
+                  </p>
+                  <h1
+                    class="text-sm font-semibold"
+                  >
+                    In the name of the king
+                  </h1>
+                  <h3
+                    class="text-xs text-gray-500"
+                  >
+                    King Krusher
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="p-3"
+              >
+                <img
+                  alt="SkateLess"
+                  class="w-40 h-40 rounded-lg"
+                  src="https://picsum.photos/id/9/400/400"
+                />
+                <div
+                  class="py-3"
+                >
+                  <p
+                    class="text-xss uppercase text-primary-500 font-light"
+                  >
+                    Electronic
+                  </p>
+                  <h1
+                    class="text-sm font-semibold"
+                  >
+                    SkateLess
+                  </h1>
+                  <h3
+                    class="text-xs text-gray-500"
+                  >
+                    Steve Aoki
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="p-3"
+              >
+                <img
+                  alt="Fireball"
+                  class="w-40 h-40 rounded-lg"
+                  src="https://picsum.photos/id/7/400/400"
+                />
+                <div
+                  class="py-3"
+                >
+                  <p
+                    class="text-xss uppercase text-primary-500 font-light"
+                  >
+                    Electronic
+                  </p>
+                  <h1
+                    class="text-sm font-semibold"
+                  >
+                    Fireball
+                  </h1>
+                  <h3
+                    class="text-xs text-gray-500"
+                  >
+                    Pitbull
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="p-3"
+              >
+                <img
+                  alt="Summer Days"
+                  class="w-40 h-40 rounded-lg"
+                  src="https://picsum.photos/id/49/400/400"
+                />
+                <div
+                  class="py-3"
+                >
+                  <p
+                    class="text-xss uppercase text-primary-500 font-light"
+                  >
+                    Electro House
+                  </p>
+                  <h1
+                    class="text-sm font-semibold"
+                  >
+                    Summer Days
+                  </h1>
+                  <h3
+                    class="text-xs text-gray-500"
+                  >
+                    Martin Garrix
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="p-3"
+              >
+                <img
+                  alt="In the name of the king"
+                  class="w-40 h-40 rounded-lg"
+                  src="https://picsum.photos/id/42/400/400"
+                />
+                <div
+                  class="py-3"
+                >
+                  <p
+                    class="text-xss uppercase text-primary-500 font-light"
+                  >
+                    Hip-Hop
+                  </p>
+                  <h1
+                    class="text-sm font-semibold"
+                  >
+                    In the name of the king
+                  </h1>
+                  <h3
+                    class="text-xs text-gray-500"
+                  >
+                    King Krusher
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="p-3"
+              >
+                <img
+                  alt="SkateLess"
+                  class="w-40 h-40 rounded-lg"
+                  src="https://picsum.photos/id/9/400/400"
+                />
+                <div
+                  class="py-3"
+                >
+                  <p
+                    class="text-xss uppercase text-primary-500 font-light"
+                  >
+                    Electronic
+                  </p>
+                  <h1
+                    class="text-sm font-semibold"
+                  >
+                    SkateLess
+                  </h1>
+                  <h3
+                    class="text-xs text-gray-500"
+                  >
+                    Steve Aoki
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="p-3"
+              >
+                <img
+                  alt="Fireball"
+                  class="w-40 h-40 rounded-lg"
+                  src="https://picsum.photos/id/7/400/400"
+                />
+                <div
+                  class="py-3"
+                >
+                  <p
+                    class="text-xss uppercase text-primary-500 font-light"
+                  >
+                    Electronic
+                  </p>
+                  <h1
+                    class="text-sm font-semibold"
+                  >
+                    Fireball
+                  </h1>
+                  <h3
+                    class="text-xs text-gray-500"
+                  >
+                    Pitbull
+                  </h3>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="p-5"
+        element="div"
+      >
+        <h1
+          class="text-2xl font-montaga"
+        >
+          About
+        </h1>
+      </div>
+    </div>
+    <div>
+      <section
+        class="p-10"
+        element="div"
+      >
+        <h1
+          class="font-semibold font-lobster text-5xl"
+        >
+          Explore
+        </h1>
+      </section>
+    </div>
+    <div>
+      <section
+        class="p-10"
+        element="div"
+      >
+        <div
+          class="mt-3"
+        >
+          <div>
+            <button
+              class="px-5 py-2 text-white text-xs rounded-full font-medium transition bg-primary-400 hover:bg-primary-500/80"
+            >
+              
+              Log in
+              
+            </button>
+          </div>
+        </div>
+        <div
+          class="mt-10 border p-5 rounded-xl"
+        >
+          <h1
+            class="font-semibold"
+          >
+            Connected Accounts
+          </h1>
+          <div
+            class="flex items-center space-x-1 mt-2"
+          >
+            <div
+              class=""
+            >
+              <span
+                aria-hidden="true"
+                class="material-design-icon github-icon text-xl text-xl"
+                role="img"
+              >
+                <svg
+                  class="material-design-icon__svg"
+                  fill="currentColor"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  width="24"
+                >
+                  <path
+                    d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"
+                  >
+                    <!--v-if-->
+                  </path>
+                </svg>
+              </span>
+            </div>
+            <div
+              class="flex space-x-2 items-center"
+            >
+              <p
+                class="text-sm"
+              >
+                Github
+              </p>
+              <button
+                class="text-xs px-2 py-1 bg-red-100 rounded-full"
+              >
+                 Not Connected 
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex items-center space-x-1 mt-2 text-gray-400"
+          >
+            <div
+              class=""
+            >
+              <span
+                aria-hidden="true"
+                class="material-design-icon soundcloud-icon text-xl text-xl"
+                role="img"
+              >
+                <svg
+                  class="material-design-icon__svg"
+                  fill="currentColor"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  width="24"
+                >
+                  <path
+                    d="M11.56,8.87V17H20.32V17C22.17,16.87 23,15.73 23,14.33C23,12.85 21.88,11.66 20.38,11.66C20,11.66 19.68,11.74 19.35,11.88C19.11,9.54 17.12,7.71 14.67,7.71C13.5,7.71 12.39,8.15 11.56,8.87M10.68,9.89C10.38,9.71 10.06,9.57 9.71,9.5V17H11.1V9.34C10.95,9.5 10.81,9.7 10.68,9.89M8.33,9.35V17H9.25V9.38C9.06,9.35 8.87,9.34 8.67,9.34C8.55,9.34 8.44,9.34 8.33,9.35M6.5,10V17H7.41V9.54C7.08,9.65 6.77,9.81 6.5,10M4.83,12.5C4.77,12.5 4.71,12.44 4.64,12.41V17H5.56V10.86C5.19,11.34 4.94,11.91 4.83,12.5M2.79,12.22V16.91C3,16.97 3.24,17 3.5,17H3.72V12.14C3.64,12.13 3.56,12.12 3.5,12.12C3.24,12.12 3,12.16 2.79,12.22M1,14.56C1,15.31 1.34,15.97 1.87,16.42V12.71C1.34,13.15 1,13.82 1,14.56Z"
+                  >
+                    <!--v-if-->
+                  </path>
+                </svg>
+              </span>
+            </div>
+            <div
+              class="flex space-x-2 items-center"
+            >
+              <p
+                class="text-sm"
+              >
+                SoundCloud
+              </p>
+              <button
+                class="text-xs px-3 py-1 bg-primary-100 text-black rounded-full"
+              >
+                 Coming Soon 
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-5 border p-5 rounded-xl"
+        >
+          <h1
+            class="font-semibold"
+          >
+            Version Control
+          </h1>
+          <form
+            class="mt-3 flex items-center space-x-3"
+            enctype="multipart/form-data"
+          >
+            <div>
+              <label
+                for="git_name"
+              >
+                Name
+              </label>
+               
+              <br />
+              <input
+                class="mt-1"
+                id="git_name"
+                name="git_name"
+                placeholder="Name"
+                required=""
+                type="text"
+              />
+            </div>
+            <div>
+              <label
+                class="mt-3"
+                for="git_email"
+              >
+                Email
+              </label>
+               
+              <br />
+              <input
+                class="mt-1"
+                id="git_email"
+                name="git_email"
+                placeholder="Email"
+                required=""
+                type="email"
+              />
+            </div>
+            <button
+              class="px-5 py-2 text-white text-xs rounded-full font-medium transition bg-primary-400 hover:bg-primary-500/80 mt-6"
+            >
+              
+              Set
+              
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+    <div>
+      <div
+        class="grid place-items-center min-h-screen"
+        element="div"
+      >
+        <div>
+          <h1>
+            An error occured
+          </h1>
+          <p
+            class="text-sm text-red-600"
+          >
+            Error: Access token is null or undefined
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      
+      <button
+        class="px-5 py-2 text-white text-xs rounded-full font-medium transition bg-primary-400 hover:bg-primary-500/80 text-white bg-primary-200 hover:bg-primary-300/90 font-medium"
+      >
+        
+        
+        + Checkpoint
+        
+        
+      </button>
+      <transition-stub
+        appear="false"
+        css="true"
+        data-v-701ac82d=""
+        name="fade"
+        persisted="false"
+      >
+        <!--v-if-->
+      </transition-stub>
+      
+    </div>
+    <div>
+      <div
+        data-v-app=""
+      >
+        <!---->
+      </div>
+    </div>
+    <div>
+      <div
+        data-v-app=""
+      >
+        <!---->
+      </div>
+    </div>
+    <div>
+      <transition-stub
+        appear="false"
+        css="true"
+        data-v-701ac82d=""
+        element="div"
+        name="fade"
+        persisted="false"
+      >
+        <!--v-if-->
+      </transition-stub>
+    </div>
+    <div>
+      <div
+        class="cursor-pointer border p-5 rounded-xl hover:bg-gray-50 transition"
+        element="div"
+      >
+        <h2
+          class="thin-text"
+        >
+          Collaborators
+        </h2>
+        <!-- Image Line -->
+        <p
+          class="text-sm"
+        >
+          Log in to manage collaborators
+        </p>
+      </div>
+    </div>
+    <div>
+      <div
+        class="border rounded-xl"
+        element="div"
+      >
+        <!-- Individual Commit -->
+        <p
+          class="p-5"
+        >
+          No checkpoints yet
+        </p>
+      </div>
+    </div>
+    <div>
+      <div
+        class="fixed bottom-3 left-[50%] text-white z-10 select-none"
+        element="div"
+      >
+        <transition-stub
+          appear="false"
+          css="true"
+          mode="out-in"
+          name="pushup"
+          persisted="false"
+        >
+          <div
+            class="px-4 bg-primary-500 rounded-full cursor-pointer"
+          >
+            <span
+              aria-hidden="true"
+              class="material-design-icon dots-horizontal-icon text-xl text-xl"
+              role="img"
+            >
+              <svg
+                class="material-design-icon__svg"
+                fill="currentColor"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+              >
+                <path
+                  d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"
+                >
+                  <!--v-if-->
+                </path>
+              </svg>
+            </span>
+          </div>
+        </transition-stub>
+        <audio
+          src=""
+        />
+      </div>
+    </div>
+    <div>
+      <div
+        data-v-app=""
+      >
+        <div
+          element="div"
+        >
+          <div
+            class="p-10 grid place-items-center min-h-screen"
+          >
+            <div>
+              <h1
+                class="font-semibold"
+              >
+                Project not found
+              </h1>
+              <p>
+                 Go ahead and 
+                <!---->
+              </p>
+            </div>
+          </div>
+          <transition-stub
+            appear="false"
+            css="true"
+            data-v-701ac82d=""
+            name="fade"
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+        </div>
+      </div>
+    </div>
+    <div>
+      
+      <div
+        class="relative mt-1"
+        element="div"
+      >
+        <div
+          class="relative cursor-default overflow-hidden rounded-lg bg-white text-left border focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
+        >
+          <!-- :displayValue="(timeline: any) =&gt; timeline.name" -->
+          <input
+            aria-autocomplete="list"
+            aria-expanded="false"
+            class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+            data-headlessui-state=""
+            id="headlessui-combobox-input-1"
+            role="combobox"
+            tabindex="0"
+            type="text"
+            value=""
+          />
+          <button
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            class="absolute inset-y-0 right-0 flex items-center pr-2"
+            data-headlessui-state=""
+            id="headlessui-combobox-button-2"
+            tabindex="-1"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="material-design-icon unfold-more-horizontal-icon h-5 w-5 text-gray-400 h-5 w-5 text-gray-400"
+              role="img"
+            >
+              <svg
+                class="material-design-icon__svg"
+                fill="currentColor"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+              >
+                <path
+                  d="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"
+                >
+                  <!--v-if-->
+                </path>
+              </svg>
+            </span>
+          </button>
+        </div>
+        <transitionroot
+          leave="transition ease-in duration-100"
+          leavefrom="opacity-100"
+          leaveto="opacity-0"
+        >
+          <!---->
+        </transitionroot>
+      </div>
+      
+    </div>
+  </body>,
+  "container": <div>
+    
+    <div
+      class="relative mt-1"
+      element="div"
+    >
+      <div
+        class="relative cursor-default overflow-hidden rounded-lg bg-white text-left border focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
+      >
+        <!-- :displayValue="(timeline: any) =&gt; timeline.name" -->
+        <input
+          aria-autocomplete="list"
+          aria-expanded="false"
+          class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+          data-headlessui-state=""
+          id="headlessui-combobox-input-1"
+          role="combobox"
+          tabindex="0"
+          type="text"
+          value=""
+        />
+        <button
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          class="absolute inset-y-0 right-0 flex items-center pr-2"
+          data-headlessui-state=""
+          id="headlessui-combobox-button-2"
+          tabindex="-1"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="material-design-icon unfold-more-horizontal-icon h-5 w-5 text-gray-400 h-5 w-5 text-gray-400"
+            role="img"
+          >
+            <svg
+              class="material-design-icon__svg"
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+            >
+              <path
+                d="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"
+              >
+                <!--v-if-->
+              </path>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <transitionroot
+        leave="transition ease-in duration-100"
+        leavefrom="opacity-100"
+        leaveto="opacity-0"
+      >
+        <!---->
+      </transitionroot>
+    </div>
+    
   </div>,
   "debug": [Function],
   "emitted": [Function],
