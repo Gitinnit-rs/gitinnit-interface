@@ -108,10 +108,10 @@ const { projects } = storeToRefs(store);
                 />
             </div>
 
-            <h1 class="uppercase tracking-widest text-xs text-gray-500">
+            <!-- <h1 class="uppercase tracking-widest text-xs text-gray-500">
                 Community Projects
-            </h1>
-            <div class="-ml-3">
+            </h1> -->
+            <!-- <div class="-ml-3">
                 <div class="grid grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
                     <ProjectCard
                         :project="project"
@@ -121,7 +121,7 @@ const { projects } = storeToRefs(store);
                         :key="project.name + project.author"
                     />
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
