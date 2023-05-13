@@ -83,6 +83,7 @@ async function createTimeline() {
     }
 }
 
+// Switching timeline
 watchEffect(async () => {
     if (!project.value) return;
 
@@ -104,14 +105,14 @@ watchEffect(async () => {
 
         console.log("RESULT from CHECKOUT", result);
 
-        await fetchTimelines();
-        await store.getTimeline(selectedTimeline.value);
-
         store.$patch({
             project: {
                 defaultBranch: selectedTimeline.value,
             },
         });
+
+        await fetchTimelines();
+        await store.getTimeline(selectedTimeline.value);
 
         await updateProjectConfig(
             project.value.id,
