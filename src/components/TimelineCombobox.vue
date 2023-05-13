@@ -117,7 +117,8 @@ watchEffect(async () => {
         await updateProjectConfig(
             project.value.id,
             "defaultBranch",
-            selectedTimeline.value
+            selectedTimeline.value,
+            false
         );
 
         // TODO: GET CURRENT BRANCH'S TIMELINE EITHER DETERMINED HERE OR IN RUST

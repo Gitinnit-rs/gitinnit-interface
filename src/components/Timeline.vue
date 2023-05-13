@@ -55,23 +55,29 @@ const checkout = async (i: number) => {
         return;
     }
 
-    let hash;
+    try {
+        let hash;
 
-    if (i === 0) hash = project.value.defaultBranch || "main";
-    // Whatever timeline the user is on. Fetch this later
-    else hash = mainTimeline.value[i].hash.trim();
+        if (i === 0) hash = project.value.defaultBranch || "main";
+        // Whatever timeline the user is on. Fetch this later
+        else hash = mainTimeline.value[i].hash.trim();
 
-    console.log("Checking out with hash", hash);
+        console.log("About to check out with hash", hash);
 
-    await invoke("checkout", {
-        checkoutPath: hash,
-        path: project.value.path,
-        createNewBranch: false,
-    });
+        await invoke("checkout", {
+            checkoutPath: hash,
+            path: project.value.path,
+            createNewBranch: false,
+        });
 
-    activeCommit.value = i;
+        activeCommit.value = i; // For Quick UI updation
 
-    store.getTimeline(project.value.defaultBranch);
+        store.getTimeline(project.value.defaultBranch);
+
+        fetchActiveCommit();
+    } catch (e) {
+        console.error("Error while checkout", e);
+    }
 };
 </script>
 

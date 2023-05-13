@@ -90,10 +90,15 @@ async function submit() {
                     invoke("add_remote", {
                         path: data.path,
                         url: repoData.url,
+                    }).then(() => {
+                        invoke("commit", {
+                            message: "Begin",
+                            path: data.path,
+                        }).then(() => {
+                            router.push("/");
+                            toast.success("Project created");
+                        });
                     });
-
-                    router.push("/");
-                    toast.success("Project created");
                 });
             });
         });

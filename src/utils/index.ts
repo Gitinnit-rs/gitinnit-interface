@@ -54,7 +54,8 @@ export async function updateGlobalConfig(property: string, value: any) {
 export async function updateProjectConfig(
     projectId: number,
     property: string,
-    value: any
+    value: any,
+    updateLocalConfig = true
 ) {
     const _globalConfig = await globalConfigPath();
 
@@ -88,11 +89,13 @@ export async function updateProjectConfig(
         setTimeout(fetchConfigData, 1000);
     });
 
-    // Update local config
-    invoke("write_file", {
-        path: (project as Project).path + "/" + LOCAL_PROJECT_FILENAME,
-        contents: JSON.stringify(project, null, 4),
-    });
+    if (updateLocalConfig) {
+        // Update local config
+        invoke("write_file", {
+            path: (project as Project).path + "/" + LOCAL_PROJECT_FILENAME,
+            contents: JSON.stringify(project, null, 4),
+        });
+    }
 }
 
 /**
