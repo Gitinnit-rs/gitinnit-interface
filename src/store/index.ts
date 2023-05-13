@@ -23,15 +23,23 @@ export const useStore = defineStore("gitinnit-store", {
             this.compact = !this.compact;
         },
         async getTimeline(branch?: string) {
+            console.log("Get Timeline called", branch);
             if (!this.project) return;
 
-            const finalBranch =
-                branch === "(HEAD" ? this.project.defaultBranch : branch;
+            // const finalBranch =
+            //     branch === "(HEAD" ? this.project.defaultBranch : branch;
+
+            const finalBranch = branch || this.project.defaultBranch;
+
+            console.log("Get Timeline", {
+                finalBranch,
+                defaultBranch: this.project.defaultBranch,
+            });
 
             // Fetch git logs
             this.timeline = JSON.parse(
                 await invoke("log", {
-                    hash: finalBranch,
+                    hash: finalBranch || this.project.defaultBranch || "",
                     path: this.project.path,
                 })
             );

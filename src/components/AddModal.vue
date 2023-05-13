@@ -22,7 +22,7 @@ const commit = () => {
     message: message.value,
     path: project.value?.path,
   }).then(() => {
-    // Get timeline with a small delay
+    // Get timeline with a delay
     setTimeout(() => {
       store.getTimeline();
     }, 500);

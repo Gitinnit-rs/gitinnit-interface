@@ -62,6 +62,7 @@ const simulate = () => {
             ".txt",
         contents: "hello there " + Math.round(Math.random() * 1e3),
     });
+    toast.success("Created test file")
 };
 
 const push = async () => {
