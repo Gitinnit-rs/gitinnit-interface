@@ -56,9 +56,7 @@ async function removeCollab(usernameToRemove: any) {
     <Modal v-model="collabModalOpen">
         <section>
             <div class="flex items-center justify-between">
-                <h1 class="font-deca">
-                    Collaborators ({{ collaborators.length + 1 }})
-                </h1>
+                <h1 class="font-deca">Collaborators</h1>
                 <span
                     @click="() => store.$patch({ collabModalOpen: false })"
                     class="mb-2 cursor-pointer text-gray-800"
